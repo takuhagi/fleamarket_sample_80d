@@ -81,7 +81,7 @@
 
 ### association
 
-- has_many :comment
+- has_many :comments
 - has_many :images
 - belongs_to :brand
 - belongs_to :user
@@ -121,6 +121,6 @@
 - has_many :items
 - has_ancestry
 
-
+-------------------------
 - gem ancestry
 - gem active hash
