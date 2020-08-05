@@ -10,8 +10,8 @@
 |password|string|null: false, unique: true|
 
 ### association
-- belongs_to :profile, dependent::destroy
-- belongs_to :credit_card, dependent::destroy
+- has_one :profile, dependent::destroy
+- has_one :credit_card, dependent::destroy
 - has_many :comments, dependent::destroy
 - has_many :items, dependent::destroy
 
@@ -76,7 +76,6 @@
 |delivery_fee|string|null: false|
 |prefecture_id|references|null: false, foreign_key: true|
 |days_until_shipping|string|null: false|
-|image_id|references|null: false, foreign_key|
 |brand_id|references|null: false, foreign_key|
 
 ### association
@@ -94,6 +93,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |image|string|null: false|
+|item_id|references|null: false, foreign_key|
 
 ### association
 
@@ -103,7 +103,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|
+|name|string|null: false|
 
 ### association
 
@@ -113,7 +113,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|
+|name|string|null: false|
 |ancestry|
 
 ### association
