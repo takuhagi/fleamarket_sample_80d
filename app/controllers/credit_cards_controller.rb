@@ -28,7 +28,7 @@ class CreditCardsController < ApplicationController
   end
 
   def destroy
-    card = CreditCard.find(8) #仮
+    card = CreditCard.find(8)  #仮
     Payjp.api_key = Rails.application.credentials[:payjp][:secret_key]
     customer = Payjp::Customer.retrieve(card.customer_id)
     customer.delete
