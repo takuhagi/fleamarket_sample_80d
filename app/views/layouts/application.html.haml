@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{content: "text/html; charset=UTF-8", "http-equiv": "Content-Type"}/
     %title FleamarketSample80d
     = csrf_meta_tags
     = csp_meta_tag
@@ -9,6 +9,5 @@
     = javascript_include_tag 'application'
     
     %script{src: "https://js.pay.jp/", type: "text/javascript"}
-    
   %body
     = yield

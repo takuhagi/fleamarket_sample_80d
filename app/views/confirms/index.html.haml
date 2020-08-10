@@ -1,0 +1,66 @@
+
+.confirm
+  .confirm__top
+    %span.image
+    = image_tag src="logo.png", size: "200x70"
+
+   
+  .confirm__list
+    .confirm__purchase
+      購入内容の確認
+    .confirm__item
+      .confirm__item__name
+        %p persons ワイシャツ ブラウス
+        %span 送料込み（税込）
+        %span ¥1,000
+      .confirm__item__image
+        %span.image
+        = image_tag src="yshirt.jpg", size: "100x100"
+    .confirm__pay
+      .confirm__pay__amount
+        支払い金額
+      .confirm__pay__money
+        ¥777
+      .confirm__pay__point
+        %label.confirm__pay__point
+          %label.confirm__pay__point{disabled: "disabled"}
+            %span.confirm__pay__point{"data-test" => "transaction-buy-mercari-point-checkbox"}
+              %span.confirm__pay__point
+                %input{disabled: "disabled", name: "use-furima-points", type: "checkbox", value: ""}/
+              %svg{"aria-hidden" => "true", fill: "#ffffff", "fill-rule" => "evenodd", height: "16", viewbox: "0 0 24 24", width: "16"}
+              %path{d: "M9.21,18.09a1.52,1.52,0,0,1-1.09-.44l-5-5a.71.71,0,0,1,0-1,.69.69,0,0,1,1,0l5,5a.26.26,0,0,0,.33-.07L19.92,6.11a.7.7,0,0,1,1,1L10.43,17.58A1.72,1.72,0,0,1,9.21,18.09Z"}
+          %span.image
+          = image_tag src="IMG_3148.png", size: "20x20"
+      .confirm__pay__point__use   
+        %h3.confirm__pay__point__use ポイントの使用
+        %p.confirm__pay__point__use 所持ポイント : P0
+    .confirm__method
+      .confirm__method__how
+        %h3 支払い方法
+        %a 変更する
+      .confirm__method__credit
+        %p クレジットカード
+        %p ************1017
+        %p 有効期限
+        %p 11 / 24
+        .confirm__method__credit__icon 
+          %span.image
+          = image_tag src="visa_logo.png", size: "70x50"
+    .confirm__address{"data-test" => "transaction-buy-address-text"}
+      .confirm__address__1
+        %h3 配送先
+        %a 変更する
+      .confirm__address__2
+        %p 〒183-0011
+        %p 東京都 府中市 白糸台5-38-1 WILL
+        %p 萩原 
+    .confirm__buy
+      .confirm__buy__btn
+        購入する
+  .confirm__foot
+    .confirm__foot__icon
+      %span.image
+        = image_tag src="logo-white.png", size: "120x70"
+      .confirm__foot__furima    
+        © Furima, Inc.
+  

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+resources :confirms,only: :index
 # before
 get 'items/index'
 
@@ -7,4 +8,6 @@ root 'credit_cards#new'
 
 resources :credit_cards, only: [:new, :index, :create, :destroy]
 
+
 end
+
