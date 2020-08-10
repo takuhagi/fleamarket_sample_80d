@@ -1,0 +1,121 @@
+.All
+  .Header
+    .logo
+      = image_tag "logo.png", class:"logo_image"
+
+  .Middle
+    .Form
+      = form_for @item do |f|
+        .form_image.common_wrapper
+          .image_wrapper
+            .content_wrapper
+              .title
+                画像
+              .require_content
+                必須
+          #image-box
+            #previews
+              - if @item.persisted?
+                - @item.images.each_with_index do |image, i|
+                  = image_tag image.src.url, data: { index: i }, width: "100", height: '100'
+            = f.fields_for :images do |image|
+              .js-file_group{"data-index" => "#{image.index}"}
+                = image.file_field :src, class: 'js-file'
+                %br/
+            - if @item.persisted?
+              .js-file_group{"data-index" => "#{@item.images.count}"}
+                = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][src]", class: 'js-file'
+
+        .form_name.common_wrapper
+          .name_wrapper
+            .content_wrapper
+              .title
+                商品名
+              .require_content
+                必須
+            = f.text_field :name, class:"field", placeholder: "商品名"
+        .form_explanation.common_wrapper
+          .explanation_wrapper
+            .content_wrapper
+              .title
+                説明
+              .require_content
+                必須
+            = f.text_area :explanation, class:"explanation_field", placeholder: "説明"
+          .font-counter
+            文字数：0
+        .form_category.common_wrapper
+          .category_wrapper
+            .content_wrapper
+              .title
+                カテゴリー
+              .require_content
+                必須
+            = f.select :category_id, [["レディース",0], ["メンズ", 1],["ベビー・キッズ", 2], ["インテリア・住まい・小物", 3], ["本・音楽・ゲーム", 4], ["おもちゃ・ホビー・グッズ", 5],["コスメ・香水・美容", 6], ["家電・スマホ・カメラ", 7], ["スポーツ・レジャー", 8],["ハンドメイド", 9], ["チケット", 10], ["自動車・オートバイ", 11],["その他", 12]]
+        .form_brand_id.common_wrapper
+          .category_wrapper
+            .content_wrapper
+              .title
+                ブランド
+              .require_content_brand
+                任意
+            = f.select :brand_id, [["シャネル",0], ["シャネル", 1]]
+        .form_status_id.common_wrapper
+          .status_wrapper
+            .content_wrapper
+              .title
+                商品の状態
+              .require_content
+                必須
+            = f.collection_select :status_id, Status.all, :id, :name
+        
+        .form_delivery_fee.common_wrapper
+          .delivery_fee_wrapper
+            .content_wrapper
+              .title
+                配送料の負担
+              .require_content
+                必須
+            = f.collection_select :delivery_fee_id, DeliveryFee.all, :id, :name, include_blank: "---"
+        
+        .form_prefecture_id.common_wrapper
+          .prefecture_wrapper
+            .content_wrapper
+              .title
+                都道府県
+              .require_content
+                必須
+            = f.collection_select :prefecture_id, Prefecture.all, :id, :name, include_blank: "---"
+
+        .form_days_until_shipping.common_wrapper
+          .days_until_shipping_wrapper
+            .content_wrapper
+              .title
+                発送までの日数
+              .require_content
+                必須
+            = f.collection_select :days_until_shipping_id, DaysUntilShipping.all, :id, :name
+        
+        .form_price.common_wrapper
+          .price_wrapper
+            .content_wrapper
+              .title
+                販売価格
+              .require_content
+                必須
+            .price_mark_wrapper
+              .price_mark
+                ¥
+              = f.text_field :price, class:"price_field", placeholder: "販売価格"
+
+        .form_btn  
+          = f.submit "出品する（商品を登録する）", class:"item_submit"
+
+        .return_top
+          = link_to items_path, class:"return_top_top",method: :post do
+            戻る
+    .Header
+      .logo
+        = image_tag "logo.png", class:"logo_image"
+        .logo-text
+          ©︎フリマ
