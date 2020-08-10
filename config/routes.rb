@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 get 'items/index'
 
 # after
-root 'items#index'
+root 'credit_cards#new'
+
+resources :credit_cards, only: [:new, :index, :create, :destroy]
 
 end
