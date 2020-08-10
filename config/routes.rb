@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-resources :confirms,only: :show
+resources :confirms,only: :index
 # before
 get 'items/index'
 
