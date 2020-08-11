@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     post 'pay'
   end
   # before
-  get 'items/index'
+  resources :items,only: [:index]
 
   # after
   root 'credit_cards#show'

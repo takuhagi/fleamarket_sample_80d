@@ -1,3 +1,182 @@
-// Place all the styles related to the items controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.All {
+  // overflow: scroll;
+  height: 2300px;
+  background-color: rgb(247, 241, 241);
+}
+
+.logo_image {
+  height: 50px;
+  width: 200px;
+  padding: 20px;
+}
+
+.Header{
+  margin: 0 auto;
+  height: 100px;
+  background-color: rgb(247, 241, 241);
+}
+
+.logo {
+  text-align: center;
+  height: 100px;
+  width: 50vw;
+  margin: 0 auto;
+}
+
+.Middle {
+  height: 100vh;
+  width: 50vw;
+  margin: 0 auto;
+  background-color: rgb(255, 255, 255);
+}
+
+.Form{
+  height: 1900px;
+  padding: 30px 30px;
+  background-color: white;
+}
+
+.common_wrapper {
+  margin-bottom: 50px;
+}
+
+.form_image {
+  height: 300px;
+  background-color: rgb(197, 240, 197);
+}
+
+
+.price_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.field {
+  height: 50px;
+  width: 45vw;
+  margin: 0 auto;
+}
+
+#item_category {
+  height: 50px;
+  width: 45vw;
+  margin: 0 auto;
+}
+
+#item_prefecture_id {
+  height: 50px;
+  width: 45vw;
+  margin: 0 auto;
+}
+
+#item_days_until_shipping {
+  height: 50px;
+  width: 45vw;
+  margin: 0 auto;
+}
+
+.explanation_field {
+  height: 250px;
+  width: 45vw;
+  margin: 0 auto;
+}
+
+#item_category_id {
+  height: 40px;
+  width: 45vw;
+}
+
+#item_brand_id {
+  height: 40px;
+  width: 45vw;
+}
+
+
+#item_status_id {
+  height: 40px;
+  width: 45vw;
+}
+
+#item_delivery_fee_id {
+  height: 40px;
+  width: 45vw;
+}
+
+#item_prefecture_id {
+  height: 40px;
+  width: 45vw;
+}
+
+#item_days_until_shipping_id {
+  height: 40px;
+  width: 45vw;
+}
+
+
+.content_wrapper {
+  display: flex;
+  margin-bottom: 20px;
+}
+.title {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.require_content {
+  color: white;
+  border-radius: 10%;
+  margin: auto 0;
+  font-size: 10px;
+  font-weight: bold;
+  height: 15px;
+  width: 30px;
+  text-align: center;
+  margin-left: 10px;
+  background-color: red;
+}
+
+.require_content_brand{
+  color: white;
+  border-radius: 10%;
+  margin: auto 0;
+  font-size: 10px;
+  font-weight: bold;
+  height: 15px;
+  width: 30px;
+  text-align: center;
+  margin-left: 10px;
+  background-color: gray;
+}
+
+.price_field {
+  height: 40px;
+  width: 20vw;
+  margin-left: 5px;
+}
+
+.price_mark_wrapper {
+  display: flex;
+  align-items: center;
+}
+
+
+.item_submit {
+  height: 50px;
+  width: 20vw;
+  background-color: red;
+  color: white;
+  margin: 0 200px 10px 200px;
+}
+
+.form_btn{
+  padding: 0;
+}
+
+.return_top {
+  text-align: center;
+}
+
+.logo-text {
+  text-align: center;
+}
