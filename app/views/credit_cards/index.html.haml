@@ -1,13 +1,15 @@
-.credit-update
-  .credit-update__label
-    %label 登録クレジットカード情報
-    %br
-    = "**** **** **** " + @credit_card.last4
-    %br
-    - exp_month = @credit_card.exp_month.to_s
-    - exp_year = @credit_card.exp_year.to_s.slice(2,3)
-    = exp_month + " / " + exp_year
-    // pathは仮
-    = form_tag(credit_card_path(8), method: :delete, id: 'charge-form',  name: "inputForm") do
-      %input{ type: "hidden", name: "card_id", value: "" }
-      %button 削除する
+= render "leftside"
+.l-container
+  .credit-update
+    .credit-update__label
+      %label 登録クレジットカード情報
+      %br
+      = "**** **** **** " + @credit_card.last4
+      %br
+      - exp_month = @credit_card.exp_month.to_s
+      - exp_year = @credit_card.exp_year.to_s.slice(2,3)
+      = exp_month + " / " + exp_year
+      // pathは仮
+      = form_tag(credit_card_path(9), method: :delete, id: 'charge-form',  name: "inputForm") do
+        %input{ type: "hidden", name: "card_id", value: "" }
+        %button 削除する

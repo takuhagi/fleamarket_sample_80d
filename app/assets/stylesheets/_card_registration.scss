@@ -28,6 +28,7 @@
       }
       .card-list {
         display: flex;
+        margin-top: 16px;
         .card-list--item {
           list-style: none;
           padding: 0 5px;
@@ -37,6 +38,7 @@
   }
   .card-form__box__expire {
     font-weight: bold;
+    margin-top: 16px;
     .input-require {
       background: red;
       color: white;
