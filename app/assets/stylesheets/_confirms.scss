@@ -4,7 +4,7 @@
 .wrapper{
   display:flex;
   }
- .confirm{
+  .confirm{
     display:flex;
     justify-self:center;
     align-items: center;
@@ -20,7 +20,7 @@
         display:flex;
         justify-content:space-between;
         padding:30px 40px;  
-     }
+    }
         .confirm__list{
           background-color:#ffffff;
           height:1100px;
@@ -60,10 +60,10 @@
             }
           } 
 
-         .confirm__pay{
-           height:190px;
-           width:400px; 
-           border-top: 1px solid rgb(245, 245, 245);
+          .confirm__pay{
+            height:190px;
+            width:400px; 
+            border-top: 1px solid rgb(245, 245, 245);
             &__amount{
               font-size:30px; 
               font-weight:bold;
@@ -90,34 +90,32 @@
             border-top: 1px solid rgb(245, 245, 245);
             &__how{
             display:flex;
+            }
             justify-content: space-between;
-              a{margin-top:30px;
+            &__credit {margin-top:30px;
+              p {
+                padding: 10px 0;
               }
             }
+            
           }
           .confirm__address{
             height:200px;
             width:400px;
             text-align:left; 
             border-top: 1px solid rgb(245, 245, 245);
+            
             &__1{
               display: flex;
               justify-content: space-between;
-              a{
-                padding-top:30px;
-              }
             }
+            &__2{
+              margin-top:30px;
+            }
+            
           }
           .confirm__buy{
-            height:100px;
-            width:400px;
-            display:flex;
-            padding-top: 40px;
-            justify-self:center;
-            align-items: center;
-            flex-direction: column;
-            border-top: 1px solid rgb(245, 245, 245);
-            .confirm__buy__btn{
+            button {
               padding-top:10px;
               display:flex;
               justify-self:center;
