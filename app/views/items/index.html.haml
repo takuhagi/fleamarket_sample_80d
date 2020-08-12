@@ -1,2 +1,384 @@
-%h1 Items#index
-%p Find me in app/views/items/index.html.erb
+%body
+  %header.pcHeader
+    .headerInner
+      .mainHeader
+        %h1.icon
+          = link_to root_path do
+            = image_tag src="/assets/logo.png"
+        .searchBox
+          %form{"accept-charset" => "UTF-8", action: "#", method: "get"}
+            %input{name: "utf8", type: "hidden", value: "✓"}/
+            %input#searchInput.searchBox--input{name: "key", placeholder: "キーワードから探す"}/
+            %button{type: "submit"}
+              .searchBox__icon
+                = image_tag src="/assets/icon-search 1.png"
+      %ul.resultLists
+      .nav
+        %ul.listsLeft
+          %li.listsLeft__item.listsLeft__item--first
+            = link_to "カテゴリー",root_path,id:"catBtn" 
+            .tree.displayNone
+              %ul.categoryTree
+                %li.categoryTree--item
+                  = link_to "レディース",root_path,id:"1" 
+                %li.categoryTree--item
+                  = link_to "メンズ",root_path,id:"2"
+                %li.categoryTree--item
+                  = link_to "ベビー・キッズ",root_path,id:"3"
+                %li.categoryTree--item
+                  = link_to "インテリア・住まい・小物",root_path,id:"4"
+                %li.categoryTree--item
+                  = link_to "本・音楽・ゲーム",root_path,id:"5"
+                %li.categoryTree--item
+                  = link_to "おもちゃ・ホビー・グッズ",root_path,id:"6"
+                %li.categoryTree--item
+                  = link_to "コスメ・香水・美容",root_path,id:"7"
+                %li.categoryTree--item
+                  = link_to "家電・スマホ・カメラ",root_path,id:"8"
+                %li.categoryTree--item
+                  = link_to "スポーツ・レジャー",root_path,id:"9"
+                %li.categoryTree--item
+                  = link_to "ハンドメイド",root_path,id:"10"
+                %li.categoryTree--item
+                  = link_to "チケット",root_path,id:"11"
+                %li.categoryTree--item
+                  = link_to "自動車・オートバイ",root_path,id:"12"
+                %li.categoryTree--item
+                  = link_to "その他",root_path,id:"13"
+          %li.listsLeft__item
+            = link_to "ブランド",root_path,id:"brandBtn"
+            %ul.brandsPulldown.displayNone
+        %ul.listsRight
+          %li.listsRight__item.listsRight__item--login
+            = link_to "ログイン",root_path
+          %li.listsRight__item.listsRight__item--new
+            = link_to "新規会員登録",root_path
+
+
+
+  .main
+    %section.mainVisual
+      .content
+        .content__subtitle
+          %br
+          人生を変えるフリマアプリ
+        .content__text
+          FURIMAはだれでもかんたんに出品・購入できる
+          %br
+          フリマアプリです
+        .content__btn
+          = link_to root_path,class:"aBtn" do
+            = image_tag src="/assets/app-store.svg"
+          = link_to root_path,class:"gBtn" do
+            = image_tag src="/assets/google-play.svg"
+      .picture
+    %section.topIntroduction
+      .subtitle
+        FURIMAが選ばれる3つの理由
+      %ul.lists
+        %li.list
+          .list__pict
+            %span.number 1
+            = image_tag src="/assets/pict-reason-01.jpg"
+          .list__text
+            %span 3分
+            ですぐに出品
+          .list__description
+            スマホで入力するだけで簡単に出品できる！
+        %li.list
+          .list__pict
+            %span.number 2
+            = image_tag src="/assets/pict-reason-02.jpg"
+          .list__text
+            %span シンプル
+            で使いやすい
+          .list__description
+            めんどくさい入力は必要なく、検索も購入もスムーズ！
+        %li.list
+          .list__pict
+            %span.number 3
+            = image_tag src="/assets/pict-reason-03.jpg"
+          .list__text
+            手数料
+            %span 業界最安
+          .list__description
+            最大3%でお得に出品&購入！
+
+
+    %section.topMiddleDl
+      .topMiddleDl__inner
+        .subtitle
+          会員数日本一位
+        .text
+          FURIMAは、フリマアプリで最も人気。
+          %br
+          出品・購入回数も業界最多です！
+          %br
+          ほしかったあの商品に出会えるかもしれません。
+        .btn
+          = link_to root_path do
+            = image_tag src="/assets/app-store.svg",class:"aBtn"
+          = link_to root_path do
+            = image_tag src="/assets/google-play.svg",class:"gBtn"
+
+
+    %section.topKeyFeatures
+      .head
+        FURIMAの特徴
+      .items
+        .item
+          .item__img
+            = image_tag src="/assets/icon-01.png"
+          .item__subtitle
+            簡単に売り買いできる
+          .item_detail
+            スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
+        .item
+          .item__img
+            = image_tag src="/assets/icon-03.png"
+          .item__subtitle
+            売上金は即日振り込みに対応
+          .item_detail
+            午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします!
+        .item
+          .item__img
+            = image_tag src="/assets/icon-04.png"
+          .item__subtitle
+            様々な支払いに対応
+          .item_detail
+            お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
+
+
+    %section.pickupContainer
+      .head ピックアップカテゴリー
+      .productBox
+        .productHead
+          = link_to root_path do
+            .title 新規投稿商品
+        .productLists
+
+          -# データベースができたら.productListを以下のように変える
+          -# - @items.each do |item|
+          -#   .productList
+          -#     = link_to root_path do
+          -#       .productList__img
+          -#         = image_tag src="/assets/Apple_mac.jpg"
+          -#         -# = link_to "#{item.image.url}", item
+
+          -#         -# %img
+          -#         -#   = item.image
+          -#       .productList__body
+          -#         .name
+          -#           = item.name
+          -#         .details
+          -#           %ul
+          -#             %li 
+          -#               = item.price
+          -#               円
+          -#             %li
+          -#               = icon("fas", "star")
+          -#               1
+          -#           %p (税込)
+                    
+          
+          .productList
+            = link_to root_path do
+              .productList__img
+                = image_tag src="/assets/Apple_mac.jpg"
+              .productList__body
+                .name テスト
+                .details
+                  %ul
+                    %li XXXXX円
+                    %li
+                      = icon("fas", "star")
+                      1
+                  %p (税込)
+          .productList
+            = link_to root_path do
+              .productList__img
+                = image_tag src="/assets/Apple_mac.jpg"
+              .productList__body
+                .name テスト
+                .details
+                  %ul
+                    %li XXXXX円
+                    %li
+                      = icon("fas", "star")
+                      2
+                  %p (税込)
+          .productList
+            = link_to root_path do
+              .productList__img
+                = image_tag src="/assets/Apple_mac.jpg"
+              .productList__body
+                .name テスト
+                .details
+                  %ul
+                    %li XXXXX円
+                    %li
+                      = icon("fas", "star")
+                      3
+                  %p (税込)
+          .productList
+            = link_to root_path do
+              .productList__img
+                = image_tag src="/assets/Apple_mac.jpg"
+              .productList__body
+                .name テスト
+                .details
+                  %ul
+                    %li XXXXX円
+                    %li
+                      = icon("fas", "star")
+                      4
+                  %p (税込)
+          .productList
+            = link_to root_path do
+              .productList__img
+                = image_tag src="/assets/Apple_mac.jpg"
+              .productList__body
+                .name テスト
+                .details
+                  %ul
+                    %li XXXXX円
+                    %li
+                      = icon("fas", "star")
+                      5
+                  %p (税込)
+
+    %section.pickupContainer
+      .head ピックアップブランド
+      .productBox
+        .productHead
+          = link_to root_path do
+            .title アーカイバ
+        .productLists
+          .productList
+            = link_to root_path do
+              .productList__img
+                = image_tag src="/assets/Apple_mac.jpg"
+              .productList__body
+                .name テスト
+                .details
+                  %ul
+                    %li XXXXX円
+                    %li
+                      = icon("fas", "star")
+                      1
+                  %p (税込)
+          .productList
+            = link_to root_path do
+              .productList__img
+                = image_tag src="/assets/Apple_mac.jpg"
+              .productList__body
+                .name テスト
+                .details
+                  %ul
+                    %li XXXXX円
+                    %li
+                      = icon("fas", "star")
+                      2
+                  %p (税込)
+          .productList
+            = link_to root_path do
+              .productList__img
+                = image_tag src="/assets/Apple_mac.jpg"
+              .productList__body
+                .name テスト
+                .details
+                  %ul
+                    %li XXXXX円
+                    %li
+                      = icon("fas", "star")
+                      3
+                  %p (税込)
+          .productList
+            = link_to root_path do
+              .productList__img
+                = image_tag src="/assets/Apple_mac.jpg"
+              .productList__body
+                .name テスト
+                .details
+                  %ul
+                    %li XXXXX円
+                    %li
+                      = icon("fas", "star")
+                      4
+                  %p (税込)
+          .productList
+            = link_to root_path do
+              .productList__img
+                = image_tag src="/assets/Apple_mac.jpg"
+              .productList__body
+                .name テスト
+                .details
+                  %ul
+                    %li XXXXX円
+                    %li
+                      = icon("fas", "star")
+                      5
+                  %p (税込)
+        
+
+
+  %aside.addBanner
+    .inner
+      .inner__title だれでもかんたん、人生を変えるフリマアプリ
+      .inner__text 今すぐ無料ダウンロード！
+      .inner__icon
+        = link_to root_path do
+          = image_tag src="/assets/app-store.svg",class:"aBtn"
+        = link_to root_path do
+          = image_tag src="/assets/google-play.svg",class:"gBtn"
+
+
+
+  .footer
+    %ul.contents
+      %li.content
+        .content__head FURIMAについて
+        %ul
+          %li
+            = link_to "会社概要(運営会社)", root_path 
+          %li
+            = link_to "プライバシーポリシー", root_path 
+          %li
+            = link_to "FURIMA利用規約", root_path
+          %li
+            = link_to "ポイントに関する特約", root_path
+
+      %li.content
+        .content__head FURIMAを見る
+        %ul
+          %li
+            = link_to "カテゴリー一覧", root_path 
+          %li
+            = link_to "ブランド一覧", root_path
+
+      %li.content
+        .content__head ヘルプ＆ガイド
+        %ul
+          %li
+            = link_to "FURIMAガイド", root_path
+          %li
+            = link_to "FURIMAロゴ利用ガイドライン", root_path
+          %li
+            = link_to "お知らせ", root_path
+
+    .footer__logo
+      = link_to root_path do
+        = image_tag src="/assets/logo-white.png"
+      %p © FURIMA
+
+
+
+
+
+
+
+
+  = link_to root_path do
+    .purchaseBtn
+      %span.purchaseBtn__text 出品する
+      = image_tag src="/assets/icon_camera.png",class:"purchaseBtn__icon"
