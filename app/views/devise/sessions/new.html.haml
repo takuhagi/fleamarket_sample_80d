@@ -1,0 +1,28 @@
+%header
+.AccountPage
+  .image-logo
+    = image_tag '/assets/logo.png', alt: 'ロゴ', height: '40', width: '120', class: '' 
+  .AccountPage__title
+    .AccountPage__form
+      %h2 ログイン画面
+      %h5 登録しているユーザーでログイン
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .Membership
+          .Membership__FormField
+            .Membership__FormField__label
+              = f.label :email,'メールアドレス'
+              %span.form-require 必須
+            .Membership__FormField__input
+              = f.email_field :email,class:'input-default'
+          .Membership__FormField
+            .Membership__FormField__label
+              = f.label :password,'パスワード'
+              %i (英数字7文字以上)
+              %span.form-require 必須
+            .Membership__FormField__input
+              = f.password_field :password,class:'input-default',autocomplete: "off"
+        .actions
+          = f.submit "ログイン", class: 'Button UserButton'
+        .actions-login
+          = render "devise/shared/links"
+%footer
