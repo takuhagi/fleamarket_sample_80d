@@ -347,10 +347,12 @@ DEPENDENCIES
   capistrano-rbenv
   capistrano3-unicorn
   capybara (>= 2.15)
+
   devise
   carrierwave
   font-awesome-sass
   factory_bot_rails
+
   haml-rails (>= 1.0, <= 2.0.1)
   jbuilder (~> 2.7)
   jquery-rails

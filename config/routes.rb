@@ -8,7 +8,7 @@ devise_for :users
 
   
   # after
-  root 'credit_cards#show'
+  root 'items#index'
 
   resources :credit_cards, only: [:new, :index, :create, :destroy, :show] do
 
