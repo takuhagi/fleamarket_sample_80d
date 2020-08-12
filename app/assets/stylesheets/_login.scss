@@ -1,0 +1,186 @@
+header{
+  background-color: #f5f5f5;
+  height: 128px;
+}
+h2{
+  font-size: 22px;
+  padding: 32px;
+  text-align: center;
+  border-bottom: solid 1px #f5f5f5;
+}
+h5{
+  text-align: center;
+  margin: 5px 0px 0px 0px;
+}
+.AccountPage{
+  background-color: #f5f5f5;
+  &__title{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  &__form{
+    background-color: white;
+    width: 60%;
+    height: 80%;
+  }
+}
+.image-logo{
+  text-align: center;
+  padding-bottom: 20px;
+}
+.Membership{
+  &__FormField{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 30px;
+    &__label{
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .input-default{
+      width: 343px;
+      height: 45px;
+      padding: 10px 16px 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      background: #fff;
+      line-height: 1.5;
+      font-size: 16px;
+    }
+  }
+}
+.Description{
+  margin: 15px auto;
+  width: 343px;
+  &__d-tittle{
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+.Personal{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .Personal-NameTittle{
+    display: flex;
+    position: relative;
+    right: 163px;
+  }
+  .Personal-name{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    &__name-box{
+      padding: 0px 5px ;
+    }
+    .Personal-box{
+      padding: 5px 5px 4px;
+    }
+  }
+  .Personal-birthDate{
+    position: relative;
+    right: 115px;
+    margin: 15px 0px 5px 0px ;
+    #user_profile_attributes_birth_date_1i{
+      height: 30px;
+    }
+    #user_profile_attributes_birth_date_2i{
+      height: 30px;
+    }
+    #user_profile_attributes_birth_date_3i{
+      height: 30px;
+    }
+  }
+  .Personal-tell{
+    position: relative;
+    right: 78px;
+    margin: 15px 0px ;
+    .Tell-box{
+      width: 250px;
+      padding: 5px 5px 4px;
+    }
+  }
+    .address-name{
+      font-weight: 600;
+      font-size: 16px;
+      margin: 10px 0px 5px 0px;
+    }
+    .Personal-t{
+    &__address{
+      width: 400px;
+      height: 300px;
+    }
+  }
+}
+.font{
+  font-weight: 600;
+}
+.form-require{
+    margin: 0 0 0 8px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 12px;
+    vertical-align: top;
+    background-color: red;
+}
+.headRow{
+  padding: 5px;
+  width: 150px;
+  height: 50px;
+  border: solid 2px #3CCACE ;
+  background-color: #F5F5F5;
+}
+.bodyRow{
+  border: solid 2px #3CCACE ;
+  width: 300px;
+}
+
+.post-text{
+  width: 160px;
+  padding:5px 5px 4px;
+  margin: 0px 0px 0px 10px;
+}
+#user_profile_attributes_prefecture_id{
+  width: 150px;
+  height: 30px;
+  margin: 0px 0px 0px 10px;
+}
+.city-text{
+  width: 200px;
+  padding:5px 5px 4px;
+  margin: 0px 0px 0px 10px;
+}
+.number-text{
+  width: 200px;
+  padding:5px 5px 4px;
+  margin: 0px 0px 0px 10px;
+}
+.building-text{
+  width: 250px;
+  padding:5px 5px 4px;
+  margin: 0px 0px 0px 10px;
+}
+.actions{
+  text-align: center;
+  margin: 32px 0px 0px 32px;
+  .UserButton{
+    background-color:#3CCACE ;
+    width: 300px;
+    height: 50px;
+    border: none;
+    color: #fff;
+  }
+}
+.actions-login{
+  margin: 40px 0px 30px 0px;
+  position: relative;
+  text-align: center;
+}
+footer{
+  background-color: #f5f5f5;
+  height: 224px;
+}

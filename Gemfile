@@ -67,4 +67,10 @@ gem 'payjp'
 gem "haml-rails", ">= 1.0", '<= 2.0.1'
 gem 'jquery-rails'
 gem 'pry-rails'
+gem 'devise'
 gem 'font-awesome-sass'
+
+gem 'active_hash'
+gem "ancestry"
+gem 'carrierwave'
+gem 'mini_magick'
