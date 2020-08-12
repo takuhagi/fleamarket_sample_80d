@@ -41,11 +41,9 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|card_number|integer|null: false, unique: true|
-|expiration_year|integer|null: false|
-|expiration_month|integer|null: false|
+|customer_id|string|null: false|
 |user_id|references|null: false, foreign_key: true|
-|security_code|integer|null: false|
+|credit_card_id|string|null: false|
 
 ### association
 
@@ -71,7 +69,7 @@
 |name|string|null: false|
 |explanation|text|null: false|
 |price|integer|null: false|
-|category|string|null: false|
+|category_id|references|null: false, foreign_key: true|
 |status_id|references|null: false, foreign_key: true|
 |delivery_fee|string|null: false|
 |prefecture_id|references|null: false, foreign_key: true|
