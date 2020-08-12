@@ -1,0 +1,94 @@
+%header
+.AccountPage
+  .image-logo
+    = image_tag '/assets/logo.png', alt: 'ロゴ', height: '40', width: '120', class: '' 
+  .AccountPage__title
+    .AccountPage__form
+      %h2 会員情報入力
+      -# = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user',local: true do |f|
+        = devise_error_messages!
+        .Membership
+          .Membership__FormField
+            .Membership__FormField__label
+              = f.label :nickname,'ニックネーム'
+              %span.form-require 必須
+            .Membership__FormField__input
+              = f.text_field :nickname,class:'input-default',placeholder: "例）フリマ太郎",autofocus: true
+          .Membership__FormField
+            .Membership__FormField__label
+              = f.label :email,'メールアドレス'
+              %span.form-require 必須
+            .Membership__FormField__input
+              = f.email_field :email,class:'input-default',placeholder: "PC・携帯どちらでも可"
+          .Membership__FormField
+            .Membership__FormField__label
+              = f.label :password,'パスワード'
+              %i (英数字7文字以上)
+              %span.form-require 必須
+            .Membership__FormField__input
+              = f.password_field :password,class:'input-default',placeholder: "7文字以上の英数字",autocomplete: "off"
+          .Membership__FormField
+            .Membership__FormField__label
+              = f.label :password_confirmation,'確認用パスワード'
+              %span.form-require 必須
+            .Membership__FormField__input
+              = f.password_field :password_confirmation, class:'input-default',autocomplete: "off"
+        .Description
+          %h3.Description__d-tittle 本人確認情報
+          %p.Description__d-writing 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+        = f.fields_for :profile, Profile.new do |i|
+          .Personal
+            .Personal-name
+              .Personal-name__name-box
+                = i.label :first_name,"お名前",class:'font'
+                %span.form-require 必須
+                %br/
+                = i.text_field :first_name,class: 'Personal-box',placeholder: "例）木下"
+              .Personal-name__name-box
+                -# = i.label :family_name,"",class:'font'
+                %br/
+                = i.text_field :family_name,class: 'Personal-box',placeholder: "例）啓太"
+            .Personal-name  
+              .Personal-name__name-box
+                = i.label :first_name_kana,"お名前（かな入力）",class:'font'
+                %span.form-require 必須
+                %br/
+                = i.text_field :first_name_kana,class: 'Personal-box',placeholder: "例）きのした"
+              .Personal-name__name-box
+                -# = i.label :family_name_kana,"名（かな入力）",class:'font'
+                %br/
+                = i.text_field :family_name_kana,class: 'Personal-box',placeholder: "例）けいた"
+            .Personal-birthDate
+              = i.label :birth_date,"生年月日",class:'font'
+              %span.form-require 必須
+              %br/
+              = i.date_select :birth_date,start_year: 1940, end_year: (Time.now.year - 10), default: Date.new(1989, 1, 1)
+            .Personal-tell
+              = i.label :phone,"電話番号（ハイフンなし）",class:'font'
+              %br/
+              = i.text_field :phone, class: 'Tell-box'
+            .Personal-t
+              %p.address-name （ 住所情報 ）
+              %span.form-require 必須
+              %table.personal-t__address
+                %tr.Personal-post
+                  %th.headRow= i.label :post_code,"郵便番号",class:'font'
+                  %td.bodyRow= i.text_field :post_code,class:'post-text',placeholder: "ハイフン無しで記入"
+                %tr.Personal-prefecture
+                  %th.headRow= i.label :prefecture_id,"都道府県",class:'font'
+                  %td.bodyRow= i.collection_select :prefecture_id,Prefecture.all, :id, :name
+                %tr.Personal-city
+                  %th.headRow= i.label :city,"市区町村",class:'font'
+                  %td.bodyRow= i.text_field :city,class:'city-text'
+                %tr.Personal-address-number
+                  %th.headRow= i.label :address_number,"番地",class:'font'
+                  %td.bodyRow= i.text_field :address_number,class:'number-text'
+                %tr.Personal-bulding
+                  %th.headRow= i.label :building,"ビル名",class:'font'
+                  %td.bodyRow= i.text_field :building,class:'building-text',placeholder: "マンション・アパート等（任意）"
+        .actions
+          = f.submit "登録する", class: 'Button UserButton'
+        .actions-login
+          = render "devise/shared/links"
+%footer
