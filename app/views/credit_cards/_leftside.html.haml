@@ -3,15 +3,15 @@
     .headerInner
       .mainHeader
         %h1.icon
-          %a{href: "/"}
-            %img{src: "/assets/logo.png"}
+          = link_to root_path do
+            = image_tag src="/assets/logo.png"
         .searchBox
           %form{"accept-charset" => "UTF-8", action: "#", method: "get"}
             %input{name: "utf8", type: "hidden", value: "✓"}
             %input#searchInput.searchBox--input{name: "key", placeholder: "キーワードから探す"}/
             %button{type: "submit"}
               .searchBox__icon
-                %img{src: "/assets/icon-search 1.png"}
+                %img{src: "/assets/icon/icon-search 1.png"}
       %ul.resultLists
       .nav
         %ul.listsLeft
@@ -53,22 +53,8 @@
             %a{href: "#"} ログアウト
           %li.listsRight__item.listsRight__item--new
             %a{href: "#"} 新規会員登録
+  
   .l-container
-    .l-content
-      %section.mypage-tab-container
-        %h2.mypage-tab-head 購入した商品
-        %ul.mypage-tabs
-          %li.active
-            %h3
-              %a{href: "#"}
-                取引中
-          %li
-            %h3
-              %a{href: "#"}
-                過去の取引
-        .tab-content
-          
-
     .l-side
       %nav.mypage-nav
         %ul.mypage-nav-list
@@ -88,7 +74,7 @@
             %a.mypage-nav-list-item{href: ""}
               出品した商品 - 売却済み
           %li
-            %a.mypage-nav-list-item{href: ""}
+            %a.mypage-nav-list-item{href: confirms_path}
               購入した商品 - 取引中
           %li
             %a.mypage-nav-list-item{href: ""}
@@ -105,7 +91,7 @@
             %a.mypage-nav-list-item{href: ""}
               発送元・お届け先住所変更
           %li
-            %a.mypage-nav-list-item{href: ""}
+            %a.mypage-nav-list-item{href: new_credit_card_path}
               支払い方法
           %li
             %a.mypage-nav-list-item{href: ""}
@@ -119,3 +105,4 @@
           %li
             %a.mypage-nav-list-item{href: ""}
               ログアウト
+
