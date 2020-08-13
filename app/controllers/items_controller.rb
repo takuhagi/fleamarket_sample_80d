@@ -16,11 +16,6 @@ class ItemsController < ApplicationController
       end
   end
 
-  # def pay
-  #   @item.update(buyer_id: user_id)
-  # end
-
-
   def create
     @item = Item.new(item_params)
     if @item.save
