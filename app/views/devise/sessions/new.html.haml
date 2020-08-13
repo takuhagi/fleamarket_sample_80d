@@ -4,7 +4,7 @@
     = image_tag '/assets/logo.png', alt: 'ロゴ', height: '40', width: '120', class: '' 
   .AccountPage__title
     .AccountPage__form
-      %h2 ログイン画面
+      %h2.devise-tittle ログイン画面
       %h5 登録しているユーザーでログイン
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .Membership
