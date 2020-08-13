@@ -6,15 +6,14 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.images.new
-
     @categories = []
-    Category.all.each do |category|
-      @categories << [category.name, category.id]
-    end
+      Category.all.each do |category|
+        @categories << [category.name, category.id]
+      end
     @brands = []
-    Brand.all.each do |brand|
-      @brands << [brand.name, brand.id]
-    end
+      Brand.all.each do |brand|
+        @brands << [brand.name, brand.id]
+      end
   end
 
   def create
@@ -36,6 +35,7 @@ class ItemsController < ApplicationController
       :category_id, :status_id, 
       :delivery_fee_id, :prefecture_id,
       :days_until_shipping_id, :brand_id,
-      images_attributes: [:src, :_destroy, :id])
+      images_attributes: [:src, :_destroy, :id]
+    ).merge(seller_id: current_user.id, buyer_id: nil)
   end
 end

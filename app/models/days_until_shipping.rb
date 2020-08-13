@@ -5,7 +5,6 @@ class DaysUntilShipping < ActiveHash::Base
       {id: 3, name: '4〜7日で発送'}
   ]
 
-  # validages :days_until_shipping_id, presence: true
   include ActiveHash::Associations
   has_many :items
 end

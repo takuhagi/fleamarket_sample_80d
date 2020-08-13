@@ -16,7 +16,4 @@ class Item < ApplicationRecord
   validates :prefecture_id, presence: true
   validates :days_until_shipping_id, presence: true
   
-  # 出品中、売却済みの判断 Userモデルに記載
-  # belongs_to :saler, class_name: "User"
-  # belongs_to :buyer, class_name: "User"
 end
