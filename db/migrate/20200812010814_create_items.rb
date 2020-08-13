@@ -12,7 +12,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.references :brand, foreign_key: true
 
       # 出品中、売却済みの判断。user.rb実装後に使う
-      t.integer :saler
+      t.integer :seller_id
       t.integer :buyer_id
       t.timestamps
     end

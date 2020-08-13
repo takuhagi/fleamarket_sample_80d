@@ -5,5 +5,4 @@ class DeliveryFee < ActiveHash::Base
 
   include ActiveHash::Associations
   has_many :items
-  # validages :days_until_shipping_id, presence: true
 end
