@@ -4,7 +4,7 @@ devise_for :users
     post 'pay'
   end
   # before
-  resources :items,only: [:index, :new, :create]
+  resources :items,only: [:index, :new, :create, :edit]
 
   
   # after

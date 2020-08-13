@@ -59,9 +59,9 @@
       %nav.mypage-nav
         %ul.mypage-nav-list
           %li.mypage-nav-list-item.active
-            = link_to "マイページ",root_path
+            = link_to "マイページ",credit_card_path(current_user.id)
           %li.mypage-nav-list-item
-            = link_to "出品する",root_path
+            = link_to "出品する",new_item_path
           %li.mypage-nav-list-item
             = link_to "出品した商品-出品中",root_path
           %li.mypage-nav-list-item
@@ -81,7 +81,7 @@
           %li.mypage-nav-list-item
             = link_to "発送元・お届け先住所変更",root_path
           %li.mypage-nav-list-item
-            = link_to "支払い方法",new_credit_card_path
+            = link_to "クレジットカード登録・削除",new_credit_card_path
           %li.mypage-nav-list-item
             = link_to "メール/パスワード",root_path
           %li.mypage-nav-list-item

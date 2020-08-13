@@ -124,34 +124,28 @@
     float: right;
     width: 700px;
     .mypage-tab-container {
-      background: #eee;
+      background: #fafafa;
     }
     .mypage-tab-head {
       padding: 0 16px;
-      background: #fafafa;
-      font-size: 16px;
+      font-size: 22px;
       line-height: 72px;
+      border-bottom: 1px solid #eee;
     }
     .mypage-tabs {
-      border: 0;
-      background: #f8f8f8;
-      font-size: 0;
-      li {
-        width: 50%;
-        display: inline-block;
-        text-align: center;
-        vertical-align: top;
+      text-align: center;
+      vertical-align: top;
+      font-size: 20px;
+      line-height: 40px;
+      border-bottom: 1px solid #eee;
+      a {
+        text-decoration: none;
+        color: black;
       }
-    }
-    li.active {
-      background: #eee;
-    }
-    h3 {
-      font-size: 22px;
     }
     .tab-content {
       width: 100%;
-      height: 240px;
+      height: 700px;
     }
   }
 
