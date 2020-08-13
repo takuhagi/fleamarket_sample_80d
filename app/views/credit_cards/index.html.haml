@@ -10,6 +10,7 @@
       - exp_year = @credit_card.exp_year.to_s.slice(2,3)
       = exp_month + " / " + exp_year
       // pathは仮
-      = form_tag(credit_card_path(9), method: :delete, id: 'charge-form',  name: "inputForm") do
+      = form_tag(credit_card_path(11), method: :delete, id: 'charge-form',  name: "inputForm") do
         %input{ type: "hidden", name: "card_id", value: "" }
         %button 削除する
+= render "footer"
