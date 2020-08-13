@@ -48,11 +48,22 @@
           %li.listsLeft__item
             = link_to "ブランド",root_path,id:"brandBtn"
             %ul.brandsPulldown.displayNone
-        %ul.listsRight
-          %li.listsRight__item.listsRight__item--login
-            = link_to "ログイン",root_path
-          %li.listsRight__item.listsRight__item--new
-            = link_to "新規会員登録",root_path
+
+            
+        - if user_signed_in?
+          %ul.listsRight
+            %li.listsRight__item.listsRight__item--login
+              = link_to "ログアウト",destroy_user_session_path, method: :delete
+            %li.listsRight__item.listsRight__item--new
+              = link_to "マイページ",new_user_registration_path
+        - else
+          %ul.listsRight
+            %li.listsRight__item.listsRight__item--login
+              = link_to "ログイン",new_user_session_path
+            %li.listsRight__item.listsRight__item--new
+              = link_to "新規会員登録",new_user_registration_path
+        
+
 
 
 
@@ -182,7 +193,8 @@
                     
           
           .productList
-            = link_to root_path do
+            -# id 1 は仮置き
+            = link_to item_path(1) do
               .productList__img
                 = image_tag src="/assets/Apple_mac.jpg"
               .productList__body
@@ -195,7 +207,8 @@
                       1
                   %p (税込)
           .productList
-            = link_to root_path do
+            -# id 1 は仮置き
+            = link_to item_path(1) do
               .productList__img
                 = image_tag src="/assets/Apple_mac.jpg"
               .productList__body
@@ -208,7 +221,8 @@
                       2
                   %p (税込)
           .productList
-            = link_to root_path do
+            -# id 1 は仮置き
+            = link_to item_path(1) do
               .productList__img
                 = image_tag src="/assets/Apple_mac.jpg"
               .productList__body
@@ -221,7 +235,8 @@
                       3
                   %p (税込)
           .productList
-            = link_to root_path do
+            -# id 1 は仮置き
+            = link_to item_path(1) do
               .productList__img
                 = image_tag src="/assets/Apple_mac.jpg"
               .productList__body
@@ -234,7 +249,8 @@
                       4
                   %p (税込)
           .productList
-            = link_to root_path do
+            -# id 1 は仮置き
+            = link_to item_path(1) do
               .productList__img
                 = image_tag src="/assets/Apple_mac.jpg"
               .productList__body
@@ -255,7 +271,8 @@
             .title アーカイバ
         .productLists
           .productList
-            = link_to root_path do
+            -# id 1 は仮置き
+            = link_to item_path(1) do
               .productList__img
                 = image_tag src="/assets/Apple_mac.jpg"
               .productList__body
@@ -268,7 +285,8 @@
                       1
                   %p (税込)
           .productList
-            = link_to root_path do
+            -# id 1 は仮置き
+            = link_to item_path(1) do
               .productList__img
                 = image_tag src="/assets/Apple_mac.jpg"
               .productList__body
@@ -281,7 +299,8 @@
                       2
                   %p (税込)
           .productList
-            = link_to root_path do
+            -# id 1 は仮置き
+            = link_to item_path(1) do
               .productList__img
                 = image_tag src="/assets/Apple_mac.jpg"
               .productList__body
@@ -294,7 +313,8 @@
                       3
                   %p (税込)
           .productList
-            = link_to root_path do
+            -# id 1 は仮置き
+            = link_to item_path(1) do
               .productList__img
                 = image_tag src="/assets/Apple_mac.jpg"
               .productList__body
@@ -307,7 +327,8 @@
                       4
                   %p (税込)
           .productList
-            = link_to root_path do
+            -# id 1 は仮置き
+            = link_to item_path(1) do
               .productList__img
                 = image_tag src="/assets/Apple_mac.jpg"
               .productList__body
@@ -370,6 +391,9 @@
       = link_to root_path do
         = image_tag src="/assets/logo-white.png"
       %p © FURIMA
+
+
+
 
 
 
