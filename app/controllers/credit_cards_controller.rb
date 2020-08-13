@@ -1,19 +1,20 @@
 class CreditCardsController < ApplicationController
   require "payjp"
+  before_action :set_card
 
   def index
-    card = CreditCard.where(user_id: current_user.id).first
-    if card.blank?
+    
+    if @card.blank?
       redirect_to action: "new" 
     else
       Payjp.api_key = Rails.application.credentials[:payjp][:secret_key]
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      @credit_card = customer.cards.retrieve(card.credit_card_id)
+      customer = Payjp::Customer.retrieve(@card.customer_id)
+      @credit_card = customer.cards.retrieve(@card.credit_card_id)
     end
   end
   def new
-    card = CreditCard.where(user_id: current_user.id)
-    if card.blank?
+    
+    if @card.blank?
       @credit_card = CreditCard.new
     else
       redirect_to action: "index"
@@ -35,16 +36,18 @@ class CreditCardsController < ApplicationController
   end
 
   def destroy
-    card = CreditCard.where(user_id: current_user.id).first
-    Payjp.api_key = Rails.application.credentials[:payjp][:secret_key]
-    customer = Payjp::Customer.retrieve(card.customer_id)
-    customer.delete
-    card.delete
     
-    if card.destroy
+    Payjp.api_key = Rails.application.credentials[:payjp][:secret_key]
+    customer = Payjp::Customer.retrieve(@card.customer_id)
+    customer.delete
+    @card.delete
+    
+    if @card.destroy
       redirect_to root_path
     end
   end
 
-
+  def set_card
+    @card = CreditCard.where(user_id: current_user.id).first
+  end
 end
