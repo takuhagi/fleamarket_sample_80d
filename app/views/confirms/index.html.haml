@@ -2,7 +2,8 @@
 .confirm
   .confirm__top
     %span.image
-    = image_tag src="logo.png", size: "200x70"
+    = link_to root_path do
+      = image_tag src="logo.png", size: "200x60"
 
   .confirm__list
     .confirm__purchase
@@ -53,7 +54,7 @@
         %p 東京都 府中市 白糸台5-38-1 WILL
         %p 萩原 
     .confirm__buy
-      = form_tag(confirm_pay_path(9), method: :post, id: 'pay-form', data: {confirm: 'よろしいですか？'}) do
+      = form_tag(confirm_pay_path(11), method: :post, id: 'pay-form', data: {confirm: 'よろしいですか？'}) do
         %input{ type: "hidden", name: "card_id", value: "" }
         %button 購入する
   .confirm__foot
