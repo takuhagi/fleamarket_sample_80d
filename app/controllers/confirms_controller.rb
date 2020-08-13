@@ -2,7 +2,7 @@ class ConfirmsController < ApplicationController
 before_action :set_card
 
 def index
-  @user = Profile.where(user_id: current_user.id).first
+  @user = Profile.find_by(user_id: current_user.id)
   
   Payjp.api_key = Rails.application.credentials[:payjp][:secret_key]
   customer = Payjp::Customer.retrieve(@card.customer_id)
@@ -22,7 +22,7 @@ def pay
 end
 
 def set_card
-  @card = CreditCard.where(user_id: current_user.id).first
+  @card = CreditCard.find_by(user_id: current_user.id)
 end
 
 end
