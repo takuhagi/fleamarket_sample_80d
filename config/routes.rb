@@ -4,11 +4,13 @@ devise_for :users
     post 'pay'
   end
   # before
-  resources :items,only: [:index, :new, :create, :show]
+
+  resources :items,only: [:index, :new, :create, :edit, :show]
+
 
   
   # after
-  root 'credit_cards#show'
+  root 'items#index'
 
   resources :credit_cards, only: [:new, :index, :create, :destroy, :show] do
 
