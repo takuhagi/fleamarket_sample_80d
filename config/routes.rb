@@ -8,7 +8,7 @@ devise_for :users
   resources :items,only: [:index, :new, :create, :edit, :show]
 
 
-  
+  resources :categories
   # after
   root 'items#index'
 

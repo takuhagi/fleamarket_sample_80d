@@ -75,97 +75,57 @@
         = icon("fas", "angle-right")
       %li
         %p XXXXX
-
+  
 
   .main
     .showMain
-      .contentLeftqq
+      .contentLeft
       .contentRight
-        .topContent
-          .itemBox
-            .itemBox__name テスト
-            .itemBox__body
-              %ul
-                %li
-                  = image_tag src="/assets/Apple_mac.jpg"
+        .titleBox
+          %p XXXXXの商品一覧
+        .productLists
+          .productList
+            -# id 1は仮置き
+            = link_to item_path(1) do
+              .productList__img
+                = image_tag src="/assets/Apple_mac.jpg"
+              .productList__body
+                .name テスト
+                .details
                   %ul
+                    %li XXXXX円
                     %li
-                      = image_tag src="/assets/Apple_mac.jpg"
-            .itemBox__price
-              %span ¥10000
-              .itemBox__price__detail
-                %span (税込)
-                %span 送料込み
-            .itemDetail テストテストテストテストテスト
-            .table
-              %table
-                %tbody
-                  %tr
-                    %th 出品者
-                    %td あああ
-                  %tr
-                    %th カテゴリー
-                    %td
-                      = link_to "XXXXX",root_path
-                      %br
-                      = link_to "XXXXX",root_path
-                      %br
-                      = link_to "XXXXX",root_path
-                  %tr
-                    %th ブランド
-                    %td あああ
-                  %tr
-                    %th 商品のサイズ
-                    %td あああ
-                  %tr
-                    %th 商品の状態
-                    %td 新品/未使用
-                  %tr
-                    %th 配送料の負担
-                    %td 送料込み
-                  %tr
-                    %th 発送元の地域
-                    %td
-                      = link_to "XXXXX",root_path
-                  %tr
-                    %th 発送日の目安
-                    %td 1-2日で発送
-            .optionalArea
-              %ul
-              %ul.optional
-                %li.optionalBtn
-                  = link_to root_path do
-                    = icon("fas", "flag")
-                    "不適切な商品の通報"
-        
-        %ul.links
-          %li
-            = link_to root_path do
-              = icon("fas", "angle-left")
-              %span
-              前の商品
-          %li
-            = link_to root_path do
-              %span 後ろの商品
-              = icon("fas", "angle-right")
-
-        .relatedItems
-          = link_to "XXXXXをもっと見る",root_path
-
-          .productLists
-            .productList
-              = link_to root_path do
-                .productList--img
-                  = image_tag src="/assets/Apple_mac.jpg"
-                .productList--body
-                  .name XXXXX
-                  .details
-                    %ul
-                      %li XXXXX円
-                      %li
-                        = icon("fas", "star")
-                        0
-                    %p (税込)
+                      = icon("fas", "star")
+                      1
+                  %p (税込)
+          .productList
+            -# id 1は仮置き
+            = link_to item_path(1) do
+              .productList__img
+                = image_tag src="/assets/Apple_mac.jpg"
+              .productList__body
+                .name テスト
+                .details
+                  %ul
+                    %li XXXXX円
+                    %li
+                      = icon("fas", "star")
+                      1
+                  %p (税込)
+          .productList
+            -# id 1は仮置き
+            = link_to item_path(1) do
+              .productList__img
+                = image_tag src="/assets/Apple_mac.jpg"
+              .productList__body
+                .name テスト
+                .details
+                  %ul
+                    %li XXXXX円
+                    %li
+                      = icon("fas", "star")
+                      1
+                  %p (税込)
 
   %aside.addBanner
     .inner
