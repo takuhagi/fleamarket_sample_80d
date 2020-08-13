@@ -11,98 +11,83 @@
             %input#searchInput.searchBox--input{name: "key", placeholder: "キーワードから探す"}/
             %button{type: "submit"}
               .searchBox__icon
-                %img{src: "/assets/icon/icon-search 1.png"}
+                = image_tag src="/assets/icon-search 1.png"
       %ul.resultLists
       .nav
         %ul.listsLeft
           %li.listsLeft__item.listsLeft__item--first
-            %a#catBtn{href: "#"} カテゴリー
+            = link_to "カテゴリー",root_path,id:"catBtn" 
             .tree.displayNone
               %ul.categoryTree
                 %li.categoryTree--item
-                  %a#1{href: "#"} レディース
+                  = link_to "レディース",root_path,id:"1"
                 %li.categoryTree--item
-                  %a#2{href: "#"} メンズ
+                  = link_to "メンズ",root_path,id:"2"
                 %li.categoryTree--item
-                  %a#3{href: "#"} ベビー・キッズ
+                  = link_to "ベビー・キッズ",root_path,id:"3"
                 %li.categoryTree--item
-                  %a#4{href: "#"} インテリア・住まい・小物
+                  = link_to "インテリア・住まい・小物",root_path,id:"4"
                 %li.categoryTree--item
-                  %a#5{href: "#"} 本・音楽・ゲーム
+                  = link_to "本・音楽・ゲーム",root_path,id:"5"
                 %li.categoryTree--item
-                  %a#6{href: "#"} おもちゃ・ホビー・グッズ
+                  = link_to "おもちゃ・ホビー・グッズ",root_path,id:"6"
                 %li.categoryTree--item
-                  %a#7{href: "#"} コスメ・香水・美容
+                  = link_to "コスメ・香水・美容",root_path,id:"7"
                 %li.categoryTree--item
-                  %a#8{href: "#"} 家電・スマホ・カメラ
+                  = link_to "家電・スマホ・カメラ",root_path,id:"8"
                 %li.categoryTree--item
-                  %a#9{href: "#"} スポーツ・レジャー
+                  = link_to "スポーツ・レジャー",root_path,id:"9"
                 %li.categoryTree--item
-                  %a#10{href: "#"} ハンドメイド
+                  = link_to "ハンドメイド",root_path,id:"10"
                 %li.categoryTree--item
-                  %a#11{href: "#"} チケット
+                  = link_to "チケット",root_path,id:"11"
                 %li.categoryTree--item
-                  %a#12{href: "#"} 自動車・オートバイ
+                  = link_to "自動車・オートバイ",root_path,id:"12"
                 %li.categoryTree--item
-                  %a#13{href: "#"} その他
+                  = link_to "その他",root_path,id:"13"
           %li.listsLeft__item
-            %a#brandBtn{href: "#"} ブランド
+            = link_to "ブランド",root_path,id:"brandBtn"
             %ul.brandsPulldown.displayNone
         %ul.listsRight
           %li.listsRight__item.listsRight__item--login
-            %a{href: "#"} ログアウト
+            = link_to "ログアウト",destroy_user_session_path, method: :delete
           %li.listsRight__item.listsRight__item--new
-            %a{href: "#"} 新規会員登録
+            = link_to "新規会員登録",new_user_registration_path
   
   .l-container
     .l-side
       %nav.mypage-nav
         %ul.mypage-nav-list
-          %li
-            %a.mypage-nav-list-item.active{href: ""}
-              マイページ
-          %li
-            %a.mypage-nav-list-item{href: "#"}
-              出品する
-          %li
-            %a.mypage-nav-list-item{href: ""}
-              出品した商品 - 出品中
-          %li
-            %a.mypage-nav-list-item{href: ""}
-              出品した商品 - 取引中
-          %li
-            %a.mypage-nav-list-item{href: ""}
-              出品した商品 - 売却済み
-          %li
-            %a.mypage-nav-list-item{href: confirms_path}
-              購入した商品 - 取引中
-          %li
-            %a.mypage-nav-list-item{href: ""}
-              購入した商品 - 過去の取引
-          %li
-            %a.mypage-nav-list-item{href: ""}
-              売上・振込申請
+          %li.mypage-nav-list-item.active
+            = link_to "マイページ",credit_card_path(current_user.id)
+          %li.mypage-nav-list-item
+            = link_to "出品する",new_item_path
+          %li.mypage-nav-list-item
+            = link_to "出品した商品-出品中",root_path
+          %li.mypage-nav-list-item
+            = link_to "出品した商品-取引中",root_path
+          %li.mypage-nav-list-item
+            = link_to "出品した商品-売却済",root_path
+          %li.mypage-nav-list-item
+            = link_to "購入した商品-取引中",confirms_path
+          %li.mypage-nav-list-item
+            = link_to "購入した商品-過去の取引",root_path
+          %li.mypage-nav-list-item
+            = link_to "売上.振り込み申請",root_path
         %h3.mypage-nav-head 設定
         %ul.mypage-nav-list
-          %li
-            %a.mypage-nav-list-item{href: ""}
-              プロフィール
-          %li
-            %a.mypage-nav-list-item{href: ""}
-              発送元・お届け先住所変更
-          %li
-            %a.mypage-nav-list-item{href: new_credit_card_path}
-              支払い方法
-          %li
-            %a.mypage-nav-list-item{href: ""}
-              メール/パスワード
-          %li
-            %a.mypage-nav-list-item{href: ""}
-              本人情報
-          %li
-            %a.mypage-nav-list-item{href: ""}
-              電話番号の確認
-          %li
-            %a.mypage-nav-list-item{href: ""}
-              ログアウト
-
+          %li.mypage-nav-list-item
+            = link_to "プロフィール",root_path
+          %li.mypage-nav-list-item
+            = link_to "発送元・お届け先住所変更",root_path
+          %li.mypage-nav-list-item
+            = link_to "クレジットカード登録・削除",new_credit_card_path
+          %li.mypage-nav-list-item
+            = link_to "メール/パスワード",root_path
+          %li.mypage-nav-list-item
+            = link_to "本人情報",root_path
+          %li.mypage-nav-list-item
+            = link_to "電話番号の確認",root_path
+          %li.mypage-nav-list-item
+            = link_to "ログアウト",root_path
+  

@@ -1,21 +1,28 @@
 class ConfirmsController < ApplicationController
+before_action :set_card
 
 def index
-  card = CreditCard.find(9) #仮
+  @user = Profile.find_by(user_id: current_user.id)
+  
   Payjp.api_key = Rails.application.credentials[:payjp][:secret_key]
-  customer = Payjp::Customer.retrieve(card.customer_id)
-  @credit_card = customer.cards.retrieve(card.credit_card_id)
+  customer = Payjp::Customer.retrieve(@card.customer_id)
+  @credit_card = customer.cards.retrieve(@card.credit_card_id)
 end
 
 def pay
-  card = CreditCard.find(9)  #仮
+  
   Payjp.api_key = Rails.application.credentials[:payjp][:secret_key]
   Payjp::Charge.create(
     amount: 9000000, #仮
-    customer: card.customer_id,
-    card: card.credit_card_id,
+    customer: @card.customer_id,
+    card: @card.credit_card_id,
     :currency => 'jpy',
   )
+  redirect_to root_path
+end
+
+def set_card
+  @card = CreditCard.find_by(user_id: current_user.id)
 end
 
 end
