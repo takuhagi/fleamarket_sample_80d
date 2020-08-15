@@ -6,6 +6,7 @@ class ConfirmsController < ApplicationController
   def index
     
   end
+
   def show
     if @card.blank?
       redirect_to root_path
@@ -19,7 +20,7 @@ class ConfirmsController < ApplicationController
     end
   end
   def pay
-    @item = Item.find_by(id: params[:confirm_id])
+    @item = Item.find(params[:confirm_id])
     Payjp.api_key = Rails.application.credentials[:payjp][:secret_key]
     if @item.delivery_fee_id == (1)
       Payjp::Charge.create(

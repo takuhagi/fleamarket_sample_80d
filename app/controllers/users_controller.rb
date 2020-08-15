@@ -1,19 +1,20 @@
 class UsersController < ApplicationController
-  
+  before_action :set_mypage, only: [:show, :exhibiting, :sold]
 
   def show
-    @item = Item.all
-    @image = Image.all
+    
   end
 
   def exhibiting
-    @item = Item.all
-    @image = Image.all
     
   end
 
   def sold
-    @item = Item.all
-    @image = Image.all
+    
+  end
+
+  def set_mypage
+    @items = Item.all
+    @images = Image.all
   end
 end
