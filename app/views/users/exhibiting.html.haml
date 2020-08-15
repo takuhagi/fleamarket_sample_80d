@@ -1,0 +1,15 @@
+= render "leftside"
+.l-container
+  .l-content
+    %section.mypage-tab-container
+      %h2.mypage-tab-head 出品した商品
+      .mypage-tabs
+        = link_to "取引中",root_path
+      .tab-content
+        - @items.each do |item|
+          - if item.seller_id == current_user.id && item.buyer_id.blank?
+            -# pathは仮
+            = link_to confirm_path(item) do
+              = item.name
+              
+= render "footer"
