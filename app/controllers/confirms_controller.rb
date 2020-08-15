@@ -19,6 +19,7 @@ class ConfirmsController < ApplicationController
       @credit_card = customer.cards.retrieve(@card.credit_card_id)
     end
   end
+
   def pay
     @item = Item.find(params[:confirm_id])
     Payjp.api_key = Rails.application.credentials[:payjp][:secret_key]
@@ -41,9 +42,12 @@ class ConfirmsController < ApplicationController
       )
     end
     
-    
-    @item.update(buyer_id: current_user.id)
-    redirect_to root_path
+
+    if @item.update(buyer_id: current_user.id)
+      redirect_to root_path
+    else
+      redirect_to action: "pay"
+    end
   end
 
   def set_card
