@@ -20,7 +20,7 @@
         %span= @item.price
       .confirm__item__image
         %span.image
-        = image_tag @image.src.url, size: "100x100"
+        = image_tag @item.images[0].src.url, size: "100x100"
     .confirm__pay
       .confirm__pay__amount
         支払い金額
