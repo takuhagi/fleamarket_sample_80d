@@ -9,7 +9,7 @@ devise_for :users
   end
   # before
 
-  resources :items,only: [:index, :new, :create, :edit, :show]
+  resources :items,only: [:index, :new, :create, :edit, :show, :destroy]
 
 
   resources :categories,only: [:index]

@@ -28,6 +28,13 @@ class ItemsController < ApplicationController
   def show
   end
 
+  def destroy
+    @items = Item.find(params[:id])
+    if @items.destroy
+      redirect_to root_path
+    end
+  end
+
   private
   def item_params
     params.require(:item).permit(
