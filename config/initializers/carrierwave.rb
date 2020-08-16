@@ -7,7 +7,7 @@ CarrierWave.configure do |config|
   if Rails.env.development? || Rails.env.test?
     # ローカル
     config.storage = :file
-  elsif Rails.env.production? #本番はS3に保存する
+  else
     # 本番環境
     config.storage = :fog
     # AWS S３用のファイル→fog
@@ -15,8 +15,8 @@ CarrierWave.configure do |config|
     # AWS をつなぐための回線
     config.fog_credentials = {
       provider: 'AWS',
-      aws_access_key_id: Rails.application.secrets.aws_access_key_id,
-      aws_secret_access_key: Rails.application.secrets.aws_secret_access_key,
+      aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
       region: 'ap-northeast-1'
     }
     # AWS をつなげるための情報
