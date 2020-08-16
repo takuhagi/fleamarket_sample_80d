@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_mypage, only: [:show, :exhibiting, :sold]
+  before_action :set_mypage, only: [:exhibiting, :sold]
 
   def show
-    
+    @items = Item.where(buyer_id: current_user.id).page(params[:page]).per(5)
   end
 
   def exhibiting
@@ -14,7 +14,6 @@ class UsersController < ApplicationController
   end
 
   def set_mypage
-    @items = Item.all
-    @images = Image.all
+    @items = Item.where(seller_id: current_user.id).page(params[:page]).per(5)
   end
 end
