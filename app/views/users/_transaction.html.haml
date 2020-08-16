@@ -1,0 +1,14 @@
+.l-container
+  .l-content
+    %section.mypage-tab-container
+      %h2.mypage-tab-head 購入した商品
+      .mypage-tabs
+        = link_to "過去の取引",root_path
+      .tab-content
+        - @items.each do |item|
+          - if item.seller_id != current_user.id && item.buyer_id == current_user.id
+            -# pathは仮
+            = link_to confirm_path(item) do
+              %p= item.name
+              %p= image_tag item.images[0].src.url
+      = paginate @items

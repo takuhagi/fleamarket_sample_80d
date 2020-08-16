@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load', ()=> {
 
   var submit = document.getElementById("token_submit");
 

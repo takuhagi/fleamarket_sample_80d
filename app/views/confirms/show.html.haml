@@ -6,21 +6,33 @@
       = image_tag src="logo.png", size: "200x60"
 
   .confirm__list
+
     .confirm__purchase
       購入内容の確認
     .confirm__item
       .confirm__item__name
-        %p persons ワイシャツ ブラウス
-        %span 送料込み（税込）
-        %span ¥1,000
+        %p= @item.name
+        - if @item.delivery_fee_id == (1)
+          %span= "送料込み(出品者負担)"
+        - else
+          %span= "着払い(購入者負担)"
+        %span ¥
+        %span= @item.price
       .confirm__item__image
         %span.image
-        = image_tag src="yshirt.jpg", size: "100x100"
+        = image_tag @item.images[0].src.url, size: "100x100"
     .confirm__pay
       .confirm__pay__amount
         支払い金額
       .confirm__pay__money
-        ¥777
+        - price = @item.price
+        - postage = 500
+        - if @item.delivery_fee_id == (1)
+          %span ¥
+          = @item.price
+        - else
+          %span ¥
+          = price + postage
       .confirm__pay__point
     .confirm__method
       .confirm__method__how
@@ -38,6 +50,7 @@
         %h3 配送先
         
       .confirm__address__2
+        〒
         = @user.post_code
         %p= @user.prefecture.name
         = @user.city
@@ -47,7 +60,7 @@
         - family = @user.family_name
         %p= first + family
     .confirm__buy
-      = form_tag(confirm_pay_path(current_user.id), method: :post, id: 'pay-form', data: {confirm: 'よろしいですか？'}) do
+      = link_to confirm_pay_path(@item), method: :post, id: 'pay-form', data: {confirm: 'よろしいですか？'} do
         %input{ type: "hidden", name: "card_id", value: "" }
         %button 購入する
   .confirm__foot
