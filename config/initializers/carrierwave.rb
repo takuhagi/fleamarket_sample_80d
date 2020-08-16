@@ -7,7 +7,7 @@ CarrierWave.configure do |config|
   if Rails.env.development? || Rails.env.test?
     # ローカル
     config.storage = :file
-  else
+  elsif Rails.env.production? #本番はS3に保存する
     # 本番環境
     config.storage = :fog
     # AWS S３用のファイル→fog
