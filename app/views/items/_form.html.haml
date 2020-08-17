@@ -45,14 +45,29 @@
             = f.text_area :explanation, class:"explanation_field", placeholder: "説明"
           .font-counter
             文字数：0
-        .form_category.common_wrapper
-          .category_wrapper
+
+        .listing-form-box
+          .listing-product-detail__category
             .content_wrapper
               .title
                 カテゴリー
               .require_content
                 必須
-            = f.select :category_id, @categories, include_blank: "---"
+            .listing-select-wrapper
+              .listing-select-wrapper__box
+                = f.select :category_id, @category_parent_array, {include_blank: "---"}, {class: 'listing-select-wrapper__box--select',id: 'parent_category'}
+           
+              -# 要素の取り出し,詳細画面と連携出来次第削除         
+            -# - Category.where(ancestry: nil).each do |parent|
+            -#   = parent.name
+            -#   %br
+            -#   %br
+            -#   - parent.children.each do |child|
+            -#     = child.name
+            -#     -child.children.each do |grandchild|
+            -#       = grandchild.name
+
+
         .form_brand_id.common_wrapper
           .category_wrapper
             .content_wrapper
