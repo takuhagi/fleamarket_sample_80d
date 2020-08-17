@@ -28,6 +28,14 @@ class ItemsController < ApplicationController
   def show
   end
 
+  def destroy
+    @items = Item.find(params[:id])
+    if @items.seller_id == current_user.id && @items.destroy
+      redirect_to root_path
+    # else redirect先は詳細画面
+    end
+  end
+
   private
   def item_params
     params.require(:item).permit(
