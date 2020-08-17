@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   def index
     @items = Item.includes(:images).order('created_at DESC')
+    @random = Item.order("RAND()").limit(5)
   end
 
   def new
@@ -26,6 +27,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
   private

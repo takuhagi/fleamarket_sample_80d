@@ -167,102 +167,25 @@
           = link_to root_path do
             .title 新規投稿商品
         .productLists
+          - @items.first(5).each do |item|
+            .productList
+              = link_to item_path(item.id) do
+                .productList__img
+                  = image_tag item.images[0].src.url
+                .productList__body
+                  .name
+                    = item.name
+                  .details
+                    %ul
+                      %li 
+                        = item.price
+                        円
+                      %li
+                        = icon("fas", "star")
+                        1
+                    %p (税込)
 
-          -# データベースができたら.productListを以下のように変える
-          -# - @items.each do |item|
-          -#   .productList
-          -#     = link_to root_path do
-          -#       .productList__img
-          -#         = image_tag src="/assets/Apple_mac.jpg"
-          -#         -# = link_to "#{item.image.url}", item
-
-          -#         -# %img
-          -#         -#   = item.image
-          -#       .productList__body
-          -#         .name
-          -#           = item.name
-          -#         .details
-          -#           %ul
-          -#             %li 
-          -#               = item.price
-          -#               円
-          -#             %li
-          -#               = icon("fas", "star")
-          -#               1
-          -#           %p (税込)
-                    
-          
-          .productList
-            -# id 1 は仮置き
-            = link_to item_path(1) do
-              .productList__img
-                = image_tag src="/assets/Apple_mac.jpg"
-              .productList__body
-                .name テスト
-                .details
-                  %ul
-                    %li XXXXX円
-                    %li
-                      = icon("fas", "star")
-                      1
-                  %p (税込)
-          .productList
-            -# id 1 は仮置き
-            = link_to item_path(1) do
-              .productList__img
-                = image_tag src="/assets/Apple_mac.jpg"
-              .productList__body
-                .name テスト
-                .details
-                  %ul
-                    %li XXXXX円
-                    %li
-                      = icon("fas", "star")
-                      2
-                  %p (税込)
-          .productList
-            -# id 1 は仮置き
-            = link_to item_path(1) do
-              .productList__img
-                = image_tag src="/assets/Apple_mac.jpg"
-              .productList__body
-                .name テスト
-                .details
-                  %ul
-                    %li XXXXX円
-                    %li
-                      = icon("fas", "star")
-                      3
-                  %p (税込)
-          .productList
-            -# id 1 は仮置き
-            = link_to item_path(1) do
-              .productList__img
-                = image_tag src="/assets/Apple_mac.jpg"
-              .productList__body
-                .name テスト
-                .details
-                  %ul
-                    %li XXXXX円
-                    %li
-                      = icon("fas", "star")
-                      4
-                  %p (税込)
-          .productList
-            -# id 1 は仮置き
-            = link_to item_path(1) do
-              .productList__img
-                = image_tag src="/assets/Apple_mac.jpg"
-              .productList__body
-                .name テスト
-                .details
-                  %ul
-                    %li XXXXX円
-                    %li
-                      = icon("fas", "star")
-                      5
-                  %p (税込)
-
+         
     %section.pickupContainer
       .head ピックアップブランド
       .productBox
@@ -270,77 +193,24 @@
           = link_to root_path do
             .title アーカイバ
         .productLists
-          .productList
-            -# id 1 は仮置き
-            = link_to item_path(1) do
-              .productList__img
-                = image_tag src="/assets/Apple_mac.jpg"
-              .productList__body
-                .name テスト
-                .details
-                  %ul
-                    %li XXXXX円
-                    %li
-                      = icon("fas", "star")
-                      1
-                  %p (税込)
-          .productList
-            -# id 1 は仮置き
-            = link_to item_path(1) do
-              .productList__img
-                = image_tag src="/assets/Apple_mac.jpg"
-              .productList__body
-                .name テスト
-                .details
-                  %ul
-                    %li XXXXX円
-                    %li
-                      = icon("fas", "star")
-                      2
-                  %p (税込)
-          .productList
-            -# id 1 は仮置き
-            = link_to item_path(1) do
-              .productList__img
-                = image_tag src="/assets/Apple_mac.jpg"
-              .productList__body
-                .name テスト
-                .details
-                  %ul
-                    %li XXXXX円
-                    %li
-                      = icon("fas", "star")
-                      3
-                  %p (税込)
-          .productList
-            -# id 1 は仮置き
-            = link_to item_path(1) do
-              .productList__img
-                = image_tag src="/assets/Apple_mac.jpg"
-              .productList__body
-                .name テスト
-                .details
-                  %ul
-                    %li XXXXX円
-                    %li
-                      = icon("fas", "star")
-                      4
-                  %p (税込)
-          .productList
-            -# id 1 は仮置き
-            = link_to item_path(1) do
-              .productList__img
-                = image_tag src="/assets/Apple_mac.jpg"
-              .productList__body
-                .name テスト
-                .details
-                  %ul
-                    %li XXXXX円
-                    %li
-                      = icon("fas", "star")
-                      5
-                  %p (税込)
-        
+          - @random.each do |item|
+            .productList
+              = link_to item_path(item.id) do
+                .productList__img
+                  = image_tag item.images[0].src.url
+                .productList__body
+                  .name
+                    = item.name
+                  .details
+                    %ul
+                      %li 
+                        = item.price
+                        円
+                      %li
+                        = icon("fas", "star")
+                        1
+                    %p (税込)
+            
 
 
   %aside.addBanner
@@ -391,6 +261,7 @@
       = link_to root_path do
         = image_tag src="/assets/logo-white.png"
       %p © FURIMA
+    
 
 
 
