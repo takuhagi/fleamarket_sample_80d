@@ -55,7 +55,7 @@
             %li.listsRight__item.listsRight__item--login
               = link_to "ログアウト",destroy_user_session_path, method: :delete
             %li.listsRight__item.listsRight__item--new
-              = link_to "マイページ",new_user_registration_path
+              = link_to "マイページ",user_path(current_user.id)
         - else
           %ul.listsRight
             %li.listsRight__item.listsRight__item--login
@@ -79,7 +79,7 @@
           フリマアプリです
         .content__btn
           = link_to root_path,class:"aBtn" do
-            = image_tag src="/assets/app-store.svg"
+            = image_tag asset_path('app-store.svg')
           = link_to root_path,class:"gBtn" do
             = image_tag src="/assets/google-play.svg"
       .picture
@@ -402,7 +402,7 @@
 
 
 
-  = link_to root_path do
+  = link_to new_item_path do
     .purchaseBtn
       %span.purchaseBtn__text 出品する
       = image_tag src="/assets/icon_camera.png",class:"purchaseBtn__icon"
