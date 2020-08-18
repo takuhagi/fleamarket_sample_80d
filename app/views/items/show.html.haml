@@ -4,14 +4,14 @@
       .mainHeader
         %h1.icon
           = link_to root_path do
-            = image_tag src="/assets/logo.png"
+            = image_tag asset_path('logo.png')
         .searchBox
           %form{"accept-charset" => "UTF-8", action: "#", method: "get"}
             %input{name: "utf8", type: "hidden", value: "✓"}/
             %input#searchInput.searchBox--input{name: "key", placeholder: "キーワードから探す"}/
             %button{type: "submit"}
               .searchBox__icon
-                = image_tag src="/assets/icon-search 1.png"
+                = image_tag asset_path('icon-search 1.png')
       %ul.resultLists
       .nav
         %ul.listsLeft
@@ -104,48 +104,76 @@
                     }
                   });
                         
+
+                 
             .itemBox__price
-              %span
-                ¥
+              - price = @item.price
+              - postage = 500
+              - if @item.delivery_fee_id == (1)
+                %span ¥
                 = @item.price
-              .priceDetail
-                %span (税込)
-                %span 送料込み
-            .itemDetail
-              = @item.explanation
+                %p (税込)
+              - else
+                %span ¥
+                = price + postage
+                %p (税込)
+              .itemBox__price__detail
+                
+
+            .itembox__detail__buy
+              - if user_signed_in? && current_user.id != @item.seller_id
+                %button= link_to '購入画面に進む',confirm_path(@item)
+
+            .itembox_blank
+            
             .table
               %table
                 %tbody
                   %tr
                     %th 出品者
-                    %td あああ
+                    %td 
+                      = @user.nickname
                   %tr
                     %th カテゴリー
                     %td
-                      = link_to "XXXXX",root_path
+                      = @item.category.name
                       %br
                       = link_to "XXXXX",root_path
                       %br
                       = link_to "XXXXX",root_path
                   %tr
                     %th ブランド
-                    %td あああ
+                    %td 
+                      
                   %tr
                     %th 商品のサイズ
-                    %td あああ
+                    %td 
+
                   %tr
                     %th 商品の状態
-                    %td 新品/未使用
+                    %td 
+                      = @item.status.name
                   %tr
                     %th 配送料の負担
-                    %td 送料込み
+                    %td
+                      - if @item.delivery_fee_id == (1)
+                        = "送料込み (出品者負担)"
+                      - else
+                        = "着払い (購入者負担)"
                   %tr
                     %th 発送元の地域
                     %td
-                      = link_to "XXXXX",root_path
+                      = @item.prefecture.name
                   %tr
                     %th 発送日の目安
-                    %td 1-2日で発送
+                    %td 
+                      - if @item.days_until_shipping_id == (1)
+                        = "1~2日で発送"
+                      - elsif @item.days_until_shipping_id == (2)
+                        = "2~3日で発送"
+                      - else 
+                        = "4~7日で発送"
+
             .optionalArea
               %ul
               %ul.optional
@@ -165,14 +193,32 @@
               %span 後ろの商品
               = icon("fas", "angle-right")
 
+        .item__change__box
+          .item__change__box__edit
+            .btn__default
+              - if user_signed_in? && current_user.id == @item.seller_id
+                .btn__default__btn__blue
+                  = link_to edit_item_path(@item) do
+                    %input.btn__default.btn__blue{type: "submit", value: "商品を編集する"} 
+                  %p.text__center or
+                .btn__default.btn__gray  
+                  = link_to item_path(@item), method: :delete, local: true, data: { confirm: '削除してよろしいですか？' } do
+                    %input.btn__default.btn__gray{type: "submit", value: "この商品を削除する"}
+              
+
+
         .relatedItems
           = link_to "XXXXXをもっと見る",root_path
+        
+       
+
+        
 
           .productLists
             .productList
               = link_to root_path do
                 .productList--img
-                  = image_tag src="/assets/Apple_mac.jpg"
+                  = image_tag asset_path('Apple_mac.jpg')
                 .productList--body
                   .name XXXXX
                   .details
@@ -189,9 +235,9 @@
       .inner__text 今すぐ無料ダウンロード！
       .inner__icon
         = link_to root_path do
-          = image_tag src="/assets/app-store.svg",class:"aBtn"
+          = image_tag asset_path('app-store.svg'),class:"aBtn"
         = link_to root_path do
-          = image_tag src="/assets/google-play.svg",class:"gBtn"
+          = image_tag asset_path('google-play.svg'),class:"gBtn"
 
 
 
@@ -231,10 +277,10 @@
 
     .footer__logo
       = link_to root_path do
-        = image_tag src="/assets/logo-white.png"
+        = image_tag asset_path('logo-white.png')
       %p © FURIMA
 
   = link_to root_path do
     .purchaseBtn
       %span.purchaseBtn__text 出品する
-      = image_tag src="/assets/icon_camera.png",class:"purchaseBtn__icon"
+      = image_tag asset_path('icon_camera.png'),class:"purchaseBtn__icon"

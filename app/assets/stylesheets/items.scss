@@ -1,6 +1,6 @@
 .All {
   height: 2300px;
-  background-color: rgb(247, 241, 241);
+  background-color: #f5f5f5;
 }
 
 .logo_image {
@@ -12,7 +12,7 @@
 .Header{
   margin: 0 auto;
   height: 100px;
-  background-color: rgb(247, 241, 241);
+  background-color: #f5f5f5;
 }
 
 .logo {
@@ -26,7 +26,7 @@
   height: 100vh;
   width: 50vw;
   margin: 0 auto;
-  background-color: rgb(255, 255, 255);
+  background-color: #f5f5f5;
 }
 
 .Form{
@@ -41,8 +41,10 @@
 
 .form_image {
   height: 300px;
-  background-color: rgb(197, 240, 197);
+  background-color: #f5f5f5;
+  border:dotted 2px lightgrey ;
 }
+
 
 
 .price_wrapper {
@@ -55,6 +57,7 @@
   height: 50px;
   width: 45vw;
   margin: 0 auto;
+  padding: 0px 0px 0px 5px ;
 }
 
 #item_category {
@@ -79,6 +82,7 @@
   height: 250px;
   width: 45vw;
   margin: 0 auto;
+  padding: 5px 0px 0px 5px ;
 }
 
 .listing-form-box {
@@ -166,6 +170,7 @@
   height: 40px;
   width: 20vw;
   margin-left: 5px;
+  padding-left: 5px;
 }
 
 .price_mark_wrapper {
@@ -857,28 +862,56 @@
               }
             }
           }
-          &__price {
+          .itemBox__price {
             margin: 24px 0 24px;
-            text-align: center;
             display: flex;
-            flex-direction: column;
+            flex-direction: space-around;
+            justify-content: center;
+            font-size: 30px;
+            font-weight: bold;
             span {
-              font-size: 46px;
-              font-weight: bold;
-              margin: 0 10px 0 0;
+              margin: 0 10px 0 10px;
             }
-            .priceDetail {
-              span {
-                font-size: 16px;
-                font-weight: normal;
+            a {
+              margin: 0 10px 0 10px;
+            }
+            p {
+              margin: 0 10px 0 10px;
+            }
+            
+          
+          }
+      
+          .itembox__detail__buy{
+            button {
+                padding-top:10px;
+                justify-self:center;
+                align-items: center;
+                flex-direction: column;
+                text-align: center;
+                width:600px;
+                font-size:20px;
+                background-color: #3CCACE;
+                color:#fff;
+                height:60px;
+                font-weight: bold;
+                border: 1px solid transparent;
+              a {
+                text-decoration: none;
+                color: white;
+                font-weight: bold;
               }
+             
             }
+          } 
+
+          .itembox_blank{
+            height:50px;
+            width:200px;
+
           }
-          .itemDetail {
-            line-height: 1.5;
-            font-size: 18px;
-            margin-bottom: 30px;
-          }
+
+        
           .table {
             margin-bottom: 20px;
             table {
@@ -982,6 +1015,59 @@
         clear: both;
       }
 
+      .item__change__box{
+        width: 700px;
+        height: 270px;
+        margin: 0 auto;
+        &__edit{
+        height: 230px;
+        margin: 24px 0 24px 0;
+        background: #fff;
+        padding: 8px 16px 8px 16px;
+          .btn__default{
+            display: block;
+            margin: 8px 0;
+            width: 100%;
+            line-height: 48px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: 1px solid transparent;
+            -webkit-transition: all ease-out .3s;
+            transition: all ease-out .3s;
+            cursor: pointer;
+            text-align: center;       
+            &__btn__blue{
+              input.btn__default.btn__blue{
+                background-color: #3CCACE;
+                border: 1px solid #3CCACE;
+                color:white;
+                width:660px;
+                height:55px;
+                border-radius: 4px;
+              }
+              p.text__center{
+                text-align: center;
+              }   
+            }
+              input.btn__default.btn__gray{
+                background: #aaa;
+                border: 1px solid #aaa;
+                background-color:#aaa;
+                text-decoration: none;
+                color:white;
+                width: 660px; 
+                height: 55px;
+                border-radius: 4px;
+              }
+              a {
+              text-decoration: none;
+              color: white;
+              }
+              
+          }
+        }
+      }
+
 
       .relatedItems {
         a {
@@ -1069,4 +1155,3 @@
     clear: both;
   }
 }
-

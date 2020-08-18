@@ -4,14 +4,14 @@
       .mainHeader
         %h1.icon
           = link_to root_path do
-            = image_tag src="/assets/logo.png"
+            = image_tag asset_path('logo.png')
         .searchBox
           %form{"accept-charset" => "UTF-8", action: "#", method: "get"}
             %input{name: "utf8", type: "hidden", value: "✓"}/
             %input#searchInput.searchBox--input{name: "key", placeholder: "キーワードから探す"}/
             %button{type: "submit"}
               .searchBox__icon
-                = image_tag src="/assets/icon-search 1.png"
+                = image_tag asset_path('icon-search 1.png')
       %ul.resultLists
       .nav
         %ul.listsLeft
@@ -81,7 +81,7 @@
           = link_to root_path,class:"aBtn" do
             = image_tag asset_path('app-store.svg')
           = link_to root_path,class:"gBtn" do
-            = image_tag src="/assets/google-play.svg"
+            = image_tag asset_path('google-play.svg')
       .picture
     %section.topIntroduction
       .subtitle
@@ -90,7 +90,7 @@
         %li.list
           .list__pict
             %span.number 1
-            = image_tag src="/assets/pict-reason-01.jpg"
+            = image_tag asset_path('pict-reason-01.jpg')
           .list__text
             %span 3分
             ですぐに出品
@@ -99,7 +99,7 @@
         %li.list
           .list__pict
             %span.number 2
-            = image_tag src="/assets/pict-reason-02.jpg"
+            = image_tag asset_path('pict-reason-02.jpg')
           .list__text
             %span シンプル
             で使いやすい
@@ -108,7 +108,7 @@
         %li.list
           .list__pict
             %span.number 3
-            = image_tag src="/assets/pict-reason-03.jpg"
+            = image_tag asset_path('pict-reason-03.jpg')
           .list__text
             手数料
             %span 業界最安
@@ -128,9 +128,9 @@
           ほしかったあの商品に出会えるかもしれません。
         .btn
           = link_to root_path do
-            = image_tag src="/assets/app-store.svg",class:"aBtn"
+            = image_tag asset_path('app-store.svg'),class:"aBtn"
           = link_to root_path do
-            = image_tag src="/assets/google-play.svg",class:"gBtn"
+            = image_tag asset_path('google-play.svg'),class:"gBtn"
 
 
     %section.topKeyFeatures
@@ -139,21 +139,21 @@
       .items
         .item
           .item__img
-            = image_tag src="/assets/icon-01.png"
+            = image_tag asset_path('icon-01.png')
           .item__subtitle
             簡単に売り買いできる
           .item_detail
             スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
         .item
           .item__img
-            = image_tag src="/assets/icon-03.png"
+            = image_tag asset_path('icon-03.png')
           .item__subtitle
             売上金は即日振り込みに対応
           .item_detail
             午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします!
         .item
           .item__img
-            = image_tag src="/assets/icon-04.png"
+            = image_tag asset_path('icon-04.png')
           .item__subtitle
             様々な支払いに対応
           .item_detail
@@ -167,6 +167,7 @@
           = link_to root_path do
             .title 新規投稿商品
         .productLists
+
           - @items.first(5).each do |item|
             .productList
               = link_to item_path(item.id) do
@@ -186,6 +187,7 @@
                     %p (税込)
 
          
+
     %section.pickupContainer
       .head ピックアップブランド
       .productBox
@@ -193,6 +195,7 @@
           = link_to root_path do
             .title アーカイバ
         .productLists
+
           - @random.each do |item|
             .productList
               = link_to item_path(item.id) do
@@ -213,15 +216,16 @@
             
 
 
+
   %aside.addBanner
     .inner
       .inner__title だれでもかんたん、人生を変えるフリマアプリ
       .inner__text 今すぐ無料ダウンロード！
       .inner__icon
         = link_to root_path do
-          = image_tag src="/assets/app-store.svg",class:"aBtn"
+          = image_tag asset_path('app-store.svg'),class:"aBtn"
         = link_to root_path do
-          = image_tag src="/assets/google-play.svg",class:"gBtn"
+          = image_tag asset_path('google-play.svg'),class:"gBtn"
 
 
 
@@ -259,7 +263,7 @@
 
     .footer__logo
       = link_to root_path do
-        = image_tag src="/assets/logo-white.png"
+        = image_tag asset_path('logo-white.png')
       %p © FURIMA
     
 
