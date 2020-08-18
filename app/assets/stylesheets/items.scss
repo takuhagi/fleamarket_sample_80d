@@ -566,11 +566,11 @@
       .productHead {
         text-align: center;
         a {
-          font-size: 24px;
           text-decoration: none;
           color: #3CCACE;
           .title {
             font-weight: bold;
+            font-size: 24px;
           }
         }
       }
@@ -843,7 +843,9 @@
                   display: flex;
                   justify-content: center;
                   margin-top: 10px;
+                  
                   li {
+                    flex-direction: row;
                     width: 25%;
                     margin: 0 10px 0 0;
                     img {
@@ -865,8 +867,11 @@
               font-weight: bold;
               margin: 0 10px 0 0;
             }
-            &__detail {
-              font-size: 16px;
+            .priceDetail {
+              span {
+                font-size: 16px;
+                font-weight: normal;
+              }
             }
           }
           .itemDetail {

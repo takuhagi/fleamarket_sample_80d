@@ -83,20 +83,28 @@
       .contentRight
         .topContent
           .itemBox
-            .itemBox__name テスト
+            .itemBox__name
+              = @item.name
             .itemBox__body
               %ul
                 %li
-                  = image_tag asset_path('Apple_mac.jpg')
+
+                  = image_tag @item.images[0].src.url
                   %ul
-                    %li
-                      = image_tag asset_path('Apple_mac.jpg')
+                    .item_images
+                      %li
+                        - @item.images.each do |item|
+                          = image_tag item.src.url  
+
             .itemBox__price
-              %span ¥10000
-              .itemBox__price__detail
+              %span
+                ¥
+                = @item.price
+              .priceDetail
                 %span (税込)
                 %span 送料込み
-            .itemDetail テストテストテストテストテスト
+            .itemDetail
+              = @item.explanation
             .table
               %table
                 %tbody
