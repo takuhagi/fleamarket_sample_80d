@@ -10,6 +10,7 @@
           - if item.seller_id == current_user.id && item.buyer_id.present?
             -# pathは仮
             = link_to confirm_path(item) do
-              = item.name
-              
+              %p= item.name
+              %p= image_tag item.images[0].src.url
+      = paginate @items
 = render "footer"

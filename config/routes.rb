@@ -9,7 +9,15 @@ devise_for :users
   end
   # before
 
-  resources :items,only: [:index, :new, :create, :edit, :show]
+  resources :items,only: [:index, :new, :create, :edit, :show, :destroy] do
+    # テスト
+    collection do
+      get 'get_category_children', defaults: { fomat: 'json'}
+      get 'get_category_grandchildren', defaults: { fomat: 'json'}
+    end
+    # ここまで
+  
+  end
 
 
   resources :categories,only: [:index]

@@ -4,7 +4,7 @@
 }
 
 .logo_image {
-  height: 50px;
+  height: 100px;
   width: 200px;
   padding: 20px;
 }
@@ -30,7 +30,7 @@
 }
 
 .Form{
-  height: 1900px;
+  height: 2000px;
   padding: 30px 30px;
   background-color: white;
 }
@@ -81,7 +81,21 @@
   margin: 0 auto;
 }
 
-#item_category_id {
+.listing-form-box {
+  margin-bottom: 50px;
+}
+
+#parent_category {
+  height: 40px;
+  width: 45vw;
+}
+
+#child_category {
+  height: 40px;
+  width: 45vw;
+}
+
+#grandchild_category {
   height: 40px;
   width: 45vw;
 }
@@ -552,11 +566,11 @@
       .productHead {
         text-align: center;
         a {
-          font-size: 24px;
           text-decoration: none;
           color: #3CCACE;
           .title {
             font-weight: bold;
+            font-size: 24px;
           }
         }
       }
@@ -829,7 +843,9 @@
                   display: flex;
                   justify-content: center;
                   margin-top: 10px;
+                  
                   li {
+                    flex-direction: row;
                     width: 25%;
                     margin: 0 10px 0 0;
                     img {
