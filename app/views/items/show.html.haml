@@ -188,7 +188,7 @@
             .btn__default
               - if user_signed_in? && current_user.id == @item.seller_id
                 .btn__default__btn__blue
-                  = link_to item_path(@item), method: :edit, local: true, data: { confirm: '編集してよろしいですか？' } do
+                  = link_to edit_item_path(@item) do
                     %input.btn__default.btn__blue{type: "submit", value: "商品を編集する"} 
                   %p.text__center or
                 .btn__default.btn__gray  
