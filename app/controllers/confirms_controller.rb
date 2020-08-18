@@ -9,10 +9,9 @@ class ConfirmsController < ApplicationController
 
   def show
     if @card.blank?
-      redirect_to root_path
+      redirect_to new_credit_card_path
     else
       @item = Item.find(params[:id])
-      
       @user = Profile.find_by(user_id: current_user.id)
       Payjp.api_key = Rails.application.credentials[:payjp][:secret_key]
       customer = Payjp::Customer.retrieve(@card.customer_id)
@@ -44,7 +43,7 @@ class ConfirmsController < ApplicationController
     
 
     if @item.update(buyer_id: current_user.id)
-      redirect_to root_path
+      redirect_to user_path(current_user.id)
     else
       redirect_to action: "pay"
     end
