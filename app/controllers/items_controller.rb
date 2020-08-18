@@ -44,8 +44,8 @@ class ItemsController < ApplicationController
   def destroy
     @items = Item.find(params[:id])
     if @items.seller_id == current_user.id && @items.destroy
-      redirect_to root_path
-    # else redirect先は詳細画面
+      redirect_to user_path(current_user.id)
+    
     end
   end
 
