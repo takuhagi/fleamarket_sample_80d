@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
     # before
 
-    resources :items do
+    resources :items,only: [:index, :new, :create, :edit, :show, :destroy, :update] do
       # テスト
       collection do
         get 'get_category_children', defaults: { fomat: 'json'}
@@ -22,9 +22,10 @@ Rails.application.routes.draw do
 
     resources :categories,only: [:index] do
     # after
-        root 'items#index'
+       
     end
     
+    root 'items#index'
 
     resources :credit_cards, only: [:new, :index, :create, :destroy, :show] do
     end

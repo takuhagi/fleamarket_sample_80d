@@ -55,11 +55,11 @@ class ItemsController < ApplicationController
 
 
   def edit
-
+    binding.pry
+    @item = Item.find(params[:id])
     @brands = []
     Brand.all.each do |brand|
     @brands << [brand.name, brand.id]
-
     @category_parent_array = []
     Category.where(ancestry: nil).each do |parent|
     @category_parent_array << [parent.name, parent.id]
@@ -89,6 +89,7 @@ class ItemsController < ApplicationController
 
 
   def update
+    @item = Item.find(params[:id])
     if @item.update(item_params)
       redirect_to items_path
     else
