@@ -4,14 +4,14 @@
       .mainHeader
         %h1.icon
           = link_to root_path do
-            = image_tag src="/assets/logo.png"
+            = image_tag asset_path('logo.png')
         .searchBox
           %form{"accept-charset" => "UTF-8", action: "#", method: "get"}
             %input{name: "utf8", type: "hidden", value: "✓"}/
             %input#searchInput.searchBox--input{name: "key", placeholder: "キーワードから探す"}/
             %button{type: "submit"}
               .searchBox__icon
-                = image_tag src="/assets/icon-search 1.png"
+                = image_tag asset_path('icon-search 1.png')
       %ul.resultLists
       .nav
         %ul.listsLeft
@@ -88,12 +88,14 @@
             .itemBox__body
               %ul
                 %li
+
                   = image_tag @item.images[0].src.url
                   %ul
                     .item_images
                       %li
                         - @item.images.each do |item|
                           = image_tag item.src.url  
+
             .itemBox__price
               %span
                 ¥
@@ -162,7 +164,7 @@
             .productList
               = link_to root_path do
                 .productList--img
-                  = image_tag src="/assets/Apple_mac.jpg"
+                  = image_tag asset_path('Apple_mac.jpg')
                 .productList--body
                   .name XXXXX
                   .details
@@ -179,9 +181,9 @@
       .inner__text 今すぐ無料ダウンロード！
       .inner__icon
         = link_to root_path do
-          = image_tag src="/assets/app-store.svg",class:"aBtn"
+          = image_tag asset_path('app-store.svg'),class:"aBtn"
         = link_to root_path do
-          = image_tag src="/assets/google-play.svg",class:"gBtn"
+          = image_tag asset_path('google-play.svg'),class:"gBtn"
 
 
 
@@ -221,10 +223,10 @@
 
     .footer__logo
       = link_to root_path do
-        = image_tag src="/assets/logo-white.png"
+        = image_tag asset_path('logo-white.png')
       %p © FURIMA
 
   = link_to root_path do
     .purchaseBtn
       %span.purchaseBtn__text 出品する
-      = image_tag src="/assets/icon_camera.png",class:"purchaseBtn__icon"
+      = image_tag asset_path('icon_camera.png'),class:"purchaseBtn__icon"
