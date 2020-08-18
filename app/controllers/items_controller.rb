@@ -30,6 +30,7 @@ class ItemsController < ApplicationController
   
   def show
     @item = Item.find(params[:id])
+    @user = User.find(Item.find(params[:id]).seller_id)
   end
 
   

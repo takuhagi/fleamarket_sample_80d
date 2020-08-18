@@ -12,7 +12,6 @@ class ConfirmsController < ApplicationController
       redirect_to new_credit_card_path
     else
       @item = Item.find(params[:id])
-      
       @user = Profile.find_by(user_id: current_user.id)
       Payjp.api_key = Rails.application.credentials[:payjp][:secret_key]
       customer = Payjp::Customer.retrieve(@card.customer_id)

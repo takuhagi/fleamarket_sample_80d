@@ -859,21 +859,46 @@
           }
           &__price {
             margin: 24px 0 24px;
-            text-align: center;
             display: flex;
-            flex-direction: column;
+            flex-direction: space-around;
+            justify-content: center;
             span {
               font-size: 46px;
               font-weight: bold;
               margin: 0 10px 0 0;
             }
-            .priceDetail {
-              span {
-                font-size: 16px;
-                font-weight: normal;
-              }
+            a {
+              font-size:45px;
+              font-weight: bold;
+            }
+            p {
+              font-size: 45px;
+            }
+            &__detail {
+              font-size: 45px;
             }
           }
+      
+          .itembox__detail__buy{
+            button {
+                padding-top:10px;
+                justify-self:center;
+                align-items: center;
+                flex-direction: column;
+                text-align: center;
+                width:600px;
+                font-size:20px;
+                background-color: #3CCACE;
+                color:#fff;
+                height:60px;
+                font-weight: bold;
+                border: 1px solid transparent;
+              a {
+                text-decoration: none;
+                color: white;
+              }
+            }
+          } 
           .itemDetail {
             line-height: 1.5;
             font-size: 18px;
@@ -982,6 +1007,48 @@
         clear: both;
       }
 
+      .item__change__box{
+        width: 700px;
+        height: 270px;
+        margin: 0 auto;
+        &__edit{
+        height: 230px;
+        margin: 24px 0 24px 0;
+        background: #fff;
+        padding: 8px 16px 8px 16px;
+          .btn__default{
+            display: block;
+            margin: 8px 0;
+            width: 100%;
+            line-height: 48px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: 1px solid transparent;
+            -webkit-transition: all ease-out .3s;
+            transition: all ease-out .3s;
+            cursor: pointer;
+            text-align: center;       
+            &__btn__blue{
+              button.btn__default.btn__blue{
+                background-color: #3CCACE;
+                border: 1px solid #3CCACE;
+              }
+              p.text__center{
+                text-align: center;
+              }   
+            }
+            button.btn__default.btn__gray{
+              background: #aaa;
+              border: 1px solid #aaa;
+            }
+            a {
+            text-decoration: none;
+            color: white;
+            }
+          }
+        }
+      }
+
 
       .relatedItems {
         a {
@@ -1069,4 +1136,3 @@
     clear: both;
   }
 }
-
