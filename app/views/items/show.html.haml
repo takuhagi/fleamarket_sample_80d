@@ -102,9 +102,10 @@
               - if @item.delivery_fee_id == (1)
                 %span ¥
                 = @item.price
+                %p (税込)
               - else
                 %span ¥
-                %a= price + postage
+                = price + postage
                 %p (税込)
               .itemBox__price__detail
                 
@@ -113,15 +114,8 @@
               - if user_signed_in? && current_user.id != @item.seller_id
                 %button= link_to '購入画面に進む',confirm_path(@item)
 
-            .itemDetail
-              %span
-                ¥
-                = @item.price
-              .priceDetail
-                %span (税込)
-                %span 送料込み
-            .itemDetail
-              = @item.explanation
+            .itembox_blank
+            
             .table
               %table
                 %tbody
@@ -192,16 +186,15 @@
         .item__change__box
           .item__change__box__edit
             .btn__default
-              .btn__default__btn__blue
-                %button.btn__default.btn__blue 
-            
-                  = link_to "商品情報編集",user_path(current_user.id) 
-                %p.text__center or
-              .btn__default.btn__gray  
-                %button.btn__default.btn__gray 
-                  
-                  = link_to "この商品を削除する",user_path(current_user.id)
-                
+              - if user_signed_in? && current_user.id == @item.seller_id
+                .btn__default__btn__blue
+                  = link_to item_path(@item), method: :edit, local: true, data: { confirm: '編集してよろしいですか？' } do
+                    %input.btn__default.btn__blue{type: "submit", value: "商品を編集する"} 
+                  %p.text__center or
+                .btn__default.btn__gray  
+                  = link_to item_path(@item), method: :delete, local: true, data: { confirm: '削除してよろしいですか？' } do
+                    %input.btn__default.btn__gray{type: "submit", value: "この商品を削除する"}
+              -# 商品編集ボタンメソッドは仮置き
 
 
         .relatedItems

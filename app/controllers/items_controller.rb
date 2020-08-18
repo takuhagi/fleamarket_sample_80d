@@ -48,7 +48,8 @@ class ItemsController < ApplicationController
     @items = Item.find(params[:id])
     if @items.seller_id == current_user.id && @items.destroy
       redirect_to user_path(current_user.id)
-    
+    else
+      redirect_to root_path
     end
   end
 
