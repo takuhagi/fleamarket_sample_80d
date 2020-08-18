@@ -88,12 +88,22 @@
             .itemBox__body
               %ul
                 %li
-                  = image_tag @item.images[0].src.url
+                  = image_tag @item.images[0].src.url,id:'bigimg'
                   %ul
                     .item_images
                       %li
-                        - @item.images.each do |item|
-                          = image_tag item.src.url  
+                        - @item.images.each do |i|
+                          = image_tag i.src.url,class:'thumb'
+
+              :javascript
+                const thumbs = document.querySelectorAll('.thumb');
+                  thumbs.forEach(function(item,index) {
+                    item.onclick = function(){
+                      console.log(this)
+                      document.getElementById('bigimg').src = this.src;
+                    }
+                  });
+                        
             .itemBox__price
               %span
                 ¥
