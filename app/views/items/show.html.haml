@@ -92,44 +92,71 @@
                     %li
                       = image_tag src="/assets/Apple_mac.jpg"
             .itemBox__price
-              %span ¥10000
+              - price = @item.price
+              - postage = 500
+              - if @item.delivery_fee_id == (1)
+                %span ¥
+                = @item.price
+              - else
+                %span ¥
+                %a= price + postage
+                %p (税込)
               .itemBox__price__detail
-                %span (税込)
-                %span 送料込み
-            .itemDetail テストテストテストテストテスト
+                
+
+            .itembox__detail__buy
+              - if user_signed_in? && current_user.id != @item.seller_id
+                %button= link_to '購入画面に進む',confirm_path(@item)
+
+            .itemDetail
             .table
               %table
                 %tbody
                   %tr
                     %th 出品者
-                    %td あああ
+                    %td 
+                      = @user.nickname
                   %tr
                     %th カテゴリー
                     %td
-                      = link_to "XXXXX",root_path
+                      = @item.category.name
                       %br
                       = link_to "XXXXX",root_path
                       %br
                       = link_to "XXXXX",root_path
                   %tr
                     %th ブランド
-                    %td あああ
+                    %td 
+                      
                   %tr
                     %th 商品のサイズ
-                    %td あああ
+                    %td 
+
                   %tr
                     %th 商品の状態
-                    %td 新品/未使用
+                    %td 
+                      = @item.status.name
                   %tr
                     %th 配送料の負担
-                    %td 送料込み
+                    %td
+                      - if @item.delivery_fee_id == (1)
+                        = "送料込み (出品者負担)"
+                      - else
+                        = "着払い (購入者負担)"
                   %tr
                     %th 発送元の地域
                     %td
-                      = link_to "XXXXX",root_path
+                      = @item.prefecture.name
                   %tr
                     %th 発送日の目安
-                    %td 1-2日で発送
+                    %td 
+                      - if @item.days_until_shipping_id == (1)
+                        = "1~2日で発送"
+                      - elsif @item.days_until_shipping_id == (2)
+                        = "2~3日で発送"
+                      - else 
+                        = "4~7日で発送"
+
             .optionalArea
               %ul
               %ul.optional
@@ -149,8 +176,27 @@
               %span 後ろの商品
               = icon("fas", "angle-right")
 
+        .item__change__box
+          .item__change__box__edit
+            .btn__default
+              .btn__default__btn__blue
+                %button.btn__default.btn__blue 
+            
+                  = link_to "商品情報編集",user_path(current_user.id) 
+                %p.text__center or
+              .btn__default.btn__gray  
+                %button.btn__default.btn__gray 
+                  
+                  = link_to "この商品を削除する",user_path(current_user.id)
+                
+
+
         .relatedItems
           = link_to "XXXXXをもっと見る",root_path
+        
+       
+
+        
 
           .productLists
             .productList
