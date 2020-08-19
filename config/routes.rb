@@ -19,14 +19,17 @@ Rails.application.routes.draw do
     
     end
 
-
-    resources :categories,only: [:index] do
-    # after
-       
+    resources :categories,only: [:index, :show] do
+      get 'categories_show'
+      get 'categories_child_show'
+      get 'category_list_to_children_list'
     end
-    
-    root 'items#index'
 
+
+  # after
+  root 'items#index'
+  
+  
     resources :credit_cards, only: [:new, :index, :create, :destroy, :show] do
     end
     
