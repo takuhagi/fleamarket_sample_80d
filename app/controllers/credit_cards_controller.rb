@@ -1,6 +1,7 @@
 class CreditCardsController < ApplicationController
   require "payjp"
   before_action :set_card
+  before_action :set_category, only: [:index, :new]
 
   def index
     
@@ -49,5 +50,9 @@ class CreditCardsController < ApplicationController
 
   def set_card
     @card = CreditCard.find_by(user_id: current_user.id)
+  end
+
+  def set_category
+    @parents = Category.all.order("id ASC").limit(13)
   end
 end

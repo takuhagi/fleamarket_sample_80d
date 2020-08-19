@@ -2,6 +2,8 @@ class ItemsController < ApplicationController
   def index
     @items = Item.includes(:images).order('created_at DESC')
     @random = Item.order("RAND()").limit(5)
+    
+    @parents = Category.all.order("id ASC").limit(13)
   end
   
   def new
@@ -38,7 +40,7 @@ class ItemsController < ApplicationController
   end
   
   def get_category_grandchildren
-     @category_grandchildren = Category.find(params[:child_id]).children
+    @category_grandchildren = Category.find(params[:child_id]).children
   end
   
 
