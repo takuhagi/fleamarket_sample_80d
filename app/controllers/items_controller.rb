@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
     @items = Item.includes(:images).order('created_at DESC')
     @random = Item.order("RAND()").limit(5)
     
-    @parents = Category.all.order("id ASC").limit(13)
+    @parents = Category.order("id ASC").limit(13)
   end
   
   def new
