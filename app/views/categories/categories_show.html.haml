@@ -1,0 +1,26 @@
+カテゴリーごとの一覧ページ（孫カテゴリー）
+%br
+%br
+
+
+.Category_list
+  - @category_items.each do |item|
+    .Category_item_name
+      商品名
+      %br
+      = link_to '#' do
+        -# 詳細画面にリンク
+        = item.name
+    %br
+    .Category_item_explanation
+      画像
+      %br
+        = image_tag "#{item.images[0].src}"
+    %br
+    
+    .Category_item_price
+      値段
+      %br
+      = item.price
+    %br
+    

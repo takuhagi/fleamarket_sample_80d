@@ -20,7 +20,13 @@ devise_for :users
   end
 
 
-  resources :categories,only: [:index]
+  resources :categories,only: [:index, :show] do
+    get 'categories_show'
+    get 'categories_child_show'
+    get 'category_list_to_children_list'
+  end
+
+
   # after
   root 'items#index'
 

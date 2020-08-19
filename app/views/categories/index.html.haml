@@ -1,184 +1,26 @@
-%body
-  %header.pcHeader
-    .headerInner
-      .mainHeader
-        %h1.icon
-          = link_to root_path do
-            = image_tag src="/assets/logo.png"
-        .searchBox
-          %form{"accept-charset" => "UTF-8", action: "#", method: "get"}
-            %input{name: "utf8", type: "hidden", value: "✓"}/
-            %input#searchInput.searchBox--input{name: "key", placeholder: "キーワードから探す"}/
-            %button{type: "submit"}
-              .searchBox__icon
-                = image_tag src="/assets/icon-search 1.png"
-      %ul.resultLists
-      .nav
-        %ul.listsLeft
-          %li.listsLeft__item.listsLeft__item--first
-            = link_to "カテゴリー",root_path,id:"catBtn" 
-            .tree.displayNone
-              %ul.categoryTree
-                %li.categoryTree--item
-                  = link_to "レディース",root_path,id:"1" 
-                %li.categoryTree--item
-                  = link_to "メンズ",root_path,id:"2"
-                %li.categoryTree--item
-                  = link_to "ベビー・キッズ",root_path,id:"3"
-                %li.categoryTree--item
-                  = link_to "インテリア・住まい・小物",root_path,id:"4"
-                %li.categoryTree--item
-                  = link_to "本・音楽・ゲーム",root_path,id:"5"
-                %li.categoryTree--item
-                  = link_to "おもちゃ・ホビー・グッズ",root_path,id:"6"
-                %li.categoryTree--item
-                  = link_to "コスメ・香水・美容",root_path,id:"7"
-                %li.categoryTree--item
-                  = link_to "家電・スマホ・カメラ",root_path,id:"8"
-                %li.categoryTree--item
-                  = link_to "スポーツ・レジャー",root_path,id:"9"
-                %li.categoryTree--item
-                  = link_to "ハンドメイド",root_path,id:"10"
-                %li.categoryTree--item
-                  = link_to "チケット",root_path,id:"11"
-                %li.categoryTree--item
-                  = link_to "自動車・オートバイ",root_path,id:"12"
-                %li.categoryTree--item
-                  = link_to "その他",root_path,id:"13"
-          %li.listsLeft__item
-            = link_to "ブランド",root_path,id:"brandBtn"
-            %ul.brandsPulldown.displayNone
-        %ul.listsRight
-          %li.listsRight__item.listsRight__item--login
-            = link_to "ログイン",root_path
-          %li.listsRight__item.listsRight__item--new
-            = link_to "新規会員登録",root_path
+-# カテゴリーの名前一覧
+-# js（スクロール）実装済
+-# ビューを全く修正していません
 
+.Category_list
+  - Category.where(ancestry: nil).each_with_index do |parent, i|
+    .category_list_btn
+      %button
+        = link_to "##{i}", class: "box__parent--link" do
+          = parent.name
 
-  %nav.breadCrumbs
-    %ul
-      %li
-        = link_to "FURIMA",root_path
-      %li 
-        = icon("fas", "angle-right")
-      %li
-        = link_to "XXXXX",root_path
-      %li 
-        = icon("fas", "angle-right")
-      %li
-        = link_to "XXXXX",root_path
-      %li
-        = icon("fas", "angle-right")
-      %li
-        = link_to "XXXXX",root_path
-      %li
-        = icon("fas", "angle-right")
-      %li
-        %p XXXXX
-  
-
-  .main
-    .showMain
-      .contentLeft
-      .contentRight
-        .titleBox
-          %p XXXXXの商品一覧
-        .productLists
-          .productList
-            -# id 1は仮置き
-            = link_to item_path(1) do
-              .productList__img
-                = image_tag src="/assets/Apple_mac.jpg"
-              .productList__body
-                .name テスト
-                .details
-                  %ul
-                    %li XXXXX円
-                    %li
-                      = icon("fas", "star")
-                      1
-                  %p (税込)
-          .productList
-            -# id 1は仮置き
-            = link_to item_path(1) do
-              .productList__img
-                = image_tag src="/assets/Apple_mac.jpg"
-              .productList__body
-                .name テスト
-                .details
-                  %ul
-                    %li XXXXX円
-                    %li
-                      = icon("fas", "star")
-                      1
-                  %p (税込)
-          .productList
-            -# id 1は仮置き
-            = link_to item_path(1) do
-              .productList__img
-                = image_tag src="/assets/Apple_mac.jpg"
-              .productList__body
-                .name テスト
-                .details
-                  %ul
-                    %li XXXXX円
-                    %li
-                      = icon("fas", "star")
-                      1
-                  %p (税込)
-
-  %aside.addBanner
-    .inner
-      .inner__title だれでもかんたん、人生を変えるフリマアプリ
-      .inner__text 今すぐ無料ダウンロード！
-      .inner__icon
-        = link_to root_path do
-          = image_tag src="/assets/app-store.svg",class:"aBtn"
-        = link_to root_path do
-          = image_tag src="/assets/google-play.svg",class:"gBtn"
-
-
-
-
-
-  .footer
-    %ul.contents
-      %li.content
-        .content__head FURIMAについて
-        %ul
-          %li
-            = link_to "会社概要(運営会社)",root_path
-          %li
-            = link_to "プライバシーポリシー",root_path
-          %li
-            = link_to "FURIMA利用規約",root_path
-          %li
-            = link_to "ポイントに関する特約",root_path
-
-      %li.content
-        .content__head FURIMAを見る
-        %ul
-          %li
-            = link_to "カテゴリー一覧",root_path
-          %li
-            = link_to "ブランド一覧",root_path
-
-      %li.content
-        .content__head ヘルプ＆ガイド
-        %ul
-          %li
-            = link_to "FURIMAガイド",root_path
-          %li
-            = link_to "FURIMAロゴ利用ガイドライン",root_path
-          %li
-            = link_to "お知らせ",root_path
-
-    .footer__logo
-      = link_to root_path do
-        = image_tag src="/assets/logo-white.png"
-      %p © FURIMA
-
-  = link_to root_path do
-    .purchaseBtn
-      %span.purchaseBtn__text 出品する
-      = image_tag src="/assets/icon_camera.png",class:"purchaseBtn__icon"
+- Category.where(ancestry: nil).each_with_index do |parent, i|
+  .Category_wrapper
+    .Category_parent_block
+      .Category_parent_name{id: "#{i}"}
+        = parent.name
+    .Category_child_block
+      - parent.children.each do |child|
+        .Category_child_name
+          = link_to category_category_list_to_children_list_path(category_id: child.id) do
+            = child.name
+        .Category_ground_child_block
+          - child.children.each do |grand_child|
+            .Category_ground_child_name
+              = link_to category_categories_show_path(category_id: grand_child.id) do
+                = grand_child.name
