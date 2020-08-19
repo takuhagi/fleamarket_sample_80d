@@ -7,7 +7,7 @@ class CategoriesController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @items = Item.where(category_id: params[:category_id])
-    @user = User.find(Item.find(params[:id]).seller_id)
+    @user = User.find(@item.seller_id)
   end
   
   # 子カテゴリー表示へ

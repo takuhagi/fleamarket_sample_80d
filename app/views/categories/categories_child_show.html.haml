@@ -2,7 +2,6 @@
 
 
 .Category_children_list
-  -# = binding.pry
   - @grandchild_category_list.each do |category|
     - Item.where(category_id: category.id).each do |item|
       .Category_children_item_name
