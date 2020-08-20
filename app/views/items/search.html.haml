@@ -1,0 +1,81 @@
+.search_field
+  .pcHeader
+    .headerInner
+      .mainHeader
+        %h1.icon
+          = link_to root_path do
+            = image_tag asset_path('logo.png')
+        .searchBox
+          %form{"accept-charset" => "UTF-8", action: "/items/search", method: "get"}
+            %input{name: "utf8", type: "hidden", value: "✓"}/
+            %input#searchInput.searchBox--input{name: "key", placeholder: "キーワードから探す"}/
+            %button{type: "submit"}
+              .searchBox__icon
+                = image_tag asset_path('icon-search 1.png')
+      %ul.resultLists
+      .nav
+        %ul.listsLeft
+          %li.listsLeft__item.listsLeft__item--first
+            = link_to "カテゴリー",root_path,id:"catBtn" 
+            .nav-category
+              %ul.category1
+                - @parents.each do |parent|
+                  %li.parent__list
+                    = link_to parent.name
+                    %ul.category2
+                      - parent.children.each do |child|
+                        %li.child__list
+                          =link_to child.name
+                          %ul.category3
+                            - child.children.each do |grandchild|
+                              %li.grandchild__list
+                                = link_to grandchild.name
+          %li.listsLeft__item
+            = link_to "ブランド",root_path,id:"brandBtn"
+            %ul.brandsPulldown.displayNone
+
+            
+        - if user_signed_in?
+          %ul.listsRight
+            %li.listsRight__item.listsRight__item--login
+              = link_to "ログアウト",destroy_user_session_path, method: :delete
+            %li.listsRight__item.listsRight__item--new
+              = link_to "マイページ",user_path(current_user.id)
+        - else
+          %ul.listsRight
+            %li.listsRight__item.listsRight__item--login
+              = link_to "ログイン",new_user_session_path
+            %li.listsRight__item.listsRight__item--new
+              = link_to "新規会員登録",new_user_registration_path
+
+  .search
+    .search-center
+      %section.items-box-container
+        -if @items.count == (0)
+          %h2.search-result-nil
+            検索に該当する商品はありません
+        -else
+          %h2.search-result-head
+            = @search
+            %span.search-result-head-text
+              の検索結果
+          .search-result-number
+            = "1-#{@items.count}件表示"
+            .search-result
+              - @items.each do |item|
+                = link_to item_path(item) do
+                  .search_name
+                    = item.name
+                    %ul.search_image
+                      = image_tag item.images[0].src.url
+                      %li.search_price
+                        - price = item.price
+                        - postage = 500
+                        - if item.delivery_fee_id == (1)
+                          ¥
+                          = item.price
+                        - else
+                          ¥
+                          = price + postage
+          = paginate @items
+  = render "users/footer"

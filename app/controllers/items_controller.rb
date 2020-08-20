@@ -1,9 +1,11 @@
 class ItemsController < ApplicationController
+  before_action :set_parent, only: [:index, :show, :search]
+
   def index
     @items = Item.includes(:images).order('created_at DESC')
+    
     @random = Item.order("RAND()").limit(5)
     
-    @parents = Category.order("id ASC").limit(13)
   end
   
   def new
@@ -104,7 +106,10 @@ class ItemsController < ApplicationController
   #   @item_update = Item.order("updated_at DESC").first
   # end
 
-
+  def search
+    @items = Item.search(params[:key]).page(params[:page]).per(16)
+    @search = params[:key]
+  end
 
 
   private
@@ -129,5 +134,8 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
-
+  
+  def set_parent
+    @parents = Category.order("id ASC").limit(13)
+  end
 end
