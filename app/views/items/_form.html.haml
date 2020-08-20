@@ -1,137 +1,241 @@
-.All
-  .Header
-    .logo
-      = image_tag "logo.png", class:"logo_image"
+%body
+  %header.pcHeader
+    .headerInner
+      .mainHeader
+        %h1.icon
+          = link_to root_path do
+            = image_tag asset_path('logo.png')
+        .searchBox
+          %form{"accept-charset" => "UTF-8", action: "#", method: "get"}
+            %input{name: "utf8", type: "hidden", value: "✓"}/
+            %input#searchInput.searchBox--input{name: "key", placeholder: "キーワードから探す"}/
+            %button{type: "submit"}
+              .searchBox__icon
+                = image_tag asset_path('icon-search 1.png')
+      %ul.resultLists
+      .nav
+        %ul.listsLeft
+          %li.listsLeft__item.listsLeft__item--first
+            = link_to "カテゴリー",root_path,id:"catBtn" 
+            .tree.displayNone
+              %ul.categoryTree
+                %li.categoryTree--item
+                  = link_to "レディース",root_path,id:"1" 
+                %li.categoryTree--item
+                  = link_to "メンズ",root_path,id:"2"
+                %li.categoryTree--item
+                  = link_to "ベビー・キッズ",root_path,id:"3"
+                %li.categoryTree--item
+                  = link_to "インテリア・住まい・小物",root_path,id:"4"
+                %li.categoryTree--item
+                  = link_to "本・音楽・ゲーム",root_path,id:"5"
+                %li.categoryTree--item
+                  = link_to "おもちゃ・ホビー・グッズ",root_path,id:"6"
+                %li.categoryTree--item
+                  = link_to "コスメ・香水・美容",root_path,id:"7"
+                %li.categoryTree--item
+                  = link_to "家電・スマホ・カメラ",root_path,id:"8"
+                %li.categoryTree--item
+                  = link_to "スポーツ・レジャー",root_path,id:"9"
+                %li.categoryTree--item
+                  = link_to "ハンドメイド",root_path,id:"10"
+                %li.categoryTree--item
+                  = link_to "チケット",root_path,id:"11"
+                %li.categoryTree--item
+                  = link_to "自動車・オートバイ",root_path,id:"12"
+                %li.categoryTree--item
+                  = link_to "その他",root_path,id:"13"
+          %li.listsLeft__item
+            = link_to "ブランド",root_path,id:"brandBtn"
+            %ul.brandsPulldown.displayNone
 
-  .Middle
-    .Form
-      = form_for @item do |f|
-        .form_image.common_wrapper
-          .image_wrapper
-            .content_wrapper
-              .title
-                画像
-              .require_content
-                必須
-          #image-box
-            #previews
-              - if @item.persisted?
-                - @item.images.each_with_index do |image, i|
-                  = image_tag image.src.url, data: { index: i }, width: "200", height: '500'
             
-            = f.fields_for :images do |image|
-              .js-file_group{"data-index" => "#{image.index}"}
-                = image.file_field :src, class: 'js-file'
-                %br/
-            - if @item.persisted?
-              .js-file_group{"data-index" => "#{@item.images.count}"}
-                = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][src]", class: 'js-file'
-
-        .form_name.common_wrapper
-          .name_wrapper
-            .content_wrapper
-              .title
-                商品名
-              .require_content
-                必須
-            = f.text_field :name, class:"field", placeholder: "商品名"
-        .form_explanation.common_wrapper
-          .explanation_wrapper
-            .content_wrapper
-              .title
-                説明
-              .require_content
-                必須
-            = f.text_area :explanation, class:"explanation_field", placeholder: "説明"
-          .font-counter
-            文字数：0
-
-        .listing-form-box
-          .listing-product-detail__category
-            .content_wrapper
-              .title
-                カテゴリー
-              .require_content
-                必須
-            .listing-select-wrapper
-              .listing-select-wrapper__box
-                = f.select :category_id, @category_parent_array, {include_blank: "---"}, {class: 'listing-select-wrapper__box--select',id: 'parent_category'}
-           
-              -# 要素の取り出し,詳細画面と連携出来次第削除         
-            -# - Category.where(ancestry: nil).each do |parent|
-            -#   = parent.name
-            -#   %br
-            -#   %br
-            -#   - parent.children.each do |child|
-            -#     = child.name
-            -#     -child.children.each do |grandchild|
-            -#       = grandchild.name
+        - if user_signed_in?
+          %ul.listsRight
+            %li.listsRight__item.listsRight__item--login
+              = link_to "ログアウト",destroy_user_session_path, method: :delete
+            %li.listsRight__item.listsRight__item--new
+              = link_to "マイページ",user_path(current_user.id)
+        - else
+          %ul.listsRight
+            %li.listsRight__item.listsRight__item--login
+              = link_to "ログイン",new_user_session_path
+            %li.listsRight__item.listsRight__item--new
+              = link_to "新規会員登録",new_user_registration_path
 
 
-        .form_brand_id.common_wrapper
-          .category_wrapper
-            .content_wrapper
-              .title
-                ブランド
-              .require_content_brand
-                任意
-            = f.select :brand_id, @brands, include_blank: "---"
-        .form_status_id.common_wrapper
-          .status_wrapper
-            .content_wrapper
-              .title
-                商品の状態
-              .require_content
-                必須
-            = f.collection_select :status_id, Status.all, :id, :name, include_blank: "---"
-        
-        .form_delivery_fee.common_wrapper
-          .delivery_fee_wrapper
-            .content_wrapper
-              .title
-                配送料の負担
-              .require_content
-                必須
-            = f.collection_select :delivery_fee_id, DeliveryFee.all, :id, :name, include_blank: "---"
-        
-        .form_prefecture_id.common_wrapper
-          .prefecture_wrapper
-            .content_wrapper
-              .title
-                都道府県
-              .require_content
-                必須
-            = f.collection_select :prefecture_id, Prefecture.all, :id, :name, include_blank: "---"
+  .All
+    -# .Header
+    -#   .logo
+    -#     = link_to root_path do
+    -#       = image_tag "logo.png", class:"logo_image"
 
-        .form_days_until_shipping.common_wrapper
-          .days_until_shipping_wrapper
-            .content_wrapper
-              .title
-                発送までの日数
-              .require_content
-                必須
-            = f.collection_select :days_until_shipping_id, DaysUntilShipping.all, :id, :name, include_blank: "---"
-        
-        .form_price.common_wrapper
-          .price_wrapper
-            .content_wrapper
-              .title
-                販売価格
-              .require_content
-                必須
-            .price_mark_wrapper
-              .price_mark
-                ¥
-              = f.text_field :price, class:"price_field", placeholder: "販売価格"
+    .Middle
+      .Form
+        = form_for @item do |f|
+          .form_image.common_wrapper
+            .image_wrapper
+              .content_wrapper
+                .title
+                  画像
+                .require_content
+                  必須
+            #image-box
+              #previews
+                - if @item.persisted?
+                  - @item.images.each_with_index do |image, i|
+                    = image_tag image.src.url, data: { index: i }, width: "200", height: '500'
+              
+              = f.fields_for :images do |image|
+                .js-file_group{"data-index" => "#{image.index}"}
+                  = image.file_field :src, class: 'js-file'
+                  %br/
+              - if @item.persisted?
+                .js-file_group{"data-index" => "#{@item.images.count}"}
+                  = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][src]", class: 'js-file'
 
-        .form_btn  
-          = f.submit "出品する（商品を登録する）", class:"item_submit"
+          .form_name.common_wrapper
+            .name_wrapper
+              .content_wrapper
+                .title
+                  商品名
+                .require_content
+                  必須
+              = f.text_field :name, class:"field", placeholder: "商品名"
+          .form_explanation.common_wrapper
+            .explanation_wrapper
+              .content_wrapper
+                .title
+                  説明
+                .require_content
+                  必須
+              = f.text_area :explanation, class:"explanation_field", placeholder: "説明"
+            .font-counter
+              文字数：0
 
-        .return_top
-          = link_to root_path, class:"return_top_top",method: :post do
-            戻る
-    .Header
-      .logo
-        = image_tag "logo.png", class:"logo_image"
-        .logo-text
-          ©︎フリマ
+          .listing-form-box
+            .listing-product-detail__category
+              .content_wrapper
+                .title
+                  カテゴリー
+                .require_content
+                  必須
+              .listing-select-wrapper
+                .listing-select-wrapper__box
+                  = f.select :category_id, @category_parent_array, {include_blank: "---"}, {class: 'listing-select-wrapper__box--select',id: 'parent_category'}
+            
+                -# 要素の取り出し,詳細画面と連携出来次第削除         
+              -# - Category.where(ancestry: nil).each do |parent|
+              -#   = parent.name
+              -#   %br
+              -#   %br
+              -#   - parent.children.each do |child|
+              -#     = child.name
+              -#     -child.children.each do |grandchild|
+              -#       = grandchild.name
+
+
+          .form_brand_id.common_wrapper
+            .category_wrapper
+              .content_wrapper
+                .title
+                  ブランド
+                .require_content_brand
+                  任意
+              = f.select :brand_id, @brands, include_blank: "---"
+          .form_status_id.common_wrapper
+            .status_wrapper
+              .content_wrapper
+                .title
+                  商品の状態
+                .require_content
+                  必須
+              = f.collection_select :status_id, Status.all, :id, :name, include_blank: "---"
+          
+          .form_delivery_fee.common_wrapper
+            .delivery_fee_wrapper
+              .content_wrapper
+                .title
+                  配送料の負担
+                .require_content
+                  必須
+              = f.collection_select :delivery_fee_id, DeliveryFee.all, :id, :name, include_blank: "---"
+          
+          .form_prefecture_id.common_wrapper
+            .prefecture_wrapper
+              .content_wrapper
+                .title
+                  都道府県
+                .require_content
+                  必須
+              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, include_blank: "---"
+
+          .form_days_until_shipping.common_wrapper
+            .days_until_shipping_wrapper
+              .content_wrapper
+                .title
+                  発送までの日数
+                .require_content
+                  必須
+              = f.collection_select :days_until_shipping_id, DaysUntilShipping.all, :id, :name, include_blank: "---"
+          
+          .form_price.common_wrapper
+            .price_wrapper
+              .content_wrapper
+                .title
+                  販売価格
+                .require_content
+                  必須
+              .price_mark_wrapper
+                .price_mark
+                  ¥
+                = f.text_field :price, class:"price_field", placeholder: "販売価格"
+
+          .form_btn  
+            = f.submit "出品する（商品を登録する）", class:"item_submit"
+
+          .return_top
+            = link_to root_path, class:"return_top_top",method: :post do
+              戻る
+      -# .Header
+      -#   .logo
+      -#     = image_tag "logo.png", class:"logo_image"
+      -#     .logo-text
+      -#       ©︎フリマ
+
+  .footer
+    %ul.contents
+      %li.content
+        .content__head FURIMAについて
+        %ul
+          %li
+            = link_to "会社概要(運営会社)",root_path
+          %li
+            = link_to "プライバシーポリシー",root_path
+          %li
+            = link_to "FURIMA利用規約",root_path
+          %li
+            = link_to "ポイントに関する特約",root_path
+
+      %li.content
+        .content__head FURIMAを見る
+        %ul
+          %li
+            = link_to "カテゴリー一覧",root_path
+          %li
+            = link_to "ブランド一覧",root_path
+
+      %li.content
+        .content__head ヘルプ＆ガイド
+        %ul
+          %li
+            = link_to "FURIMAガイド",root_path
+          %li
+            = link_to "FURIMAロゴ利用ガイドライン",root_path
+          %li
+            = link_to "お知らせ",root_path
+
+    .footer__logo
+      = link_to root_path do
+        = image_tag asset_path('logo-white.png')
+      %p © FURIMA
