@@ -267,36 +267,107 @@
       .listsLeft {
         position: relative;
         display: flex;
-        &__item--first {
+        a {
           text-decoration: none;
-          padding: 0;
+          color: #333;
+          padding-right: 30px;
         }
-        &__item {
-          display: flex;
-          line-height: 38px;
-          padding: 0 0 0 16px;
-          a {
-            text-decoration: none;
-            color: #333;
-            padding-right: 30px;
+      }
+      .nav-category {
+        position: absolute;
+        top: 30px;
+        z-index: 5;
+        left:0px;
+      }
+      
+      ul.category1{
+        display: none;
+        box-sizing: border-box;
+        background-color: rgb(255, 255, 255);
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+        width: 224px;
+        list-style: none;
+        text-align: center;
+        cursor: pointer;
+        text-align: center;
+        li{
+          border-bottom: 1px solid #eee;
+        &:hover {
+        background-color: #ea352d;
+        a {
+          color: #fff;
+            }
           }
         }
       }
-      .displayNone {
+
+      ul.category2{
         display: none;
-      }
-      .tree {
+        background-color: rgb(255, 255, 255);
+        bottom: 0px;
+        box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+        left: 224px;
+        position: absolute;
+        top: 0px;
+        width: 224px;
+        cursor: pointer;
+        text-align: center;
+        li.child__list{
+          background-color: rgb(255, 255, 255);
+          border-bottom: 1px solid #eee;
+        a{
+          color:#000;
+        }
+        }
+        li{
+          &:hover {
+          background-color: #ea352d;
+          a {
+            color: #fff;
+              }
+            }
+          }
+        }
+
+        ul.category3{
+          display: none;
+          background-color: rgb(255, 255, 255);
+          bottom: 0px;
+          box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+          left: 224px;
+          position: absolute;
+          top: 0px;
+          width: 320px;
+          cursor: pointer;
+          text-align: center;
+          li.grandchild__list{
+            background-color: rgb(255, 255, 255);
+            border-bottom: 1px solid #eee;
+            a{
+              color:#000;
+            }
+          }
+          li{
+            &:hover {
+            background-color: #ea352d;
+            a {
+              color: #fff;
+                }
+              }
+            }
+        }
+
+
+      .non-show-list {
         width: 240px;
         position: absolute;
         top: 40px;
-        .categoryTree {
+        .category-downlist {
           background-color: #fff;
           display: flex;
           flex-direction: column;
           position: relative;
-          li {
-            position: relative;
-          }
+          
         }
       }
       .brandsPulldown {
