@@ -19,37 +19,39 @@
             = link_to "カテゴリー",root_path,id:"catBtn" 
             .tree.displayNone
               %ul.categoryTree
-                %li.categoryTree--item
-                  = link_to "レディース",root_path,id:"1" 
-                %li.categoryTree--item
-                  = link_to "メンズ",root_path,id:"2"
-                %li.categoryTree--item
-                  = link_to "ベビー・キッズ",root_path,id:"3"
-                %li.categoryTree--item
-                  = link_to "インテリア・住まい・小物",root_path,id:"4"
-                %li.categoryTree--item
-                  = link_to "本・音楽・ゲーム",root_path,id:"5"
-                %li.categoryTree--item
-                  = link_to "おもちゃ・ホビー・グッズ",root_path,id:"6"
-                %li.categoryTree--item
-                  = link_to "コスメ・香水・美容",root_path,id:"7"
-                %li.categoryTree--item
-                  = link_to "家電・スマホ・カメラ",root_path,id:"8"
-                %li.categoryTree--item
-                  = link_to "スポーツ・レジャー",root_path,id:"9"
-                %li.categoryTree--item
-                  = link_to "ハンドメイド",root_path,id:"10"
-                %li.categoryTree--item
-                  = link_to "チケット",root_path,id:"11"
-                %li.categoryTree--item
-                  = link_to "自動車・オートバイ",root_path,id:"12"
-                %li.categoryTree--item
-                  = link_to "その他",root_path,id:"13"
+              -# 以下トップページのヘッダーを参考にあとで修正する。
+
+                -# %li.categoryTree--item
+                -#   = link_to "レディース",root_path,id:"1" 
+                -# %li.categoryTree--item
+                -#   = link_to "メンズ",root_path,id:"2"
+                -# %li.categoryTree--item
+                -#   = link_to "ベビー・キッズ",root_path,id:"3"
+                -# %li.categoryTree--item
+                -#   = link_to "インテリア・住まい・小物",root_path,id:"4"
+                -# %li.categoryTree--item
+                -#   = link_to "本・音楽・ゲーム",root_path,id:"5"
+                -# %li.categoryTree--item
+                -#   = link_to "おもちゃ・ホビー・グッズ",root_path,id:"6"
+                -# %li.categoryTree--item
+                -#   = link_to "コスメ・香水・美容",root_path,id:"7"
+                -# %li.categoryTree--item
+                -#   = link_to "家電・スマホ・カメラ",root_path,id:"8"
+                -# %li.categoryTree--item
+                -#   = link_to "スポーツ・レジャー",root_path,id:"9"
+                -# %li.categoryTree--item
+                -#   = link_to "ハンドメイド",root_path,id:"10"
+                -# %li.categoryTree--item
+                -#   = link_to "チケット",root_path,id:"11"
+                -# %li.categoryTree--item
+                -#   = link_to "自動車・オートバイ",root_path,id:"12"
+                -# %li.categoryTree--item
+                -#   = link_to "その他",root_path,id:"13"
           %li.listsLeft__item
             = link_to "ブランド",root_path,id:"brandBtn"
             %ul.brandsPulldown.displayNone
 
-            
+
         - if user_signed_in?
           %ul.listsRight
             %li.listsRight__item.listsRight__item--login
@@ -65,10 +67,7 @@
 
 
   .All
-    -# .Header
-    -#   .logo
-    -#     = link_to root_path do
-    -#       = image_tag "logo.png", class:"logo_image"
+
 
     .Middle
       .Form
@@ -197,12 +196,7 @@
           .return_top
             = link_to root_path, class:"return_top_top",method: :post do
               戻る
-      -# .Header
-      -#   .logo
-      -#     = image_tag "logo.png", class:"logo_image"
-      -#     .logo-text
-      -#       ©︎フリマ
-
+      
   .footer
     %ul.contents
       %li.content
