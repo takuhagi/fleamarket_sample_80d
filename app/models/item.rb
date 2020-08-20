@@ -16,4 +16,10 @@ class Item < ApplicationRecord
   validates :prefecture_id, presence: true
   validates :days_until_shipping_id, presence: true
   
+
+  def self.search(search)
+    return Item.all unless search
+    Item.where(['name LIKE ?', "%#{search}%"])
+  end
+  
 end

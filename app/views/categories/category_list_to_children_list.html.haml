@@ -1,0 +1,16 @@
+一覧から、カテゴリーごとの一覧ページ(子カテゴリー)
+
+.Category_children_list
+  - @grand_children.each do |category|
+    - Item.where(category_id: category.id).each do |item|
+      .Category_children_item_name
+        商品名
+        = link_to '#' do
+          -# 詳細画面にリンク
+          = item.name
+      .Category_children_item_explanation
+        画像
+        = image_tag "#{item.images[0].src}"
+      .Category_children_item_price
+        値段
+        = item.price

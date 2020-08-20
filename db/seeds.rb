@@ -11,3 +11,7 @@ require "csv"
 CSV.foreach('db/category.csv') do |row|
   Category.create(id: row[0], name: row[1], ancestry: row[2])
 end 
+
+CSV.foreach('db/brand.csv') do |row|
+  Brand.create(id: row[0], name: row[1])
+end 
