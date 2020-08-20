@@ -1,4 +1,7 @@
-$(document).on('turbolinks:load', ()=> {
+$(function(){
+  if ( !document.getElementById("token_submit") ){
+    return false;
+  }
 
   var submit = document.getElementById("token_submit");
 
@@ -30,6 +33,6 @@ $(document).on('turbolinks:load', ()=> {
         }
       });
     }
-    false
+    false;
   });
 });
