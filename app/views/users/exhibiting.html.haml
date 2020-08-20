@@ -11,6 +11,16 @@
             -# pathは仮
             = link_to edit_item_path(item) do
               %p= item.name
-              %p= image_tag item.images[0].src.url
+              %ul.image
+                = image_tag item.images[0].src.url
+                %li.price
+                  - price = item.price
+                  - postage = 500
+                  - if item.delivery_fee_id == (1)
+                    ¥
+                    = item.price
+                  - else
+                    ¥
+                    = price + postage
       = paginate @items
 = render "footer"
