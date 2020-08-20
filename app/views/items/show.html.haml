@@ -33,12 +33,21 @@
           %li.listsLeft__item
             = link_to "ブランド",root_path,id:"brandBtn"
             %ul.brandsPulldown.displayNone
-        %ul.listsRight
-          %li.listsRight__item.listsRight__item--login
-            = link_to "ログイン",root_path
-          %li.listsRight__item.listsRight__item--new
-            = link_to "新規会員登録",root_path
 
+
+            
+        - if user_signed_in?
+          %ul.listsRight
+            %li.listsRight__item.listsRight__item--login
+              = link_to "ログアウト",destroy_user_session_path, method: :delete
+            %li.listsRight__item.listsRight__item--new
+              = link_to "マイページ",user_path(current_user.id)
+        - else
+          %ul.listsRight
+            %li.listsRight__item.listsRight__item--login
+              = link_to "ログイン",new_user_session_path
+            %li.listsRight__item.listsRight__item--new
+              = link_to "新規会員登録",new_user_registration_path
 
   %nav.breadCrumbs
     %ul
@@ -66,6 +75,7 @@
           = @item.name
 
 
+
   .main
     .showMain
       .contentLeftqq
@@ -84,17 +94,6 @@
                         - @item.images.each do |i|
                           = image_tag i.src.url,class:'thumb'
 
-              -# :javascript
-              -#   const thumbs = document.querySelectorAll('.thumb');
-              -#     thumbs.forEach(function(item,index) {
-              -#       item.onclick = function(){
-              -#         console.log(this)
-              -#         document.getElementById('bigimg').src = this.src;
-              -#       }
-              -#     });
-                        
-
-                 
             .itemBox__price
               - price = @item.price
               - postage = 500
@@ -272,7 +271,7 @@
         = image_tag asset_path('logo-white.png')
       %p © FURIMA
 
-  = link_to root_path do
+  = link_to new_item_path do
     .purchaseBtn
       %span.purchaseBtn__text 出品する
       = image_tag asset_path('icon_camera.png'),class:"purchaseBtn__icon"

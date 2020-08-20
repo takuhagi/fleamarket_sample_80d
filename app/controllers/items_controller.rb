@@ -2,10 +2,11 @@ class ItemsController < ApplicationController
   before_action :set_parent, only: [:index, :show, :search]
 
   def index
-    @items = Item.includes(:images).order('created_at DESC')
-    
-    @random = Item.order("RAND()").limit(5)
-    
+
+    @items = Item.includes(:images).order('created_at DESC').where(buyer_id: nil)
+    @random = Item.where(buyer_id: nil).order("RAND()").limit(5)
+
+   
   end
   
   def new
