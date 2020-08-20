@@ -8,8 +8,8 @@
       .tab-content
         - @items.each do |item|
           - if item.seller_id == current_user.id && item.buyer_id.blank?
-            -# pathは仮
-            = link_to edit_item_path(item) do
+            -# 変更済
+            = link_to item_path(item) do
               %p= item.name
               %p= image_tag item.images[0].src.url
       = paginate @items

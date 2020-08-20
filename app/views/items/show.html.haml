@@ -121,7 +121,7 @@
                 
 
             .itembox__detail__buy
-              - if user_signed_in? && current_user.id != @item.seller_id
+              - if user_signed_in? && current_user.id != @item.seller_id && @item.buyer_id != current_user.id
                 %button= link_to '購入画面に進む',confirm_path(@item)
 
             .itembox_blank
@@ -196,7 +196,7 @@
         .item__change__box
           .item__change__box__edit
             .btn__default
-              - if user_signed_in? && current_user.id == @item.seller_id
+              - if user_signed_in? && current_user.id != @item.seller_id && @item.buyer_id != current_user.id
                 .btn__default__btn__blue
                   = link_to edit_item_path(@item) do
                     %input.btn__default.btn__blue{type: "submit", value: "商品を編集する"} 
