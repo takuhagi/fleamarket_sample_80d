@@ -1,19 +1,9 @@
 .All {
-  height: 2300px;
+  height: 2150px;
   background-color: #f5f5f5;
 }
 
-.logo_image {
-  height: 100px;
-  width: 200px;
-  padding: 20px;
-}
 
-.Header{
-  margin: 0 auto;
-  height: 100px;
-  background-color: #f5f5f5;
-}
 
 .logo {
   text-align: center;
@@ -208,6 +198,7 @@
 }
 
 .pcHeader {
+  background-color: white;
   border-bottom: 1px solid #eee;
   .headerInner {
     max-width: 1040px;
