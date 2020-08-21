@@ -1,19 +1,84 @@
 カテゴリーごとの一覧ページ（孫カテゴリー）
+%body
+  %header.pcHeader
+    .headerInner
+      .mainHeader
+        %h1.icon
+          = link_to root_path do
+            = image_tag src="/assets/logo.png"
+        .searchBox
+          %form{"accept-charset" => "UTF-8", action: "#", method: "get"}
+            %input{name: "utf8", type: "hidden", value: "✓"}/
+            %input#searchInput.searchBox--input{name: "key", placeholder: "キーワードから探す"}/
+            %button{type: "submit"}
+              .searchBox__icon
+                = image_tag src="/assets/icon-search 1.png"
+  %nav.breadCrumbs
+    %ul
+      %li
+        = link_to "FURIMA",root_path
+      %li 
+        = icon("fas", "angle-right")
+      %li
+        = link_to categories_path do
+          = @grand_children.parent.parent.name
+      %li 
+        = icon("fas", "angle-right")
+      %li
+        = link_to category_categories_child_show_path(category_id: @grand_children.id) do
+          = @grand_children.parent.name
+      %li
+        = icon("fas", "angle-right")
+      %li
+        = @grand_children.name
 
-.Category_list
-  - @category_items.each do |item|
-    .Category_item_name
-      商品名
-      = link_to '#' do
-        -# 詳細画面にリンク
-        = item.name
-    %br
-    .Category_item_explanation
-      画像
+  .main
+    .showMain
+      .contentLeft
+      .contentRight
+        .titleBox
+          %p 
+            = @grand_children.name
+            の商品一覧
+
+
+.category_products_list_wrapper
+  .category_products_wrapper
+    .category_products
+      -# ページネーション指定と行列表示にする limit(1)を外す
+      - @category_items.limit(3).each do |item|
+        .productBox
+          = link_to item_path(item.id) do
+            .category_productLists
+              .category_productLists__img
+                = image_tag "#{item.images[0].src}", class:"category_image_show"
+              .category_productLists_body
+                .category_productLists_body__name
+                  = item.name
+                  .category_productLists_body__details
+                    %ul
+                      %li
+                        = item.price
+                        円 (税込)
+                      %li
+                        = icon("fas", "star")
+                        1
+
+  %aside.addBanner
+    .inner
+      .inner__title だれでもかんたん、人生を変えるフリマアプリ
+      .inner__text 今すぐ無料ダウンロード！
+      .inner__icon
+        = link_to root_path do
+          = image_tag src="/assets/app-store.svg",class:"aBtn"
+        = link_to root_path do
+          = image_tag src="/assets/google-play.svg",class:"gBtn"
+  
+  = render "footer"
+
+  = link_to root_path do
+    .purchaseBtn
+      %span.purchaseBtn__text 出品する
+      = image_tag src="/assets/icon_camera.png",class:"purchaseBtn__icon"
+
       
-      = image_tag "#{item.images[0].src}"
-    
-    .Category_item_price
-      値段
-      = item.price
-    
