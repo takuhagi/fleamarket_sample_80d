@@ -1,0 +1,31 @@
+// category/showの写真部分
+
+.category_products_list_wrapper {
+  width: 100vw;
+}
+.category_products_wrapper {
+  margin: 0 auto;
+  width: 50vw;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.category_products {
+  width: 780px;
+  margin: 26px auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.category_image_show{
+  height: 200px;
+  width: 200px;
+}
+
+#category_products_wrapper_color {
+  background-color: #f5f5f5;
+}
+
+
+

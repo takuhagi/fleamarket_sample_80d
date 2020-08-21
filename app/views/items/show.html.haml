@@ -79,8 +79,6 @@
       %li
         %p
           = @item.name
-
-
   .main
     .showMain
       .contentLeftqq
@@ -140,7 +138,7 @@
                   %tr
                     %th カテゴリー
                     %td
-                      = link_to category_path(category_id: @item.category.id) do
+                      = link_to categories_path do
                         = @item.category.parent.parent.name
                       %br
                       = link_to category_categories_child_show_path(category_id: @item.category.id) do
@@ -215,25 +213,30 @@
 
 
         .relatedItems
-          = link_to "#{@item.category.name}をもっと見る",root_path
+          = link_to category_path(category_id: @item.category.id) do
+            = "#{@item.category.name}をもっと見る"
         
        
-
-        
-
-          .productLists
-            .productList
-              = link_to root_path do
-                .productList--img
-                  = image_tag asset_path('Apple_mac.jpg')
-                .productList--body
-                  .name XXXXX
-                  .details
+.category_products_list_wrapper#category_products_wrapper_color
+  .category_products_wrapper
+    .category_products        
+      - Item.where(category_id: @item.category.id).limit(3).each do |item|
+        .productBox
+          = link_to item_path(item.id) do
+            .category_productLists
+              .category_productLists__img
+                = image_tag "#{item.images[0].src}", class:"category_image_show"
+              .category_productLists_body
+                .category_productLists_body__name
+                  = item.name
+                  .category_productLists_body__details
                     %ul
-                      %li XXXXX円
+                      %li
+                        = item.price
+                        円
                       %li
                         = icon("fas", "star")
-                        0
+                        1
                     %p (税込)
 
   %aside.addBanner

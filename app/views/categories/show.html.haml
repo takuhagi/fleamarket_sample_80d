@@ -1,6 +1,3 @@
--# categories/index.html.hamlから移動した
--# eachを使う場合ビュー崩れが発生（95行目から114行目）
-
 %body
   %header.pcHeader
     .headerInner
@@ -75,14 +72,8 @@
       %li
         = icon("fas", "angle-right")
       %li
-        = link_to category_path(category_id: @item.category.id) do
-          = @item.category.name
-      %li
-        = icon("fas", "angle-right")
-      %li
-        %p
-          = @item.name
-  
+        = @item.category.name
+
 
   .main
     .showMain
@@ -92,56 +83,29 @@
           %p 
             = @item.category.name
             の商品一覧
-      - @items.each do |item|
-        .productLists
-          .productList
-            -# id 1は仮置き
-            = link_to item_path(1) do
-              .productList__img
-                = image_tag "#{item.images[0].src}"
-              .productList__body
-                .name
-                  = item.name
-                .details
-                  %ul
-                    %li
-                      = item.price
-                      円
-                    %li
-                      = icon("fas", "star")
-                      1
-                  %p (税込)
 
-          -# view修正の際、コメントアウトを外して参考にする
-
-          -# .productList
-          -#   -# id 1は仮置き
-          -#   = link_to item_path(1) do
-          -#     .productList__img
-          -#       = image_tag src="/assets/Apple_mac.jpg"
-          -#     .productList__body
-          -#       .name テスト
-          -#       .details
-          -#         %ul
-          -#           %li XXXXX円
-          -#           %li
-          -#             = icon("fas", "star")
-          -#             1
-          -#         %p (税込)
-          -# .productList
-          -#   -# id 1は仮置き
-          -#   = link_to item_path(1) do
-          -#     .productList__img
-          -#       = image_tag src="/assets/Apple_mac.jpg"
-          -#     .productList__body
-          -#       .name テスト
-          -#       .details
-          -#         %ul
-          -#           %li XXXXX円
-          -#           %li
-          -#             = icon("fas", "star")
-          -#             1
-          -#         %p (税込)
+    .category_products_list_wrapper
+      .category_products_wrapper
+        .category_products
+          -# ページネーション指定と行列表示にする limit(3)を外す
+          - @items.limit(3).each do |item|
+            .productBox
+              = link_to item_path(item.id) do
+                .category_productLists
+                  .category_productLists__img
+                    = image_tag "#{item.images[0].src}", class:"category_image_show"
+                  .category_productLists_body
+                    .category_productLists_body__name
+                      = item.name
+                      .category_productLists_body__details
+                        %ul
+                          %li
+                            = item.price
+                            円 (税込)
+                          %li
+                            = icon("fas", "star")
+                            1
+                        
 
   %aside.addBanner
     .inner
