@@ -370,9 +370,36 @@
           
         }
       }
-      .brandsPulldown {
-        position: absolute;
+      .listsLeft__item--second {
+        position: relative;
+      
+        .nav-brands {
+          position: absolute;
+          top: 30px;
+          z-index: 5;
+          left:0px;
 
+        }
+        .brandsPulldown {
+          display: none;
+          box-sizing: border-box;
+          background-color: rgb(255, 255, 255);
+          box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+          width: 224px;
+          list-style: none;
+          text-align: center;
+          cursor: pointer;
+          text-align: center;
+          li{
+            border-bottom: 1px solid #eee;
+          &:hover {
+          background-color: #ea352d;
+          a {
+            color: #fff;
+              }
+            }
+          }
+        }
       }
       .listsRight {
         display: flex;

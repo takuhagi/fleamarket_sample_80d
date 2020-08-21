@@ -8,3 +8,9 @@ $(function() {
       $(">ul", this).hide();
   });
 });
+
+$(function() {
+  $(".listsLeft__item--second").hover(function() {
+  $("ul.brandsPulldown").toggle();
+  });
+});

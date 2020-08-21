@@ -1,12 +1,15 @@
 class ItemsController < ApplicationController
   before_action :set_parent, only: [:index, :show, :search]
+  before_action :set_brand, only: [:index, :show, :search]
 
   def index
+
 
     @items = Item.includes(:images).order('created_at DESC').where(buyer_id: nil)
     @random = Item.where(buyer_id: nil).order("RAND()").limit(5)
 
    
+
   end
   
   def new
@@ -108,7 +111,7 @@ class ItemsController < ApplicationController
   # end
 
   def search
-    @items = Item.search(params[:key]).page(params[:page]).per(16)
+    @items = Item.where.not(seller_id: current_user.id).where(buyer_id: nil).search(params[:key]).page(params[:page]).per(16)
     @search = params[:key]
   end
 
@@ -139,4 +142,9 @@ class ItemsController < ApplicationController
   def set_parent
     @parents = Category.order("id ASC").limit(13)
   end
+
+  def set_brand
+    @brands = Brand.order("id ASC")
+  end
+  
 end

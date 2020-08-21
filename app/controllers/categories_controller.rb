@@ -25,6 +25,7 @@ class CategoriesController < ApplicationController
   def categories_show
     @grand_children = Category.find(params[:category_id])
     @category_items = Item.where(category_id: params[:category_id])
+    
   end
 
   # 一覧から子カテゴリー表示
