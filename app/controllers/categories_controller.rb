@@ -15,12 +15,13 @@ class CategoriesController < ApplicationController
     # 元の子カテゴリー
     child_category = Category.find(params[:category_id]).parent    
     # 孫カテゴリーリスト
-    @grandchild_category_list = child_category.children 
+    @grandchild_category_list = child_category.children
   end
 
   # 孫カテゴリー取得
   def categories_show
     @category_items = Item.where(category_id: params[:category_id])
+    
   end
 
   # 一覧から子カテゴリー表示
