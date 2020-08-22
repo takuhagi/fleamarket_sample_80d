@@ -33,6 +33,7 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @user = User.find(Item.find(params[:id]).seller_id)
+    @parents = Category.order("id ASC").limit(13)
   end
 
   
