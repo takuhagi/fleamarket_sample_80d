@@ -2,6 +2,23 @@
   height: 800px;
   background-color: #f5f5f5;
   padding: 40px 0;
+  .contentRight {
+    width: 700px;
+    margin: 0 auto;
+    .titleBox {
+      background-color: #fff;
+      border-radius: 5px;
+      p {
+        border-radius: 5px 5px 0 0;
+        padding: 16px 10px 8px;
+        background-color: #3CCACE;
+        color: #fff;
+        text-align: center;
+        font-weight: bold;
+        font-size: 22px;
+      }
+    }
+  }
   .search-center {
     text-align: center;
     max-width: 700px;
