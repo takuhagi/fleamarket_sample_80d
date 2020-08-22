@@ -37,7 +37,7 @@
             = link_to "ブランド",root_path,id:"brandBtn"
             .nav-brands
               %ul.brandsPulldown
-                - @brands.each do |brand|
+                - @brand.each do |brand|
                   %li.brand_list
                     = link_to root_path do
                       = brand.name
@@ -57,33 +57,31 @@
               = link_to "新規会員登録",new_user_registration_path
 
   .search
+    -if @items.count == (0)
+      .contentRight
+        .titleBox
+          %p="検索に該当する商品はありません"
+    -else
+      .contentRight
+        .titleBox
+          %p= "#{@search}の検索結果"
     .search-center
       %section.items-box-container
-        -if @items.count == (0)
-          %h2.search-result-nil
-            検索に該当する商品はありません
-        -else
-          %h2.search-result-head
-            = @search
-            %span.search-result-head-text
-              の検索結果
-          .search-result-number
-            = "1-#{@items.count}件表示"
-            .search-result
-              - @items.each do |item|
-                = link_to item_path(item) do
-                  .search_name
-                    = item.name
-                    %ul.search_image
-                      = image_tag item.images[0].src.url
-                      %li.search_price
-                        - price = item.price
-                        - postage = 500
-                        - if item.delivery_fee_id == (1)
-                          ¥
-                          = item.price
-                        - else
-                          ¥
-                          = price + postage
+        .search-result
+          - @items.each do |item|
+            = link_to item_path(item) do
+              .search_name
+                = item.name
+                %ul.search_image
+                  = image_tag item.images[0].src.url
+                  %li.search_price
+                    - price = item.price
+                    - postage = 500
+                    - if item.delivery_fee_id == (1)
+                      ¥
+                      = item.price
+                    - else
+                      ¥
+                      = price + postage
           = paginate @items
   = render "users/footer"

@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :set_parent, only: [:index, :show, :search]
-  before_action :set_brand, only: [:index, :show, :search]
+  before_action :set_parent, only: [:index, :show, :search, :new]
+  before_action :set_brand, only: [:index, :show, :search, :new]
 
   def index
 
@@ -144,7 +144,7 @@ class ItemsController < ApplicationController
   end
 
   def set_brand
-    @brands = Brand.order("id ASC")
+    @brand = Brand.order("id ASC")
   end
   
 end
