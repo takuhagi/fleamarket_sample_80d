@@ -17,39 +17,30 @@
         %ul.listsLeft
           %li.listsLeft__item.listsLeft__item--first
             = link_to "カテゴリー",root_path,id:"catBtn" 
-            .tree.displayNone
-              %ul.categoryTree
-              -# 以下トップページのヘッダーを参考にあとで修正する。
-
-                -# %li.categoryTree--item
-                -#   = link_to "レディース",root_path,id:"1" 
-                -# %li.categoryTree--item
-                -#   = link_to "メンズ",root_path,id:"2"
-                -# %li.categoryTree--item
-                -#   = link_to "ベビー・キッズ",root_path,id:"3"
-                -# %li.categoryTree--item
-                -#   = link_to "インテリア・住まい・小物",root_path,id:"4"
-                -# %li.categoryTree--item
-                -#   = link_to "本・音楽・ゲーム",root_path,id:"5"
-                -# %li.categoryTree--item
-                -#   = link_to "おもちゃ・ホビー・グッズ",root_path,id:"6"
-                -# %li.categoryTree--item
-                -#   = link_to "コスメ・香水・美容",root_path,id:"7"
-                -# %li.categoryTree--item
-                -#   = link_to "家電・スマホ・カメラ",root_path,id:"8"
-                -# %li.categoryTree--item
-                -#   = link_to "スポーツ・レジャー",root_path,id:"9"
-                -# %li.categoryTree--item
-                -#   = link_to "ハンドメイド",root_path,id:"10"
-                -# %li.categoryTree--item
-                -#   = link_to "チケット",root_path,id:"11"
-                -# %li.categoryTree--item
-                -#   = link_to "自動車・オートバイ",root_path,id:"12"
-                -# %li.categoryTree--item
-                -#   = link_to "その他",root_path,id:"13"
-          %li.listsLeft__item
+            .nav-category
+              %ul.category1
+                - @parents.each do |parent|
+                  %li.parent__list
+                    = link_to categories_path do
+                      = parent.name
+                    %ul.category2
+                      - parent.children.each do |child|
+                        %li.child__list
+                          = link_to category_category_list_to_children_list_path(category_id: child.id) do
+                            = child.name
+                          %ul.category3
+                            - child.children.each do |grandchild|
+                              %li.grandchild__list
+                                = link_to category_categories_show_path(grandchild.id) do
+                                  = grandchild.name
+          %li.listsLeft__item.listsLeft__item--second
             = link_to "ブランド",root_path,id:"brandBtn"
-            %ul.brandsPulldown.displayNone
+            .nav-brands
+              %ul.brandsPulldown
+                - @brand.each do |brand|
+                  %li.brand_list
+                    = link_to root_path do
+                      = brand.name
 
 
         - if user_signed_in?
@@ -79,6 +70,8 @@
                   画像
                 .require_content
                   必須
+                .info
+                  ここをクリックして画像を選択
             #image-box
               #previews
                 - if @item.persisted?
@@ -87,6 +80,7 @@
               
               = f.fields_for :images do |image|
                 .js-file_group{"data-index" => "#{image.index}"}
+                = image.label :src, class: "js-file_group0" do
                   = image.file_field :src, class: 'js-file'
                   %br/
               - if @item.persisted?
