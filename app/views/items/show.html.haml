@@ -6,7 +6,7 @@
           = link_to root_path do
             = image_tag asset_path('logo.png')
         .searchBox
-          %form{"accept-charset" => "UTF-8", action: "#", method: "get"}
+          %form{"accept-charset" => "UTF-8", action: "/items/search", method: "get"}
             %input{name: "utf8", type: "hidden", value: "✓"}/
             %input#searchInput.searchBox--input{name: "key", placeholder: "キーワードから探す"}/
             %button{type: "submit"}
@@ -17,43 +17,48 @@
         %ul.listsLeft
           %li.listsLeft__item.listsLeft__item--first
             = link_to "カテゴリー",root_path,id:"catBtn" 
-            .tree.displayNone
-              %ul.categoryTree
-                %li.categoryTree--item
-                  = link_to "レディース",root_path,id:"1" 
-                %li.categoryTree--item
-                  = link_to "メンズ",root_path,id:"2"
-                %li.categoryTree--item
-                  = link_to "ベビー・キッズ",root_path,id:"3"
-                %li.categoryTree--item
-                  = link_to "インテリア・住まい・小物",root_path,id:"4"
-                %li.categoryTree--item
-                  = link_to "本・音楽・ゲーム",root_path,id:"5"
-                %li.categoryTree--item
-                  = link_to "おもちゃ・ホビー・グッズ",root_path,id:"6"
-                %li.categoryTree--item
-                  = link_to "コスメ・香水・美容",root_path,id:"7"
-                %li.categoryTree--item
-                  = link_to "家電・スマホ・カメラ",root_path,id:"8"
-                %li.categoryTree--item
-                  = link_to "スポーツ・レジャー",root_path,id:"9"
-                %li.categoryTree--item
-                  = link_to "ハンドメイド",root_path,id:"10"
-                %li.categoryTree--item
-                  = link_to "チケット",root_path,id:"11"
-                %li.categoryTree--item
-                  = link_to "自動車・オートバイ",root_path,id:"12"
-                %li.categoryTree--item
-                  = link_to "その他",root_path,id:"13"
-          %li.listsLeft__item
+            .nav-category
+              %ul.category1
+                - @parents.each do |parent|
+                  %li.parent__list
+                    = link_to categories_path do
+                      = parent.name
+                    %ul.category2
+                      - parent.children.each do |child|
+                        %li.child__list
+                          = link_to category_category_list_to_children_list_path(category_id: child.id) do
+                            = child.name
+                          %ul.category3
+                            - child.children.each do |grandchild|
+                              %li.grandchild__list
+                                = link_to category_categories_show_path(grandchild.id) do
+                                  = grandchild.name
+          %li.listsLeft__item.listsLeft__item--second
             = link_to "ブランド",root_path,id:"brandBtn"
-            %ul.brandsPulldown.displayNone
-        %ul.listsRight
-          %li.listsRight__item.listsRight__item--login
-            = link_to "ログイン",root_path
-          %li.listsRight__item.listsRight__item--new
-            = link_to "新規会員登録",root_path
 
+            .nav-brands
+              %ul.brandsPulldown
+                - @brand.each do |brand|
+                  %li.brand_list
+                    = link_to root_path do
+                      = brand.name
+
+
+
+
+            
+        - if user_signed_in?
+          %ul.listsRight
+            %li.listsRight__item.listsRight__item--login
+              = link_to "ログアウト",destroy_user_session_path, method: :delete
+            %li.listsRight__item.listsRight__item--new
+              = link_to "マイページ",user_path(current_user.id)
+        - else
+          %ul.listsRight
+            %li.listsRight__item.listsRight__item--login
+              = link_to "ログイン",new_user_session_path
+            %li.listsRight__item.listsRight__item--new
+              = link_to "新規会員登録",new_user_registration_path
 
   %nav.breadCrumbs
     %ul
@@ -80,7 +85,6 @@
         %p
           = @item.name
 
-
   .main
     .showMain
       .contentLeftqq
@@ -99,17 +103,6 @@
                         - @item.images.each do |i|
                           = image_tag i.src.url,class:'thumb'
 
-              -# :javascript
-              -#   const thumbs = document.querySelectorAll('.thumb');
-              -#     thumbs.forEach(function(item,index) {
-              -#       item.onclick = function(){
-              -#         console.log(this)
-              -#         document.getElementById('bigimg').src = this.src;
-              -#       }
-              -#     });
-                        
-
-                 
             .itemBox__price
               - price = @item.price
               - postage = 500
@@ -140,7 +133,7 @@
                   %tr
                     %th カテゴリー
                     %td
-                      = link_to category_path(category_id: @item.category.id) do
+                      = link_to categories_path do
                         = @item.category.parent.parent.name
                       %br
                       = link_to category_categories_child_show_path(category_id: @item.category.id) do
@@ -203,7 +196,7 @@
         .item__change__box
           .item__change__box__edit
             .btn__default
-              - if user_signed_in? && current_user.id != @item.seller_id && @item.buyer_id != current_user.id
+              - if user_signed_in? && current_user.id == @item.seller_id && @item.buyer_id.blank?
                 .btn__default__btn__blue
                   = link_to edit_item_path(@item) do
                     %input.btn__default.btn__blue{type: "submit", value: "商品を編集する"} 
@@ -215,25 +208,30 @@
 
 
         .relatedItems
-          = link_to "#{@item.category.name}をもっと見る",root_path
+          = link_to category_path(category_id: @item.category.id) do
+            = "#{@item.category.name}をもっと見る"
         
        
-
-        
-
-          .productLists
-            .productList
-              = link_to root_path do
-                .productList--img
-                  = image_tag asset_path('Apple_mac.jpg')
-                .productList--body
-                  .name XXXXX
-                  .details
+.item_category_products_list_wrapper#item_category_products_wrapper_color
+  .item_category_products_wrapper
+    .item_category_products        
+      - Item.where(category_id: @item.category.id).limit(3).each do |item|
+        .item_productBox
+          = link_to item_path(item.id) do
+            .item_category_productLists
+              .item_category_productLists__img
+                = image_tag "#{item.images[0].src}", class:"category_image_show"
+              .item_category_productLists_body
+                .item_category_productLists_body__name
+                  = item.name
+                  .item_category_productLists_body__details
                     %ul
-                      %li XXXXX円
+                      %li
+                        = item.price
+                        円
                       %li
                         = icon("fas", "star")
-                        0
+                        1
                     %p (税込)
 
   %aside.addBanner
@@ -249,45 +247,9 @@
 
 
 
+  = render "footer"
 
-  .footer
-    %ul.contents
-      %li.content
-        .content__head FURIMAについて
-        %ul
-          %li
-            = link_to "会社概要(運営会社)",root_path
-          %li
-            = link_to "プライバシーポリシー",root_path
-          %li
-            = link_to "FURIMA利用規約",root_path
-          %li
-            = link_to "ポイントに関する特約",root_path
-
-      %li.content
-        .content__head FURIMAを見る
-        %ul
-          %li
-            = link_to "カテゴリー一覧",root_path
-          %li
-            = link_to "ブランド一覧",root_path
-
-      %li.content
-        .content__head ヘルプ＆ガイド
-        %ul
-          %li
-            = link_to "FURIMAガイド",root_path
-          %li
-            = link_to "FURIMAロゴ利用ガイドライン",root_path
-          %li
-            = link_to "お知らせ",root_path
-
-    .footer__logo
-      = link_to root_path do
-        = image_tag asset_path('logo-white.png')
-      %p © FURIMA
-
-  = link_to root_path do
+  = link_to new_item_path do
     .purchaseBtn
       %span.purchaseBtn__text 出品する
       = image_tag asset_path('icon_camera.png'),class:"purchaseBtn__icon"

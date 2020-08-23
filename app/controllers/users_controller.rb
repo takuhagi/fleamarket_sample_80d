@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_mypage, only: [:exhibiting, :sold]
   before_action :set_category
+  before_action :set_brand
 
   def show
-    @items = Item.where(buyer_id: current_user.id).page(params[:page]).per(5)
+    @items = Item.where(buyer_id: current_user.id).page(params[:page]).per(6)
     
   end
 
@@ -16,10 +17,15 @@ class UsersController < ApplicationController
   end
   
   def set_mypage
-    @items = Item.where(seller_id: current_user.id).page(params[:page]).per(5)
+    @items = Item.where(seller_id: current_user.id).page(params[:page]).per(6)
   end
 
   def set_category
     @parents = Category.order("id ASC").limit(13)
   end
+
+  def set_brand
+    @brands = Brand.order("id ASC")
+  end
+
 end

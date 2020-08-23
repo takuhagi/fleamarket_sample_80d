@@ -2,6 +2,7 @@ class CreditCardsController < ApplicationController
   require "payjp"
   before_action :set_card
   before_action :set_category, only: [:index, :new]
+  before_action :set_brand, only: [:index, :new]
 
   def index
     
@@ -55,4 +56,9 @@ class CreditCardsController < ApplicationController
   def set_category
     @parents = Category.order("id ASC").limit(13)
   end
+
+  def set_brand
+    @brands = Brand.order("id ASC")
+  end
+
 end
