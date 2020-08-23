@@ -1,15 +1,16 @@
-$(document).on('turbolinks:load', ()=> {
+$(function(){
   const buildFileField = (num)=> {
-    const html = `<div data-index="${num}" class="js-file_group">
+    const html = `<label class="js-file_label${num}">
+                  <div data-index="${num}" class="js-file_group${num}">
                     <input class="js-file" type="file"
                     name="item[images_attributes][${num}][src]"
-                    id="item_images_attributes_${num}_src"><br>
-                    <div class="js-remove">削除</div>
+                    id="item_images_attributes_${num}_src">
+                    
                   </div>`;
     return html;
   }
   const buildImg = (index, url)=> {
-    const html = `<img data-index="${index}" src="${url}" width="100px" height="100px">`;
+    const html = `<img data-index="${index}" src="${url}" width="130px" height="130px">`;
     return html;
   }
 
@@ -33,6 +34,7 @@ $(document).on('turbolinks:load', ()=> {
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
     }
   });
+
 
   $('#image-box').on('click', '.js-remove', function() {
     const targetIndex = $(this).parent().data('index');

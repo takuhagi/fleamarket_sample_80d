@@ -2,6 +2,7 @@ class CreditCardsController < ApplicationController
   require "payjp"
   before_action :set_card
   before_action :set_category, only: [:index, :new]
+  before_action :set_brand, only: [:index, :new]
 
   def index
     
@@ -44,7 +45,9 @@ class CreditCardsController < ApplicationController
     @card.delete
     
     if @card.destroy
-      redirect_to root_path
+      redirect_to root_path, notice: "カードを削除しました" 
+    else
+      redirect_to action: "index", notice: "カードを削除できませんでした" 
     end
   end
 
@@ -55,4 +58,9 @@ class CreditCardsController < ApplicationController
   def set_category
     @parents = Category.order("id ASC").limit(13)
   end
+
+  def set_brand
+    @brands = Brand.order("id ASC")
+  end
+
 end

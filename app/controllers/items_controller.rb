@@ -1,9 +1,15 @@
 class ItemsController < ApplicationController
+  before_action :set_parent, only: [:index, :show, :search, :new]
+  before_action :set_brand, only: [:index, :show, :search, :new]
+
   def index
-    @items = Item.includes(:images).order('created_at DESC')
-    @random = Item.order("RAND()").limit(5)
-    
-    @parents = Category.order("id ASC").limit(13)
+
+
+    @items = Item.includes(:images).order('created_at DESC').where(buyer_id: nil)
+    @random = Item.where(buyer_id: nil).order("RAND()").limit(5)
+
+   
+
   end
   
   def new
@@ -24,15 +30,16 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to root_path
+      redirect_to root_path, notice: "出品しました" 
     else
-      render :new
+      render :new, notice: "出品に失敗しました" 
     end
   end
   
   def show
     @item = Item.find(params[:id])
     @user = User.find(Item.find(params[:id]).seller_id)
+    @parents = Category.order("id ASC").limit(13)
   end
 
   def get_category_children
@@ -48,7 +55,7 @@ class ItemsController < ApplicationController
   def destroy
     @items = Item.find(params[:id])
     if @items.seller_id == current_user.id && @items.destroy
-      redirect_to user_path(current_user.id)
+      redirect_to user_path(current_user.id), notice: "削除しました" 
     else
       redirect_to root_path
     end
@@ -94,7 +101,10 @@ class ItemsController < ApplicationController
 
 
 
-
+  def search
+    @items = Item.where.not(seller_id: current_user.id).where(buyer_id: nil).search(params[:key]).page(params[:page]).per(16)
+    @search = params[:key]
+  end
 
 
   private
@@ -108,5 +118,25 @@ class ItemsController < ApplicationController
     ).merge(seller_id: current_user.id, buyer_id: nil)
   end
 
+# 詳細画面連携時の仮置き
+  # def ensure_current_user
+  #   item = Item.find(params[:id])
+  #   if item.seller_id != current_user.id
+  #     redirect_to action: :index
+  #   end
+  # end
 
+  def set_item
+    @item = Item.find(params[:id])
+  end
+  
+  def set_parent
+    @parents = Category.order("id ASC").limit(13)
+  end
+
+
+  def set_brand
+    @brand = Brand.order("id ASC")
+  end
+  
 end

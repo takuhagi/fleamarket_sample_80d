@@ -1,19 +1,9 @@
 .All {
-  height: 2300px;
+  height: 2150px;
   background-color: #f5f5f5;
 }
 
-.logo_image {
-  height: 100px;
-  width: 200px;
-  padding: 20px;
-}
 
-.Header{
-  margin: 0 auto;
-  height: 100px;
-  background-color: #f5f5f5;
-}
 
 .logo {
   text-align: center;
@@ -43,6 +33,53 @@
   height: 300px;
   background-color: #f5f5f5;
   border:dotted 2px lightgrey ;
+  position: relative;
+  .info {
+    position: absolute;
+    top: 50%;
+    left: 33%;
+    color: lightgrey;
+  }
+}
+
+.js-file_label0 {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 660px;
+}
+.js-file_label1 {
+  
+  position: absolute;
+  top: 0;
+  left: 130px;
+  height: 100%;
+  width: 530px;
+}
+.js-file_label2 {
+  position: absolute;
+  top: 0;
+  left: 260px;
+  height: 100%;
+  width: 400px;
+}
+.js-file_label3 {
+  position: absolute;
+  top: 0;
+  left: 390px;
+  height: 100%;
+  width: 270px;
+}
+.js-file_label4 {
+  position: absolute;
+  top: 0;
+  left: 520px;
+  height: 100%;
+  width: 140px;
+}
+
+.js-file {
+  display: none;
 }
 
 
@@ -208,6 +245,7 @@
 }
 
 .pcHeader {
+  background-color: white;
   border-bottom: 1px solid #eee;
   .headerInner {
     max-width: 1040px;
@@ -367,22 +405,49 @@
         }
 
 
-      .non-show-list {
-        width: 240px;
-        position: absolute;
-        top: 40px;
-        .category-downlist {
-          background-color: #fff;
-          display: flex;
-          flex-direction: column;
-          position: relative;
-          
+        .non-show-list {
+          width: 240px;
+          position: absolute;
+          top: 40px;
+          .category-downlist {
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            
+          }
         }
-      }
-      .brandsPulldown {
-        position: absolute;
-
-      }
+        .listsLeft__item--second {
+          position: relative;
+        
+          .nav-brands {
+            position: absolute;
+            top: 30px;
+            z-index: 5;
+            left:0px;
+  
+          }
+          .brandsPulldown {
+            display: none;
+            box-sizing: border-box;
+            background-color: rgb(255, 255, 255);
+            box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+            width: 224px;
+            list-style: none;
+            text-align: center;
+            cursor: pointer;
+            text-align: center;
+            li{
+              border-bottom: 1px solid #eee;
+            &:hover {
+            background-color: #ea352d;
+            a {
+              color: #fff;
+                }
+              }
+            }
+          }
+        }
       .listsRight {
         display: flex;
         margin-left: auto;
