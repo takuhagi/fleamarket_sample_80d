@@ -203,7 +203,7 @@
         .item__change__box
           .item__change__box__edit
             .btn__default
-              - if user_signed_in? && current_user.id != @item.seller_id && @item.buyer_id != current_user.id
+              - if user_signed_in? && current_user.id == @item.seller_id && @item.buyer_id != current_user.blank?
                 .btn__default__btn__blue
                   = link_to edit_item_path(@item) do
                     %input.btn__default.btn__blue{type: "submit", value: "商品を編集する"} 
