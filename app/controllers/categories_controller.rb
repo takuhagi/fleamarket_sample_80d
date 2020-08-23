@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @items = Item.where(category_id: params[:category_id])
+    @items = Item.where(category_id: params[:category_id]).where(buyer_id: nil)
     @user = User.find(@item.seller_id)
   end
   
@@ -24,7 +24,7 @@ class CategoriesController < ApplicationController
   # 孫カテゴリー取得
   def categories_show
     @grand_children = Category.find(params[:category_id])
-    @category_items = Item.where(category_id: params[:category_id])
+    @category_items = Item.where(category_id: params[:category_id]).where(buyer_id: nil)
     
   end
 

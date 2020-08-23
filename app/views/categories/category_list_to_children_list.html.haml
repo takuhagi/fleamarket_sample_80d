@@ -44,7 +44,7 @@
     .category_products
       -# ページネーション指定と行列表示にする limit(1)とlimit(3)を外す
       - @grand_children.limit(1).each do |category|
-        - Item.where(category_id: category.id).limit(3).each do |item|
+        - Item.where(category_id: category.id).where(buyer_id: nil).limit(3).each do |item|
           .productBox
             = link_to item_path(item.id) do
               .category_productLists

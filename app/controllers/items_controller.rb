@@ -1,15 +1,10 @@
 class ItemsController < ApplicationController
-  before_action :set_parent, only: [:index, :show, :search]
-  before_action :set_brand, only: [:index, :show, :search]
+  before_action :set_parent, only: [:index, :show, :search, :new]
+  before_action :set_brand, only: [:index, :show, :search, :new]
 
   def index
-
-
     @items = Item.includes(:images).order('created_at DESC').where(buyer_id: nil)
     @random = Item.where(buyer_id: nil).order("RAND()").limit(5)
-
-   
-
   end
   
   def new
@@ -38,6 +33,15 @@ class ItemsController < ApplicationController
   
   def show
     @item = Item.find(params[:id])
+
+    # 存在しない商品は取得しないようにする予定
+    # if Item.find(params[:id]).present?
+    #   @item = Item.find(params[:id])
+    # else
+    #   redirect_to root_path
+    #   flash.now[:alert] = '商品がありません'
+    # end
+
     @user = User.find(Item.find(params[:id]).seller_id)
   end
 
@@ -144,7 +148,7 @@ class ItemsController < ApplicationController
   end
 
   def set_brand
-    @brands = Brand.order("id ASC")
+    @brand = Brand.order("id ASC")
   end
   
 end
