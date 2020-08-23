@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @items = Item.where(category_id: params[:category_id])
+    @items = Item.where(category_id: params[:category_id]).where(buyer_id: nil)
     @user = User.find(@item.seller_id)
 
     @items_page = @items.where(buyer_id: nil).page(params[:page]).per(12)
@@ -33,6 +33,7 @@ class CategoriesController < ApplicationController
     @grand_children = Category.find(params[:category_id])
     @category_items = Item.where(category_id: params[:category_id])
     @category_items_page = @category_items.where(buyer_id: nil).page(params[:page]).per(12)
+
   end
 
   # 一覧から子カテゴリー表示

@@ -1,64 +1,6 @@
 %body
-  %header.pcHeader
-    .headerInner
-      .mainHeader
-        %h1.icon
-          = link_to root_path do
-            = image_tag asset_path('logo.png')
-        .searchBox
-          %form{"accept-charset" => "UTF-8", action: "/items/search", method: "get"}
-            %input{name: "utf8", type: "hidden", value: "✓"}/
-            %input#searchInput.searchBox--input{name: "key", placeholder: "キーワードから探す"}/
-            %button{type: "submit"}
-              .searchBox__icon
-                = image_tag asset_path('icon-search 1.png')
-      %ul.resultLists
-      .nav
-        %ul.listsLeft
-          %li.listsLeft__item.listsLeft__item--first
-            = link_to "カテゴリー",root_path,id:"catBtn" 
-            .nav-category
-              %ul.category1
-                - @parents.each do |parent|
-                  %li.parent__list
-                    = link_to categories_path do
-                      = parent.name
-                    %ul.category2
-                      - parent.children.each do |child|
-                        %li.child__list
-                          = link_to category_category_list_to_children_list_path(category_id: child.id) do
-                            = child.name
-                          %ul.category3
-                            - child.children.each do |grandchild|
-                              %li.grandchild__list
-                                = link_to category_categories_show_path(grandchild.id) do
-                                  = grandchild.name
-          %li.listsLeft__item.listsLeft__item--second
-            = link_to "ブランド",root_path,id:"brandBtn"
 
-            .nav-brands
-              %ul.brandsPulldown
-                - @brand.each do |brand|
-                  %li.brand_list
-                    = link_to root_path do
-                      = brand.name
-
-
-
-
-            
-        - if user_signed_in?
-          %ul.listsRight
-            %li.listsRight__item.listsRight__item--login
-              = link_to "ログアウト",destroy_user_session_path, method: :delete
-            %li.listsRight__item.listsRight__item--new
-              = link_to "マイページ",user_path(current_user.id)
-        - else
-          %ul.listsRight
-            %li.listsRight__item.listsRight__item--login
-              = link_to "ログイン",new_user_session_path
-            %li.listsRight__item.listsRight__item--new
-              = link_to "新規会員登録",new_user_registration_path
+  = render "header"
 
   %nav.breadCrumbs
     %ul
@@ -181,13 +123,17 @@
                     "不適切な商品の通報"
         
         %ul.links
+          -# - @items = Item.includes(:images).order('created_at DESC').where(buyer_id: nil)
+          -# - hako = [@items]
+          -# - hako[]
+          - num = @item.id
           %li
-            = link_to root_path do
+            = link_to item_path(num + 1) do
               = icon("fas", "angle-left")
-              %span
-              前の商品
+              %span 前の商品
+
           %li
-            = link_to root_path do
+            = link_to item_path(num - 1) do
               %span 後ろの商品
               = icon("fas", "angle-right")
 
@@ -208,29 +154,27 @@
         .relatedItems
           = link_to category_path(category_id: @item.category.id) do
             = "#{@item.category.name}をもっと見る"
+          .productLists
+            - Item.where(category_id: @item.category.id).limit(3).each do |item|
+              .productList
+                = link_to item_path(item.id) do
+                  .productList__img
+                    = image_tag item.images[0].src.url
+                  .productList__body
+                    .name
+                      = item.name
+                    .details
+                      %ul
+                        %li 
+                          = item.price
+                          円
+                        %li
+                          = icon("fas", "star")
+                          1
+                      %p (税込)
         
+
        
-.item_category_products_list_wrapper#item_category_products_wrapper_color
-  .item_category_products_wrapper
-    .item_category_products        
-      - Item.where(category_id: @item.category.id).limit(3).each do |item|
-        .item_productBox
-          = link_to item_path(item.id) do
-            .item_category_productLists
-              .item_category_productLists__img
-                = image_tag "#{item.images[0].src}", class:"category_image_show"
-              .item_category_productLists_body
-                .item_category_productLists_body__name
-                  = item.name
-                  .item_category_productLists_body__details
-                    %ul
-                      %li
-                        = item.price
-                        円
-                      %li
-                        = icon("fas", "star")
-                        1
-                    %p (税込)
 
   %aside.addBanner
     .inner
