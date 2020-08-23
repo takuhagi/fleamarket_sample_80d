@@ -6,26 +6,30 @@
     %ul
       %li
         = link_to "FURIMA",root_path
-      %li 
-        = icon("fas", "angle-right")
-      %li
-        = link_to categories_path do
-          = @item.category.parent.parent.name
-      %li 
-        = icon("fas", "angle-right")
-      %li
-        = link_to category_categories_child_show_path(category_id: @item.category.id) do
-          = @item.category.parent.name
-      %li
-        = icon("fas", "angle-right")
-      %li
-        = link_to category_path(category_id: @item.category.id) do
-          = @item.category.name
-      %li
-        = icon("fas", "angle-right")
-      %li
-        %p
-          = @item.name
+      - if @item.category.parent.parent != nil
+        %li 
+          = icon("fas", "angle-right")
+        %li
+          = link_to categories_path do
+            = @item.category.parent.parent.name
+      
+      - if @item.category.parent != nil
+        %li 
+          = icon("fas", "angle-right")
+        %li
+          - if @item.category.parent != nil
+            = link_to category_categories_child_show_path(category_id: @item.category.id) do
+              = @item.category.parent.name
+        %li
+          = icon("fas", "angle-right")
+        %li
+          = link_to category_path(category_id: @item.category.id) do
+            = @item.category.name
+        %li
+          = icon("fas", "angle-right")
+        %li
+          %p
+            = @item.name
 
   .main
     .showMain
@@ -75,20 +79,23 @@
                   %tr
                     %th カテゴリー
                     %td
-                      = link_to categories_path do
-                        = @item.category.parent.parent.name
+                      - if @item.category.parent.parent != nil
+                        = link_to categories_path do
+                          = @item.category.parent.parent.name
                       %br
-                      = link_to category_categories_child_show_path(category_id: @item.category.id) do
-                        = @item.category.parent.name
+                      - if @item.category.parent != nil
+                        = link_to category_categories_child_show_path(category_id: @item.category.id) do
+                          = @item.category.parent.name
                       %br
                       = link_to category_categories_show_path(category_id: @item.category.id) do
                         = @item.category.name
                   %tr
                     %th ブランド
                     %td 
-                      -# = binding.pry
-                      = @item.brand.name
-
+                      - if @item.brand != nil
+                        = @item.brand.name
+                      - else
+                        = "ブランドは指定されていません"
                   %tr
                     %th 商品の状態
                     %td 
