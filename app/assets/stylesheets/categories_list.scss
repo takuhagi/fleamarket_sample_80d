@@ -62,47 +62,8 @@
           }
         }
       }
-      .nav {
-        font-size: 14px;
-        display: flex;
-        margin-bottom: 10px;
-        .listsLeft {
-          display: flex;
-          &__item--first {
-            text-decoration: none;
-            padding: 0;
-          }
-          &__item {
-            display: flex;
-            line-height: 38px;
-            padding: 0 0 0 16px;
-            a {
-              text-decoration: none;
-              color: #333;
-              padding-right: 30px;
-            }
-          }
-        }
-        
-        .listsRight {
-          display: flex;
-          margin-left: auto;
-          &__item {
-            color: #333;
-            line-height: 38px;
-            padding: 0 0 0 16px;
-            a {
-              display: flex;
-              align-items: center;
-              color: #333;
-              text-decoration: none;
-              line-height: 32px;
-            }
-          }
-        }
-      }
-    } 
-  }
+    }
+  }    
 
   .Category__name {
     height:50px;

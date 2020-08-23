@@ -13,20 +13,7 @@
             %button{type: "submit"}
               .searchBox__icon
                 = image_tag asset_path('icon-search 1.png')
-      %ul.resultLists
-      .nav
-        %ul.listsLeft
-          %li.listsLeft__item.listsLeft__item--first
-            = link_to "カテゴリー",root_path,id:"catBtn" 
-            
-          %li.listsLeft__item
-            = link_to "ブランド",root_path,id:"brandBtn"
-            %ul.brandsPulldown.displayNone
-        %ul.listsRight
-          %li.listsRight__item.listsRight__item--login
-            = link_to "ログイン",root_path
-          %li.listsRight__item.listsRight__item--new
-            = link_to "新規会員登録",root_path
+ 
 
 .Category__name
   カテゴリー一覧
