@@ -12,12 +12,12 @@ class ItemsController < ApplicationController
     @item.images.new
     @brands = []
     Brand.all.each do |brand|
-      @brands << [brand.name, brand.id]
+    @brands << [brand.name, brand.id]
     end
     
     @category_parent_array = []
     Category.where(ancestry: nil).each do |parent|
-      @category_parent_array << [parent.name, parent.id]
+    @category_parent_array << [parent.name, parent.id]
     end
     
   end
@@ -47,7 +47,6 @@ class ItemsController < ApplicationController
     @parents = Category.order("id ASC").limit(13)
   end
 
-  
   def get_category_children
     @category_children = Category.find(params[:parent_id]).children
   end
@@ -73,30 +72,24 @@ class ItemsController < ApplicationController
     @brands = []
     Brand.all.each do |brand|
     @brands << [brand.name, brand.id]
+    end
+
+    grandchild_category = @item.category
+    child_category = grandchild_category.parent
+
     @category_parent_array = []
     Category.where(ancestry: nil).each do |parent|
     @category_parent_array << [parent.name, parent.id]
-
-# 商品情報編集のカテゴリー追加時使用予定
-    # child = grandchild.parent
-    # if @category_id == 46 or @category_id == 74 or @category_id == 134 or @category_id == 142 or @category_id == 147 or @category_id == 150 or @category_id == 158
-    # else
-    #  @category_parent_array = []
-    #  @category_parent_array << @item.category.name
-    #  @category_parent_array << @item.category.id
-    # end
-    #  @category_children_array = Category.where
-    # # (ancestry: child.ancestry)
-    # #  @child_array = []
-    # #  @child_array << child.name
-    # #  @child_array << child.id
-
-    #  @category_grandchildren_array = Category.where
-    # #  (ancestry: grandchild.ancestry)
-    # #  @grandchild_array = []
-    # #  @grandchild_array << grandchild.name
-    # #  @grandchild_array << grandchild.id
     end
+
+    @category_children_array = []
+    Category.where(ancestry: child_category.ancestry).each do |children|
+    @category_children_array << children
+    end
+
+    @category_grandchildren_array = []
+    Category.where(ancestry: grandchild_category.ancestry).each do |grandchildren|
+    @category_grandchildren_array << grandchildren
     end
   end
 
@@ -111,10 +104,7 @@ class ItemsController < ApplicationController
     
   end
 
-# 編集後の画面実装の場合使用予定
-  # def update_done
-  #   @item_update = Item.order("updated_at DESC").first
-  # end
+
 
   def search
     @items = Item.where.not(seller_id: current_user.id).where(buyer_id: nil).search(params[:key]).page(params[:page]).per(16)
@@ -148,6 +138,7 @@ class ItemsController < ApplicationController
   def set_parent
     @parents = Category.order("id ASC").limit(13)
   end
+
 
   def set_brand
     @brand = Brand.order("id ASC")
