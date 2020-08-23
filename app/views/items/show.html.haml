@@ -212,19 +212,19 @@
             = "#{@item.category.name}をもっと見る"
         
        
-.category_products_list_wrapper#category_products_wrapper_color
-  .category_products_wrapper
-    .category_products        
+.item_category_products_list_wrapper#item_category_products_wrapper_color
+  .item_category_products_wrapper
+    .item_category_products        
       - Item.where(category_id: @item.category.id).limit(3).each do |item|
-        .productBox
+        .item_productBox
           = link_to item_path(item.id) do
-            .category_productLists
-              .category_productLists__img
+            .item_category_productLists
+              .item_category_productLists__img
                 = image_tag "#{item.images[0].src}", class:"category_image_show"
-              .category_productLists_body
-                .category_productLists_body__name
+              .item_category_productLists_body
+                .item_category_productLists_body__name
                   = item.name
-                  .category_productLists_body__details
+                  .item_category_productLists_body__details
                     %ul
                       %li
                         = item.price

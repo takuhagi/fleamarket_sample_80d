@@ -1,4 +1,4 @@
-$(function() {
+$(function(){
   const buildFileField = (num)=> {
     const html = `<label class="js-file_group${num}">
                   <div data-index="${num}" class="js-file_group${num}">

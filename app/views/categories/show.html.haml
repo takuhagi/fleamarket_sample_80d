@@ -17,34 +17,34 @@
         %ul.listsLeft
           %li.listsLeft__item.listsLeft__item--first
             = link_to "カテゴリー",root_path,id:"catBtn" 
-            .tree.displayNone
-              %ul.categoryTree
-                %li.categoryTree--item
-                  = link_to "レディース",root_path,id:"1" 
-                %li.categoryTree--item
-                  = link_to "メンズ",root_path,id:"2"
-                %li.categoryTree--item
-                  = link_to "ベビー・キッズ",root_path,id:"3"
-                %li.categoryTree--item
-                  = link_to "インテリア・住まい・小物",root_path,id:"4"
-                %li.categoryTree--item
-                  = link_to "本・音楽・ゲーム",root_path,id:"5"
-                %li.categoryTree--item
-                  = link_to "おもちゃ・ホビー・グッズ",root_path,id:"6"
-                %li.categoryTree--item
-                  = link_to "コスメ・香水・美容",root_path,id:"7"
-                %li.categoryTree--item
-                  = link_to "家電・スマホ・カメラ",root_path,id:"8"
-                %li.categoryTree--item
-                  = link_to "スポーツ・レジャー",root_path,id:"9"
-                %li.categoryTree--item
-                  = link_to "ハンドメイド",root_path,id:"10"
-                %li.categoryTree--item
-                  = link_to "チケット",root_path,id:"11"
-                %li.categoryTree--item
-                  = link_to "自動車・オートバイ",root_path,id:"12"
-                %li.categoryTree--item
-                  = link_to "その他",root_path,id:"13"
+            -# .tree.displayNone
+            -#   %ul.categoryTree
+            -#     %li.categoryTree--item
+            -#       = link_to "レディース",root_path,id:"1" 
+            -#     %li.categoryTree--item
+            -#       = link_to "メンズ",root_path,id:"2"
+            -#     %li.categoryTree--item
+            -#       = link_to "ベビー・キッズ",root_path,id:"3"
+            -#     %li.categoryTree--item
+            -#       = link_to "インテリア・住まい・小物",root_path,id:"4"
+            -#     %li.categoryTree--item
+            -#       = link_to "本・音楽・ゲーム",root_path,id:"5"
+            -#     %li.categoryTree--item
+            -#       = link_to "おもちゃ・ホビー・グッズ",root_path,id:"6"
+            -#     %li.categoryTree--item
+            -#       = link_to "コスメ・香水・美容",root_path,id:"7"
+            -#     %li.categoryTree--item
+            -#       = link_to "家電・スマホ・カメラ",root_path,id:"8"
+            -#     %li.categoryTree--item
+            -#       = link_to "スポーツ・レジャー",root_path,id:"9"
+            -#     %li.categoryTree--item
+            -#       = link_to "ハンドメイド",root_path,id:"10"
+            -#     %li.categoryTree--item
+            -#       = link_to "チケット",root_path,id:"11"
+            -#     %li.categoryTree--item
+            -#       = link_to "自動車・オートバイ",root_path,id:"12"
+            -#     %li.categoryTree--item
+            -#       = link_to "その他",root_path,id:"13"
           %li.listsLeft__item
             = link_to "ブランド",root_path,id:"brandBtn"
             %ul.brandsPulldown.displayNone
@@ -87,25 +87,25 @@
     .category_products_list_wrapper
       .category_products_wrapper
         .category_products
-          -# ページネーション指定と行列表示にする limit(3)を外す
-          - @items.limit(3).each do |item|
+          - @items_page.each do |item|
             .productBox
               = link_to item_path(item.id) do
                 .category_productLists
                   .category_productLists__img
                     = image_tag "#{item.images[0].src}", class:"category_image_show"
                   .category_productLists_body
-                    .category_productLists_body__name
-                      = item.name
-                      .category_productLists_body__details
-                        %ul
-                          %li
-                            = item.price
-                            円 (税込)
-                          %li
-                            = icon("fas", "star")
-                            1
+                    = item.name
+                    .category_productLists_body__details
+                      %ul
+                        %li
+                          = item.price
+                          円 (税込)
+                        %li
+                          = icon("fas", "star")
+                          1
                         
+        = paginate @items_page
+
 
   %aside.addBanner
     .inner

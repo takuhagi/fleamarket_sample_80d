@@ -39,28 +39,28 @@
             = @grand_children[0].parent.name
             の商品一覧
 
-.category_products_list_wrapper
-  .category_products_wrapper
-    .category_products
-      -# ページネーション指定と行列表示にする limit(1)とlimit(3)を外す
-      - @grand_children.limit(1).each do |category|
-        - Item.where(category_id: category.id).limit(3).each do |item|
+.category_products_lists
+  .category_products_list_wrapper
+    .category_products_wrapper
+      .category_products
+        - @list_array.each do |item|
           .productBox
             = link_to item_path(item.id) do
               .category_productLists
                 .category_productLists__img
                   = image_tag "#{item.images[0].src}", class:"category_image_show"
                 .category_productLists_body
-                  .category_productLists_body__name
-                    = item.name
-                    .category_productLists_body__details
-                      %ul
-                        %li
-                          = item.price
-                          円 (税込)
-                        %li
-                          = icon("fas", "star")
-                          1
+                  = item.name
+                  .category_productLists_body__details
+                    %ul
+                      %li
+                        = item.price
+                        円 (税込)
+                      %li
+                        = icon("fas", "star")
+      
+           
+      = paginate @list_array
 
 
   %aside.addBanner
