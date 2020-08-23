@@ -55,8 +55,14 @@
                 必須
             .listing-select-wrapper
               .listing-select-wrapper__box
-                = f.select :category_id,@category_parent_array, {include_blank: "---"}, {class: 'listing-select-wrapper__box--select',id: 'parent_category'}
-           
+                = f.select :category_id, @category_parent_array, {selected:@item.category.parent.parent.id}, {class: 'listing-select-wrapper__box--select',id: 'parent_category'}
+            .listing-select-wrapper__added#children_wrapper
+              .listing-select-wrapper__box
+                = f.select :category_id, options_for_select(@category_children_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {include_blank: "---", selected: @item.category.parent.id}),{}, {class: 'listing-select-wrapper__box--select', id: 'child_category'}
+            .listing-select-wrapper__added#grandchildren_wrapper
+              .listing-select-wrapper__box
+                = f.select :category_id, options_for_select(@category_grandchildren_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {include_blank: "---", selected: @item.category.id}),{}, {class: 'listing-select-wrapper__box--select', id: 'grandchild_category'}
+                
               -# 要素の取り出し,詳細画面と連携出来次第削除         
             -# - Category.where(ancestry: nil).each do |parent|
             -#   = parent.name
@@ -125,11 +131,10 @@
               = f.text_field :price, class:"price_field", placeholder: "販売価格"
 
         .form_btn  
-          = f.submit "出品する（商品を登録する）", class:"item_submit"
+          = f.submit "変更する（商品を登録する）", class:"item_submit"
 
         .return_top
-          = link_to root_path, class:"return_top_top",method: :post do
-            戻る
+          = link_to '戻る', :back ,class:"return_top_top"
     .Header
       .logo
         = image_tag "logo.png", class:"logo_image"
