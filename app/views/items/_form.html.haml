@@ -80,7 +80,7 @@
               
               = f.fields_for :images do |image|
                 .js-file_group{"data-index" => "#{image.index}"}
-                = image.label :src, class: "js-file_group0" do
+                = image.label :src, class: "js-file_label0" do
                   = image.file_field :src, class: 'js-file'
                   %br/
               - if @item.persisted?

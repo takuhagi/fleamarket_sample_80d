@@ -43,9 +43,9 @@ class ConfirmsController < ApplicationController
     
 
     if @item.update(buyer_id: current_user.id)
-      redirect_to user_path(current_user.id)
+      redirect_to user_path(current_user.id), notice: "購入しました" 
     else
-      redirect_to action: "pay"
+      redirect_to action: "pay", notice: "購入できませんでした" 
     end
   end
 

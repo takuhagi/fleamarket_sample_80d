@@ -1,6 +1,6 @@
 $(function(){
   const buildFileField = (num)=> {
-    const html = `<label class="js-file_group${num}">
+    const html = `<label class="js-file_label${num}">
                   <div data-index="${num}" class="js-file_group${num}">
                     <input class="js-file" type="file"
                     name="item[images_attributes][${num}][src]"

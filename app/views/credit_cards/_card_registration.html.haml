@@ -66,6 +66,3 @@
             = text_field_tag "cvc", "", class: 'payment__security-code', type: "text", id: "cvc", maxlength: "4" ,placeholder: "カード背面3~４桁の番号"
           #card_token
           = submit_tag "追加する", class: "card-form__box__add", id: "token_submit", type: 'button'
-
-          = link_to credit_cards_path do
-            登録カード
