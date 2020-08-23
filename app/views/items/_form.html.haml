@@ -1,5 +1,7 @@
 %body
+
   = render "header"
+
 
 
   .All
@@ -15,6 +17,8 @@
                   画像
                 .require_content
                   必須
+                .info
+                  ここをクリックして画像を選択
             #image-box
               #previews
                 - if @item.persisted?
@@ -23,6 +27,7 @@
               
               = f.fields_for :images do |image|
                 .js-file_group{"data-index" => "#{image.index}"}
+                = image.label :src, class: "js-file_label0" do
                   = image.file_field :src, class: 'js-file'
                   %br/
               - if @item.persisted?

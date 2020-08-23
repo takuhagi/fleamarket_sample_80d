@@ -45,7 +45,9 @@ class CreditCardsController < ApplicationController
     @card.delete
     
     if @card.destroy
-      redirect_to root_path
+      redirect_to root_path, notice: "カードを削除しました" 
+    else
+      redirect_to action: "index", notice: "カードを削除できませんでした" 
     end
   end
 

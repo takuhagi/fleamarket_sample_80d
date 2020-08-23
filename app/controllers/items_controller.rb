@@ -25,9 +25,9 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to root_path
+      redirect_to root_path, notice: "出品しました" 
     else
-      render :new
+      render :new, notice: "出品に失敗しました" 
     end
   end
   
@@ -43,6 +43,7 @@ class ItemsController < ApplicationController
     # end
 
     @user = User.find(Item.find(params[:id]).seller_id)
+    @parents = Category.order("id ASC").limit(13)
   end
 
   
@@ -59,7 +60,7 @@ class ItemsController < ApplicationController
   def destroy
     @items = Item.find(params[:id])
     if @items.seller_id == current_user.id && @items.destroy
-      redirect_to user_path(current_user.id)
+      redirect_to user_path(current_user.id), notice: "削除しました" 
     else
       redirect_to root_path
     end

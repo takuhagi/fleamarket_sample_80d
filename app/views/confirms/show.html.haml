@@ -3,7 +3,7 @@
   .confirm__top
     %span.image
     = link_to root_path do
-      = image_tag src="logo.png", size: "200x60"
+      = image_tag asset_path('logo.png'), size: "200x60"
 
   .confirm__list
 
@@ -66,11 +66,6 @@
   .confirm__foot
     .confirm__foot__icon
       %span.image
-        = image_tag src="logo-white.png", size: "120x70"
+        = image_tag asset_path('logo-white.png'), size: "120x70"
       .confirm__foot__furima    
         © Furima, Inc.
-        
-  -# 商品詳細画面実装後に移す
-  -# .delete
-  -#   = link_to item_path(@item), method: :delete, local: true, data: { confirm: '削除してよろしいですか？' } do
-      
