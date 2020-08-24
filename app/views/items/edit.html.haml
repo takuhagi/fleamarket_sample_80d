@@ -77,17 +77,18 @@
             #previews
               - if @item.persisted?
                 - @item.images.each_with_index do |image, i|
-                  = image_tag image.src.url, data: { index: i }, width: "130", height: '130'
+                  - if image.src.present?
+                    = image_tag image.src.url, data: { index: i }, width: "125", height: '125'
                   
             = f.fields_for :images do |image|
               .js-file_group{"data-index" => "#{image.index}"}
-              = image.label :src, class: "js-file_label0" do
+              
                 = image.file_field :src, class: 'js-file'
                 %br/
-            - if @item.persisted?
-              .js-file_group{"data-index" => "#{@item.images.count}"}
-                = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][src]", class: 'js-file'
-
+              - if @item.persisted?
+                .js-file_group{"data-index" => "#{@item.images.count}"}
+                = image.label :src, class: "js-file_label#{image.index}" do
+                  = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][src]", class: 'js-file'
         .form_name.common_wrapper
           .name_wrapper
             .content_wrapper
