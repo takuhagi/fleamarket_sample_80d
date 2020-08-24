@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :set_parent, only: [:index, :show, :search, :new]
-  before_action :set_brand, only: [:index, :show, :search, :new]
+  before_action :set_parent, only: [:index, :show, :search, :new, :edit]
+  before_action :set_brand, only: [:index, :show, :search, :new, :edit]
 
   def index
     @items = Item.includes(:images).order('created_at DESC').where(buyer_id: nil)
