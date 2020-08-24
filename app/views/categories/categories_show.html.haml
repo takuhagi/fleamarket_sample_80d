@@ -21,16 +21,20 @@
         = icon("fas", "angle-right")
       %li
         = link_to categories_path do
-          = @grand_children.parent.parent.name
-      %li 
-        = icon("fas", "angle-right")
-      %li
-        = link_to category_categories_child_show_path(category_id: @grand_children.id) do
-          = @grand_children.parent.name
-      %li
-        = icon("fas", "angle-right")
-      %li
-        = @grand_children.name
+          - if @grand_children.parent.parent != nil
+            = @grand_children.parent.parent.name
+          - else
+            = @grand_children.parent.name
+        %li 
+          - if @grand_children.parent.parent != nil
+            = icon("fas", "angle-right")
+        %li
+          = link_to category_categories_child_show_path(category_id: @grand_children.id) do
+            = @grand_children.parent.name
+        %li
+          = icon("fas", "angle-right")
+        %li
+          = @grand_children.name
 
   .main
     .showMain

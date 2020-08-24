@@ -33,20 +33,28 @@ class CategoriesController < ApplicationController
     @grand_children = Category.find(params[:category_id])
     @category_items = Item.where(category_id: params[:category_id])
     @category_items_page = @category_items.where(buyer_id: nil).page(params[:page]).per(12)
-
+    
   end
 
   # 一覧から子カテゴリー表示
   def category_list_to_children_list
     @grand_children = Category.find(params[:category_id]).children
+    # 孫なし版 子
+    @child = Category.find(params[:category_id])
+
     # ページネーション実装のため追加
     @items = Item.where(buyer_id: nil)
     @item_list = []
+
+    
     @grand_children.each do |category|
       @items.where(category_id: category.id).where(buyer_id: nil).each do |item|
         @item_list << item
       end
     end
     @list_array = Kaminari.paginate_array(@item_list).page(params[:page]).per(12)
+    
+    # 子の商品一覧
+    @child_category_item = @items.where(category_id: params[:category_id]).page(params[:page]).per(12)
   end
 end

@@ -21,12 +21,16 @@
         = icon("fas", "angle-right")
       %li
         = link_to categories_path do
-          = @grandchild_category.parent.parent.name
-      %li 
-        = icon("fas", "angle-right")
-      %li
-        = @grandchild_category.parent.name
-
+          - if @grandchild_category.parent.parent != nil
+            = @grandchild_category.parent.parent.name
+          - else
+            = @grandchild_category.parent.name
+      - if @grandchild_category.parent.parent != nil
+        %li 
+          = icon("fas", "angle-right")
+        %li
+          = @grandchild_category.parent.name
+        
   .main
     .showMain
       .contentLeft
