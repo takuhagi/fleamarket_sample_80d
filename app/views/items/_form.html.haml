@@ -24,7 +24,6 @@
                 - if @item.persisted?
                   - @item.images.each_with_index do |image, i|
                     = image_tag image.src.url, data: { index: i }, width: "200", height: '500'
-              
               = f.fields_for :images do |image|
                 .js-file_group{"data-index" => "#{image.index}"}
                 = image.label :src, class: "js-file_label0" do

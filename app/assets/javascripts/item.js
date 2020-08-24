@@ -5,12 +5,13 @@ $(function(){
                     <input class="js-file" type="file"
                     name="item[images_attributes][${num}][src]"
                     id="item_images_attributes_${num}_src">
-                    
+                    <div class='item-image__operetion--delete'>削除</div>
                   </div>`;
     return html;
   }
   const buildImg = (index, url)=> {
     const html = `<img data-index="${index}" src="${url}" width="130px" height="130px">`;
+    
     return html;
   }
 
@@ -46,4 +47,5 @@ $(function(){
 
     if ($('.js-file').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
   });
+  
 });
