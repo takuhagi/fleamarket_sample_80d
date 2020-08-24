@@ -979,6 +979,18 @@
                 img {
                   object-fit: cover;
                   height: 346px;
+                  
+                }
+                .image_sold {
+                  position: absolute;
+                  top: 50%;
+                  font-size: 28px;
+                  color: #ea352d;
+                  font-weight: 600;
+                  opacity: 0;
+                }
+                .image_sold span {
+                  opacity: 0;
                 }
                 ul {
                   display: flex;
@@ -997,6 +1009,7 @@
                 }
               }
             }
+            
           }
           .itemBox__price {
             margin: 24px 0 24px;
