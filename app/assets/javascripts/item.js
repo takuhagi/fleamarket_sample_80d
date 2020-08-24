@@ -10,7 +10,7 @@ $(function(){
     return html;
   }
   const buildImg = (index, url)=> {
-    const html = `<img data-index="${index}" src="${url}" width="130px" height="130px">`;
+    const html = `<img data-index="${index}" src="${url}" width="125px" height="125px">`;
     return html;
   }
 
