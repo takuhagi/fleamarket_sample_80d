@@ -77,16 +77,20 @@
             #previews
               - if @item.persisted?
                 - @item.images.each_with_index do |image, i|
+
                   - if image.src.present?
                     = image_tag image.src.url, data: { index: i }, width: "125", height: '125'
+
             = f.fields_for :images do |image|
               .js-file_group{"data-index" => "#{image.index}"}
                 = image.file_field :src, class: 'js-file'
                 %br/
+
               - if @item.persisted?
                 .js-file_group{"data-index" => "#{@item.images.count}"}
                 = image.label :src, class: "js-file_label#{image.index}" do
                   = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][src]", class: 'js-file'
+
 
         .form_name.common_wrapper
           .name_wrapper
@@ -114,25 +118,19 @@
                 カテゴリー
               .require_content
                 必須
+          - if @item.category.parent.parent != nil
             .listing-select-wrapper
               .listing-select-wrapper__box
                 = f.select :category_id, @category_parent_array, {selected:@item.category.parent.parent.id}, {class: 'listing-select-wrapper__box--select',id: 'parent_category'}
+          - if @item.category.parent != nil
             .listing-select-wrapper__added#children_wrapper
               .listing-select-wrapper__box
                 = f.select :category_id, options_for_select(@category_children_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {include_blank: "---", selected: @item.category.parent.id}),{}, {class: 'listing-select-wrapper__box--select', id: 'child_category'}
+          -if @item.category != nil
             .listing-select-wrapper__added#grandchildren_wrapper
               .listing-select-wrapper__box
                 = f.select :category_id, options_for_select(@category_grandchildren_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {include_blank: "---", selected: @item.category.id}),{}, {class: 'listing-select-wrapper__box--select', id: 'grandchild_category'}
                 
-              -# 要素の取り出し,詳細画面と連携出来次第削除         
-            -# - Category.where(ancestry: nil).each do |parent|
-            -#   = parent.name
-            -#   %br
-            -#   %br
-            -#   - parent.children.each do |child|
-            -#     = child.name
-            -#     -child.children.each do |grandchild|
-            -#       = grandchild.name
 
 
         .form_brand_id.common_wrapper
