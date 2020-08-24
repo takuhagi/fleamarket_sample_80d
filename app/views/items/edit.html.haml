@@ -78,7 +78,6 @@
               - if @item.persisted?
                 - @item.images.each_with_index do |image, i|
                   = image_tag image.src.url, data: { index: i }, width: "200", height: '100'
-            
             = f.fields_for :images do |image|
               .js-file_group{"data-index" => "#{image.index}"}
               = image.label :src, class: "js-file_label0" do
@@ -87,7 +86,6 @@
             - if @item.persisted?
               .js-file_group{"data-index" => "#{@item.images.count}"}
                 = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][src]", class: 'js-file'
-
         .form_name.common_wrapper
           .name_wrapper
             .content_wrapper
