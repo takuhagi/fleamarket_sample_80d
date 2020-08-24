@@ -63,12 +63,17 @@
         = icon("fas", "angle-right")
       %li
         = link_to categories_path do
-          = @item.category.parent.parent.name
-      %li 
-        = icon("fas", "angle-right")
-      %li
-        = link_to category_categories_child_show_path(category_id: @item.category.id) do
-          = @item.category.parent.name
+          - if @item.category.parent.parent != nil
+            = @item.category.parent.parent.name
+          - else
+            = @item.category.parent.name
+      - if @item.category.parent.parent != nil
+        %li 
+          = icon("fas", "angle-right")
+        %li
+          = link_to category_categories_child_show_path(category_id: @item.category.id) do
+            = @item.category.parent.name
+      
       %li
         = icon("fas", "angle-right")
       %li

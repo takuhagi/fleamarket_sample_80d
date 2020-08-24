@@ -1,4 +1,5 @@
 一覧から、カテゴリーごとの一覧ページ(子カテゴリー)
+表示未修正
 
 %body
   %header.pcHeader
@@ -21,12 +22,19 @@
       %li 
         = icon("fas", "angle-right")
       %li
-        = link_to categories_path do
-          = @grand_children[0].parent.parent.name
+        - if @grand_children[0] != nil
+          = link_to categories_path do
+            = @grand_children[0].parent.parent.name
+        -else
+          = link_to categories_path do
+            = @child.parent.name
       %li 
         = icon("fas", "angle-right")
       %li
-        = @grand_children[0].parent.name
+        - if @grand_children[0] != nil
+          = @grand_children[0].parent.name
+        - else
+          = @child.name
 
 
 
@@ -36,7 +44,10 @@
       .contentRight
         .titleBox
           %p 
-            = @grand_children[0].parent.name
+            -if @grand_children[0] != nil
+              = @grand_children[0].parent.name
+            - else
+              = @child.name
             の商品一覧
 
 
@@ -44,7 +55,7 @@
   .category_products_list_wrapper
     .category_products_wrapper
       .category_products
-        - @list_array.each do |item|
+        - @child_category_item.each do |item|
           .productBox
             = link_to item_path(item.id) do
               .category_productLists
@@ -59,9 +70,9 @@
                         円 (税込)
                       %li
                         = icon("fas", "star")
-      
-           
-      = paginate @list_array
+      = paginate @child_category_item
+
+
 
 
   %aside.addBanner
