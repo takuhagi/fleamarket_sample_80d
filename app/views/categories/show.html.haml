@@ -118,9 +118,10 @@
       .inner__text 今すぐ無料ダウンロード！
       .inner__icon
         = link_to root_path do
-          = image_tag src="/assets/app-store.svg",class:"aBtn"
+          = image_tag asset_path('app-store.svg'),class:"aBtn"
         = link_to root_path do
-          = image_tag src="/assets/google-play.svg",class:"gBtn"
+          = image_tag asset_path('google-play.svg'),class:"gBtn"
+
 
   = render "footer"
 
