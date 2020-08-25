@@ -68,15 +68,16 @@
       .inner__text 今すぐ無料ダウンロード！
       .inner__icon
         = link_to root_path do
-          = image_tag src="/assets/app-store.svg",class:"aBtn"
+          = image_tag src= asset_path('app-store.svg')
         = link_to root_path do
-          = image_tag src="/assets/google-play.svg",class:"gBtn"
+          = image_tag src= asset_path('google-play.svg')
   
   = render "footer"
 
   = link_to root_path do
     .purchaseBtn
       %span.purchaseBtn__text 出品する
-      = image_tag src="/assets/icon_camera.png",class:"purchaseBtn__icon"
+      = image_tag asset_path('icon_camera.png')
+     
 
       
