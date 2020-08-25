@@ -46,6 +46,9 @@
               %ul
                 %li
                   = image_tag @item.images[0].src.url,id:'bigimg'
+                  - if @item.buyer_id.present?
+                    .image_sold
+                      This item is sold out
                   %ul
                     .item_images
                       %li
