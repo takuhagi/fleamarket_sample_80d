@@ -69,6 +69,7 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    @item.images.new
     @brands = []
     Brand.all.each do |brand|
     @brands << [brand.name, brand.id]
