@@ -1,8 +1,68 @@
-.All
-  .Header
-    .logo
-      = image_tag "logo.png", class:"logo_image"
+%body
+%header.pcHeader
+  .headerInner
+    .mainHeader
+      %h1.icon
+        = link_to root_path do
+          = image_tag asset_path('logo.png')
+      .searchBox
+        %form{"accept-charset" => "UTF-8", action: "/items/search", method: "get"}
+          %input{name: "utf8", type: "hidden", value: "✓"}/
+          %input#searchInput.searchBox--input{name: "key", placeholder: "キーワードから探す"}/
+          %button{type: "submit"}
+            .searchBox__icon
+              = image_tag asset_path('icon-search 1.png')
+    %ul.resultLists
+    .nav
+      %ul.listsLeft
+        %li.listsLeft__item.listsLeft__item--first
+          = link_to "カテゴリー",root_path,id:"catBtn" 
+          .nav-category
+            %ul.category1
+              - @parents.each do |parent|
+                %li.parent__list
+                  = link_to categories_path do
+                    = parent.name
+                  %ul.category2
+                    - parent.children.each do |child|
+                      %li.child__list
+                        = link_to category_categories_child_show_path(child.id) do
+                          = child.name
+                        %ul.category3
+                          - child.children.each do |grandchild|
+                            %li.grandchild__list
+                              = link_to category_categories_show_path(grandchild.id) do
+                                = grandchild.name
+        %li.listsLeft__item.listsLeft__item--second
+          = link_to "ブランド",root_path,id:"brandBtn"
 
+          .nav-brands
+            %ul.brandsPulldown
+              - @brand.each do |brand|
+                %li.brand_list
+                  = link_to root_path do
+                    = brand.name
+
+
+
+
+          
+      - if user_signed_in?
+        %ul.listsRight
+          %li.listsRight__item.listsRight__item--login
+            = link_to "ログアウト",destroy_user_session_path, method: :delete
+          %li.listsRight__item.listsRight__item--new
+            = link_to "マイページ",user_path(current_user.id)
+      - else
+        %ul.listsRight
+          %li.listsRight__item.listsRight__item--login
+            = link_to "ログイン",new_user_session_path
+          %li.listsRight__item.listsRight__item--new
+            = link_to "新規会員登録",new_user_registration_path
+
+
+
+.All
   .Middle
     .Form
       = form_for @item do |f|
@@ -18,15 +78,14 @@
               - if @item.persisted?
                 - @item.images.each_with_index do |image, i|
                   = image_tag image.src.url, data: { index: i }, width: "200", height: '100'
-            
             = f.fields_for :images do |image|
               .js-file_group{"data-index" => "#{image.index}"}
+              = image.label :src, class: "js-file_label0" do
                 = image.file_field :src, class: 'js-file'
                 %br/
             - if @item.persisted?
               .js-file_group{"data-index" => "#{@item.images.count}"}
                 = file_field_tag :src, name: "item[images_attributes][#{@item.images.count}][src]", class: 'js-file'
-
         .form_name.common_wrapper
           .name_wrapper
             .content_wrapper
@@ -53,25 +112,19 @@
                 カテゴリー
               .require_content
                 必須
+          - if @item.category.parent.parent != nil
             .listing-select-wrapper
               .listing-select-wrapper__box
                 = f.select :category_id, @category_parent_array, {selected:@item.category.parent.parent.id}, {class: 'listing-select-wrapper__box--select',id: 'parent_category'}
+          - if @item.category.parent != nil
             .listing-select-wrapper__added#children_wrapper
               .listing-select-wrapper__box
                 = f.select :category_id, options_for_select(@category_children_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {include_blank: "---", selected: @item.category.parent.id}),{}, {class: 'listing-select-wrapper__box--select', id: 'child_category'}
+          -if @item.category != nil
             .listing-select-wrapper__added#grandchildren_wrapper
               .listing-select-wrapper__box
                 = f.select :category_id, options_for_select(@category_grandchildren_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {include_blank: "---", selected: @item.category.id}),{}, {class: 'listing-select-wrapper__box--select', id: 'grandchild_category'}
                 
-              -# 要素の取り出し,詳細画面と連携出来次第削除         
-            -# - Category.where(ancestry: nil).each do |parent|
-            -#   = parent.name
-            -#   %br
-            -#   %br
-            -#   - parent.children.each do |child|
-            -#     = child.name
-            -#     -child.children.each do |grandchild|
-            -#       = grandchild.name
 
 
         .form_brand_id.common_wrapper
@@ -133,10 +186,5 @@
         .form_btn  
           = f.submit "変更する（商品を登録する）", class:"item_submit"
 
-        .return_top
-          = link_to '戻る', :back ,class:"return_top_top"
-    .Header
-      .logo
-        = image_tag "logo.png", class:"logo_image"
-        .logo-text
-          ©︎フリマ
+.footer
+  = render "footer"
