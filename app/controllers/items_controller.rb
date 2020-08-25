@@ -27,7 +27,8 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path, notice: "出品しました" 
     else
-      render :new, notice: "出品に失敗しました" 
+    redirect_to action: "new"
+    flash[:notice] = "出品に失敗しました" 
     end
   end
   
