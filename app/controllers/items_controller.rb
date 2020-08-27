@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
     # if category_info.parent == nil
     #   # redirect_to item_path
     # else
-      @item = Item.find(params[:id])
+    @item = Item.find(params[:id])
     # end
 
 

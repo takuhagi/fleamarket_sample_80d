@@ -145,9 +145,6 @@
                     "不適切な商品の通報"
         
         %ul.links
-          -# - @items = Item.includes(:images).order('created_at DESC').where(buyer_id: nil)
-          -# - hako = [@items]
-          -# - hako[]
           - num = @item.id
           %li
             = link_to item_path(num + 1) do
