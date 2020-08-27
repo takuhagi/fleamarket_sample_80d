@@ -33,7 +33,14 @@ class ItemsController < ApplicationController
   end
   
   def show
-    @item = Item.find(params[:id])
+    # binding.pry
+    category_info = Item.find(params[:id]).category
+    # if category_info.parent == nil
+    #   # redirect_to item_path
+    # else
+      @item = Item.find(params[:id])
+    # end
+
 
     # 存在しない商品は取得しないようにする予定
     # if Item.find(params[:id]).present?
