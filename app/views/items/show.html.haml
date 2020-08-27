@@ -163,14 +163,14 @@
         .item__change__box
           .item__change__box__edit
             .btn__default
-              - if user_signed_in? && current_user.id == @item.seller_id && @item.buyer_id.blank?
-                .btn__default__btn__blue
-                  = link_to edit_item_path(@item) do
-                    %input.btn__default.btn__blue{type: "submit", value: "商品を編集する"} 
-                  %p.text__center or
-                .btn__default.btn__gray  
-                  = link_to item_path(@item), method: :delete, local: true, data: { confirm: '削除してよろしいですか？' } do
-                    %input.btn__default.btn__gray{type: "submit", value: "この商品を削除する"}
+              -# - if user_signed_in? && current_user.id == @item.seller_id && @item.buyer_id.blank?
+              .btn__default__btn__blue
+                = link_to edit_item_path(@item) do
+                  %input.btn__default.btn__blue{type: "submit", value: "商品を編集する"} 
+                %p.text__center or
+              .btn__default.btn__gray  
+                = link_to item_path(@item), method: :delete, local: true, data: { confirm: '削除してよろしいですか？' } do
+                  %input.btn__default.btn__gray{type: "submit", value: "この商品を削除する"}
               
 
 
