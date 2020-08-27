@@ -2,37 +2,37 @@
 
   = render "header"
 
-  %nav.breadCrumbs
-    %ul
-      %li
-        = link_to "FURIMA",root_path
-      - if @item.category.parent.parent != nil
-        %li 
-          = icon("fas", "angle-right")
-        %li
-          = link_to categories_path do
-            = @item.category.parent.parent.name
+  -# %nav.breadCrumbs
+  -#   %ul
+  -#     %li
+  -#       = link_to "FURIMA",root_path
+  -#     - if @item.category.parent.parent != nil
+  -#       %li 
+  -#         = icon("fas", "angle-right")
+  -#       %li
+  -#         = link_to categories_path do
+  -#           = @item.category.parent.parent.name
       
-      - if @item.category.parent != nil
-        %li 
-          = icon("fas", "angle-right")
-        %li
-          - if @item.category.parent.parent != nil
-            = link_to category_categories_child_show_path(category_id: @item.category.id) do
-              = @item.category.parent.name
-          - else
-            = link_to categories_path do
-              = @item.category.parent.name
-        %li
-          = icon("fas", "angle-right")
-        %li
-          = link_to category_path(category_id: @item.category.id) do
-            = @item.category.name
-        %li
-          = icon("fas", "angle-right")
-        %li
-          %p
-            = @item.name
+  -#     - if @item.category.parent != nil
+  -#       %li 
+  -#         = icon("fas", "angle-right")
+  -#       %li
+  -#         - if @item.category.parent.parent != nil
+  -#           = link_to category_categories_child_show_path(category_id: @item.category.id) do
+  -#             = @item.category.parent.name
+  -#         - else
+  -#           = link_to categories_path do
+  -#             = @item.category.parent.name
+  -#       %li
+  -#         = icon("fas", "angle-right")
+  -#       %li
+  -#         = link_to category_path(category_id: @item.category.id) do
+  -#           = @item.category.name
+  -#       %li
+  -#         = icon("fas", "angle-right")
+  -#       %li
+  -#         %p
+  -#           = @item.name
 
   .main
     .showMain
@@ -89,21 +89,22 @@
                       = @item.explanation
 
                   %tr
-                    %th カテゴリー
-                    %td
-                      - if @item.category.parent.parent != nil
-                        = link_to categories_path do
-                          = @item.category.parent.parent.name
-                      %br
-                      - if @item.category.parent.parent != nil
-                        = link_to category_categories_child_show_path(category_id: @item.category.id) do
-                          = @item.category.parent.name
-                      - else
-                        = link_to categories_path(category_id: @item.category.id) do
-                          = @item.category.parent.name
-                      %br
-                      = link_to category_categories_show_path(category_id: @item.category.id) do
-                        = @item.category.name
+                    
+                    -# %th カテゴリー
+                    -# %td 
+                    -#   - if @item.category.parent.parent != nil
+                    -#     = link_to categories_path do
+                    -#       = @item.category.parent.parent.name
+                    -#   %br
+                    -#   - if @item.category.parent.parent != nil
+                    -#     = link_to category_categories_child_show_path(category_id: @item.category.id) do
+                    -#       = @item.category.parent.name
+                    -#   - else
+                    -#     = link_to categories_path(category_id: @item.category.id) do
+                    -#       = @item.category.parent.name
+                    -#   %br
+                    -#   = link_to category_categories_show_path(category_id: @item.category.id) do
+                    -#     = @item.category.name
                   %tr
                     %th ブランド
                     %td 
