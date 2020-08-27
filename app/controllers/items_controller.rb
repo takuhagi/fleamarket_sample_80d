@@ -67,6 +67,7 @@ class ItemsController < ApplicationController
 
   def destroy
     @items = Item.find(params[:id])
+    @items.destroy
     # if @items.seller_id == current_user.id && @items.destroy
     #   redirect_to user_path(current_user.id), notice: "削除しました" 
     # else
