@@ -6,33 +6,33 @@
     %ul
       %li
         = link_to "FURIMA",root_path
-      - if @item.category.parent.parent != nil
-        %li 
-          = icon("fas", "angle-right")
-        %li
-          = link_to categories_path do
-            = @item.category.parent.parent.name
+      -# - if @item.category.parent.parent != nil
+      -#   %li 
+      -#     = icon("fas", "angle-right")
+      -#   %li
+      -#     = link_to categories_path do
+      -#       = @item.category.parent.parent.name
       
-      - if @item.category.parent != nil
-        %li 
-          = icon("fas", "angle-right")
-        %li
-          - if @item.category.parent.parent != nil
-            = link_to category_categories_child_show_path(category_id: @item.category.id) do
-              = @item.category.parent.name
-          - else
-            = link_to categories_path do
-              = @item.category.parent.name
-        %li
-          = icon("fas", "angle-right")
-        %li
-          = link_to category_path(category_id: @item.category.id) do
-            = @item.category.name
-        %li
-          = icon("fas", "angle-right")
-        %li
-          %p
-            = @item.name
+      -# - if @item.category.parent != nil
+      -#   %li 
+      -#     = icon("fas", "angle-right")
+      -#   %li
+      -#     - if @item.category.parent.parent != nil
+      -#       = link_to category_categories_child_show_path(category_id: @item.category.id) do
+      -#         = @item.category.parent.name
+      -#     - else
+      -#       = link_to categories_path do
+      -#         = @item.category.parent.name
+      -#   %li
+      -#     = icon("fas", "angle-right")
+      -#   %li
+      -#     = link_to category_path(category_id: @item.category.id) do
+      -#       = @item.category.name
+      -#   %li
+      -#     = icon("fas", "angle-right")
+      -#   %li
+      -#     %p
+            -# = @item.name
 
   .main
     .showMain
@@ -88,29 +88,29 @@
                     %td 
                       = @item.explanation
 
-                  %tr
-                    %th カテゴリー
-                    %td 
-                      - if @item.category.parent.parent != nil
-                        = link_to categories_path do
-                          = @item.category.parent.parent.name
-                      %br
-                      - if @item.category.parent.parent != nil
-                        = link_to category_categories_child_show_path(category_id: @item.category.id) do
-                          = @item.category.parent.name
-                      - else
-                        = link_to categories_path(category_id: @item.category.id) do
-                          = @item.category.parent.name
-                      %br
-                      = link_to category_categories_show_path(category_id: @item.category.id) do
-                        = @item.category.name
-                  %tr
-                    %th ブランド
-                    %td 
-                      - if @item.brand != nil
-                        = @item.brand.name
-                      - else
-                        = "ブランドは指定されていません"
+                  -# %tr
+                  -#   %th カテゴリー
+                  -#   %td 
+                  -#     - if @item.category.parent.parent != nil
+                  -#       = link_to categories_path do
+                  -#         = @item.category.parent.parent.name
+                  -#     %br
+                  -#     - if @item.category.parent.parent != nil
+                  -#       = link_to category_categories_child_show_path(category_id: @item.category.id) do
+                  -#         = @item.category.parent.name
+                  -#     - else
+                  -#       = link_to categories_path(category_id: @item.category.id) do
+                  -#         = @item.category.parent.name
+                  -#     %br
+                  -#     = link_to category_categories_show_path(category_id: @item.category.id) do
+                  -#       = @item.category.name
+                  -# %tr
+                    -# %th ブランド
+                    -# %td 
+                    -#   - if @item.brand != nil
+                    -#     = @item.brand.name
+                    -#   - else
+                    -#     = "ブランドは指定されていません"
                   %tr
                     %th 商品の状態
                     %td 
@@ -171,26 +171,26 @@
 
 
         .relatedItems
-          = link_to category_path(category_id: @item.category.id) do
-            = "#{@item.category.name}をもっと見る"
-          .productLists
-            - Item.where(category_id: @item.category.id).limit(3).each do |item|
-              .productList
-                = link_to item_path(item.id) do
-                  .productList__img
-                    = image_tag item.images[0].src.url
-                  .productList__body
-                    .name
-                      = item.name
-                    .details
-                      %ul
-                        %li 
-                          = item.price
-                          円
-                        %li
-                          = icon("fas", "star")
-                          1
-                      %p (税込)
+          -# = link_to category_path(category_id: @item.category.id) do
+          -#   = "#{@item.category.name}をもっと見る"
+          -# .productLists
+          -#   - Item.where(category_id: @item.category.id).limit(3).each do |item|
+          -#     .productList
+          -#       = link_to item_path(item.id) do
+          -#         .productList__img
+          -#           = image_tag item.images[0].src.url
+          -#         .productList__body
+          -#           .name
+          -#             = item.name
+          -#           .details
+          -#             %ul
+          -#               %li 
+          -#                 = item.price
+          -#                 円
+          -#               %li
+          -#                 = icon("fas", "star")
+          -#                 1
+          -#             %p (税込)
         
 
        
